@@ -4,7 +4,7 @@ If you have any suggestions or questions, please log an issue.
 
 Table Of Contents
 -----------------
-[1. Introduction](autd-js-front-end-dev-guide/Chapters/01 - Introduction.md)
+[1. Introduction](Chapters/01 - Introduction.md)
 2. Environment Setup
 3. Start Project
 4. Javascript Modules
