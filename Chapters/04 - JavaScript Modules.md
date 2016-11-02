@@ -1,10 +1,11 @@
 # Modular JavaScript
-Modularity has always been a staple of good development; it promotes code-reuse and enhances maintainability.  Unfortunately, writing modular JavaScript was not easy, at least not until node.js came along.  In fact, JavaScript did not have a way to write modules build into the language.  (Read that last sentence again, out loud.)  Over time, this lead to developers building their own strategies and tools to create modular JavaScript.  I will spare you the history lesson and the cornucopia of solutions this has lead to (but you should definitly Google it) and just let you know that, __finally__, ES2015 introduced a native feature in the JavaScript language that supports the creation of modules.  And since we are coding in ES2015 already, this is the only solution we will be using going foreward.
+Modularity has always been a staple of good development; it promotes code-reuse and enhances maintainability.  Unfortunately, writing modular JavaScript was not easy, at least not until node.js came along.  In fact, JavaScript did not have a way to write modules build into the language.  (Read that last sentence again, out loud.)  Over time, this lead to developers building their own strategies and tools to create modular JavaScript.  I will spare you the history lesson and the cornucopia of solutions this has lead to (but you should definitely Google it) and just let you know that, _finally_, ES2015 introduced a native feature in the JavaScript language that supports the creation of modules.  And since we are coding in ES2015 already, this is the only solution we will be using going forward.
 
 # Our first Module
-Lets go back to our example ```app.js``` and introduce some JavaScript Modules to see how they work.  First we create a new folder called ```lib``` that will hold all our JavaScript Modules. 
+Lets go back to our example ```app.js``` and introduce some JavaScript Modules to see how they work.  First we create a new folder called ```lib``` in our ```src``` folder that will hold all our JavaScript Modules. 
 
 ```bash
+$ cd src
 $ mkdir lib
 $ cd lib
 ```
@@ -23,7 +24,7 @@ import { sayHello } from 'lib/sayHello'
 document.getElementById('app').innerHTML = `<h1>${ sayHello() }<h1>`
 ```
 
-We can actually simplify this a little bit.  A module can namely export multiple objects, but one of those can be set as the default:
+We can actually simplify this a little bit, a module can namely export multiple objects, but one of those can be set as the default:
 
 ```javascript
 export default sayHello = (name = 'Mark') => `Hello ${ name }`
@@ -49,7 +50,7 @@ After saving this, your browser should have already refreshed itself with the ne
 
 ```Uncaught ReferenceError: require is not defined(…)```
 
-If you cannot remember having used ```require``` in your code, well, you are right, we didn't.  This error is coming from our compiled code, not from our source code.  And this is raising an interesting problem: how do I know which line in my source code is responsible for this error in the compiled code?  In other words, how does the source code map to the compiled code?
+If you cannot remember having used ```require``` in your code, well, you are right, you didn't.  This error is coming from our compiled code, not from our source code.  And this is raising an interesting problem: how do I know which line in my source code is responsible for this error in the compiled code?  In other words, how does the source code map to the compiled code?
 
 ## Source Maps
 Of course the JavaScript community has a solution for this issue.  "Source Maps" map your source code to your compiled code so that you can keep writing ES2015 code at development time, run ES5 code (compiled by Babel) in the browser, and still see where in the source code the error comes from (even though the browser never gets to see the actual source code).  This feature is actually build into Babel and can easily be switched on by using the ```-s``` or ```--source-maps``` flag, so lets add this to our ```package.json``` watch script:
@@ -73,12 +74,12 @@ As we discussed at the beginning of this chapter, before ES2015 there was no sup
 var _sayHello = require('lib/sayHello');
 ```
 
-Now, ```require``` is a function that is provided by e.g. Node.js, but not by the browser, hence the error ```require is not defined```.  So we are now in the interesting situation where we transpiled ```import```, which is not yet supported by any browser, to ```require```, which is also not supported by any browser.  In fact, none of the Module Loaders are supported by any browser.  There's actually a good reason for this; think about it, these modules are seperate files and ```require``` needs to load these files from the File System, but a browser does not have a File System, so how _could_ this work?
+Now, ```require``` is a function that is provided by e.g. Node.js, but not by the browser, hence the error ```require is not defined```.  So we are now in the interesting situation where we transpiled ```import```, which is not yet supported by any browser, to ```require```, which is also not supported by any browser.  In fact, none of the Module Loaders are supported by any browser.  There's actually a good reason for this; think about it, these modules are separate files and ```require``` needs to load these files from the File System, but a browser does not have a File System, so how _could_ this work?
 
 The solution to this problem is to "bundle" all the modules into 1 large file so that when the browser loads this 1 file, it has access to all modules.
 
-## Rollup
-There are several Module Bundlers out there but we are going to use [rollup.js](http://rollupjs.org/).  This is a relatively new kid on the block, but it has a few features that other ones are lacking, most importantly it has native suport for ES2015 modules.  Bacause it does, we don't actually have to transpile ```import``` anymore with Babel.  You can tell Babel to not transpile this by adding the following to your Babel configuration in ```.babelrc```:
+## Rollup.js
+There are several Module Bundlers out there but we are going to use [rollup.js](http://rollupjs.org/).  This is a relatively new kid on the block, but it has a few features that other Module Bundlers are missing, most importantly it has native support for ES2015 modules.  Because it does, we don't actually have to transpile ```import``` anymore with Babel.  You can tell Babel to not transpile ```import``` by adding the following to your Babel configuration in ```.babelrc```:
 
 ```JSON
 {
@@ -134,7 +135,7 @@ Now we just have to change the build script in ```package.json``` to use rollup.
 ```
 
 ### Watch
-Rollup.js has also "watch" functionality, it just has to be installed seperately:
+Rollup.js has also "watch" functionality, it just has to be installed separately:
 
 ```bash
 npm install rollup-watch --save-dev
@@ -149,9 +150,9 @@ Once this is installed, you can use the ```-w``` flag with the rollup command, l
 Now when you run ```npm run watch``` your web page should work again.  Rollup.js bundles all your JavaScripts using native ES2015 import/export and converts them into IIFE format (which browsers understand) and then uses Babel to convert all other ES2015 features into ES5 (which the browsers also understand).  You now have a fully functioning, modern JavaScript Front End tooling set up.
 
 ## Webpack
-I must admit I never used Rollup myself until I started the research for this guide and stumbled upon it, I have always used Webpack so I am going to devote this chapter to Webpack as an alternative to Rollup.  Feel free to skip it if you are happy using Rollup but for those that prefer Webpack, read on.
+I must admit I never used Rollup.js myself until I started the research for this guide and stumbled upon it, I have always used Webpack so I am going to devote this chapter to Webpack as an alternative to Rollup.js.  Feel free to skip it if you are happy using Rollup.js but for those that prefer Webpack, read on.
 
-Webpack's scope is actually much broader than just a JavaScript bundler, it can also bundle CSS and even image files (e.g. png files) which is one of the reasons I hesitated to use it as my default in this beginner JavaScript setup guide: all this functionality makes it very flexible, but also a bit trickier to configure.  Another reason is that Webpack does not natively support ES2015 modules yet (this is being addressed though in the upcoming WebPack 2).  As it turns out though, when you use Babel, this is actually a bit of an advantage over Rollup where we had to "re-configure" Babel to not convert modules.
+Webpack's scope is actually much broader than just a JavaScript bundler, it can also bundle CSS and even image files (e.g. png files) which is one of the reasons I hesitated to use it as my default in this beginner JavaScript setup guide: all this functionality makes it very flexible, but also a bit trickier to configure.  Another reason is that Webpack does not natively support ES2015 modules yet (this is being addressed though in the upcoming WebPack 2).  As it turns out though, when you use Babel, this is actually a bit of an advantage over Rollup where we had to "re-configure" Babel to _not_ convert modules.
 
 So if you already configured your project for Rollup and now want to use Webpack instead, please undo the changes we did to the ```.babelrc``` file and revert it back to it's original:
 
@@ -172,14 +173,14 @@ Webpack is a node package, so installation is simple:
 $ npm install webpack --save-dev
 ```
 
->If you want to be thourough and uninstall Rollup.js, you do this as followed:
+>If you want to be thorough and uninstall Rollup.js, you do this as followed:
 
 >```bash
 >$ npm uninstall rollup rollup-plugin-babel rollup-watch --save-dev
 >$ rm rollup.config.js
 >```
 
-Just like with rollup.js, rather than running Babel directly, from now on, we are going to run Webpack, which will invoke Babel.  And just like rollup.js we have to install a the Babel plugin for Webpack to make this work.  The plugins are called "loaders" in Webpack lingo, and they are (all together now!) available as node packages:
+Just like with Rollup.js, rather than running Babel directly, from now on, we are going to run Webpack, which will invoke Babel.  And just like rollup.js we have to install a the Babel plugin for Webpack to make this work.  The plugins are called "loaders" in Webpack lingo, and they are (all together now!) available as node packages:
 
 ```bash
 $ npm install babel-loader --save-dev
