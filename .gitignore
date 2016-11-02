@@ -1,0 +1,8 @@
+logs
+*.log
+node_modules
+.env
+Code/newProject/dist
+Code/newProject/node_modules
+Code/newProject/*.log
+Code/newProject/.env
