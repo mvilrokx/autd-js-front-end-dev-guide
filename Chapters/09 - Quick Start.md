@@ -98,10 +98,10 @@ document.getElementById('app').innerHTML = `<h1>${ sayHello() }<h1>`
 
 ## Start Application
 
-```bash: terminal 1
+```bash
 $ npm run watch
 ```
 
-```bash: terminal 2
+```bash
 $ browser-sync start --server --files "dist/*.js, index.html"
 ```
