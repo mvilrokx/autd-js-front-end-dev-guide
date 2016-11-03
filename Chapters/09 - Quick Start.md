@@ -1,5 +1,11 @@
 # Quick Start
-I'm sure you don't want to go through this whole guide everytime you start a new JavaScript project, so this chapter is for you!  I've summerized all the steps into as small a package as possible to get you going quickly.  You could probably script this up, or create some sort of start git repo that you can copy, but I will leave that up to you.
+I'm sure you don't want to go through this whole guide everytime you start a new JavaScript project, so I've summerized everything to get you going quickly into as few steps as possible in this chapter.  
+
+>If even this is too much for you, there is actually a started-project included in this repository, under the ```Code``` folder.  You could use that as a starter template for your projects, just copy it and rename the ```newProject ``` folder to your project name, cd into that folder and run:
+>
+>```bash
+>$ npm init
+>```
 
 I am going to assume that you have [Node.js (and npm)](https://nodejs.org/en/download/) installed, if not please do so now.
 
