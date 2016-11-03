@@ -12,6 +12,6 @@ Table Of Contents
 6. Linting (Coming Soon)
 7. Source Control (Coming Soon)
 8. Testing (Coming Soon)
-9. Quick Start (Coming Soon)
+9. [Quick Start](Chapters/09 - Quick Start.md)
 
 Happy Reading!
