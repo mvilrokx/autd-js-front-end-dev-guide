@@ -1,7 +1,7 @@
 # Quick Start
 I'm sure you don't want to go through this whole guide everytime you start a new JavaScript project, so I've summerized everything to get you going quickly into as few steps as possible in this chapter.  
 
->If even this is too much for you, there is actually a started-project included in this repository, under the ```Code``` folder.  You could use that as a starter template for your projects, just copy it and rename the ```newProject ``` folder to your project name, cd into that folder and run:
+>If even this is too much for you, there is actually a starter-project included in this repository, under the ```Code``` folder, called ```newProject```.  You could use that as a starter template for your projects, just copy it and rename the ```newProject ``` folder to your project name, cd into that folder and run:
 >
 >```bash
 >$ npm init
