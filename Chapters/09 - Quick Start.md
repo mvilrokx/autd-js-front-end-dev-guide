@@ -20,7 +20,7 @@ $ npm init --yes
 ## Install Dependencies
 
 ```bash
-$ npm install browser-sync babel-cli babel-preset-es2015 webpack babel-loader --save-dev
+$ npm install browser-sync babel-cli babel-preset-es2015 webpack babel-loader eslint eslint-loader --save-dev
 ```
 
 ## Configure
@@ -37,6 +37,30 @@ Create a ```.babelrc``` file with the folowing content:
 }
 ```
 
+### ESLint
+Run:
+
+```bash
+$ ./node_modules/.bin/eslint init
+```
+
+Then edit ```.eslintrc.js```:
+
+```JavaScript
+module.exports = {
+  'extends': 'airbnb',
+  'plugins': [
+    'import'
+  ],
+  'rules': {
+    'semi': [2, 'never']
+  },
+  'env': {
+    'browser': true
+  }
+}
+```
+
 ### Webpack
 Create a ```webpack.config.js``` file with the folowing content:
 
@@ -48,11 +72,14 @@ module.exports = {
     filename: 'app.js',
   },
   devtool: 'inline-source-map',
+  eslint: {
+    fix: true
+  },
   module: {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel-loader'
+      loaders: ['babel-loader', 'eslint-loader']
     }]
   }
 }

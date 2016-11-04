@@ -1,3 +1,3 @@
-const sayHello = (name = 'Mark') => `Hello ${ name }`
+const sayHello = (name = 'Mark') => `Hello ${name}`
 
 export default sayHello

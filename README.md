@@ -8,10 +8,10 @@ Table Of Contents
 2. [Environment Setup](Chapters/02 - Environment Setup.md)
 3. [Start Project](Chapters/03 - Start Project.md)
 4. [Javascript Modules](Chapters/04 - JavaScript Modules.md)
-5. Building for Production (Coming Soon)
-6. Linting (Coming Soon)
-7. Source Control (Coming Soon)
-8. Testing (Coming Soon)
+5. [Linting](Chapters/05 - Linting.md)
+6. Source Control (Coming Soon)
+7. Testing (Coming Soon)
+8. Building for Production (Coming Soon)
 9. [Quick Start](Chapters/09 - Quick Start.md)
 
 Happy Reading!

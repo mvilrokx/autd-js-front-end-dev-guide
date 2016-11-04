@@ -5,11 +5,14 @@ module.exports = {
     filename: 'app.js',
   },
   devtool: 'inline-source-map',
+  eslint: {
+    fix: true
+  },
   module: {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel-loader'
+      loaders: ['babel-loader', 'eslint-loader']
     }]
   }
 }
