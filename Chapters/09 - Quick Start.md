@@ -20,7 +20,8 @@ $ npm init --yes
 ## Install Dependencies
 
 ```bash
-$ npm install browser-sync babel-cli babel-preset-es2015 webpack babel-loader eslint eslint-loader --save-dev
+$ npm install browser-sync babel-cli babel-preset-es2015 \
+  webpack babel-loader eslint eslint-loader strip-loader --save-dev
 ```
 
 ## Configure
@@ -85,13 +86,36 @@ module.exports = {
 }
 ```
 
+Create a ```webpack.prod.config.js``` file with the folowing content:
+
+```JavaScript
+module.exports = {
+  entry: './src/app.js',
+  output: {
+    path: './dist',
+    filename: 'app.js',
+  },
+  devtool: 'cheap-module-source-map',
+  eslint: {
+    fix: true
+  },
+  module: {
+    loaders: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loaders: ['babel-loader', 'eslint-loader', 'strip-loader?strip[]=console.log']
+    }]
+  }
+}
+```
 ### package.json scripts
 Add the following to you ```package.json``` file:
 
 ```JSON
   "scripts": {
     "build": "webpack --progress --colors",
-    "watch": "webpack --progress --colors --watch"
+    "watch": "webpack --progress --colors --watch",
+    "prod": "NODE_ENV=production webpack --config webpack.prod.config.js -p"
   }
 ```
 

@@ -45,7 +45,7 @@ There are [several Webpack plugins](https://webpack.github.io/docs/list-of-plugi
 ```strip-loader``` is a Webpack plugin that can strip custom functions from your code. This can be useful if you want to use debug statements while developing your application but don't want this info exposed in your production code.  It comes as an npm package so you install it with:
 
 ```bash
-$ npm install  strip-loader --save-dev
+$ npm install strip-loader --save-dev
 ```
 
 as you can see, it is just another loader (like Babel-loader and eslint-loader) and so we can include it in the loader array.  When you do, you pass it configuration in the form of a query string.  In our case, we want to strip console.log statements so add this to your ```webpack.prod.config.js``` file:
