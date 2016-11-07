@@ -34,7 +34,7 @@ $ ./node_modules/.bin/eslint init
 
 It will ask you a few questions which I answered as following:
 
-```bash
+```
 ? How would you like to configure ESLint? Use a popular style guide
 ? Which style guide do you want to follow? Airbnb
 ? What format do you want your config file to be in? JavaScript
@@ -113,7 +113,7 @@ This error gets raised when ESLint finds a variable in your code that you did no
 
 In this case though it is raising the error on ```document```, and yes, of course we did not declare this; ```document``` is available in the browser environment by default, I don't have to declare it.  The same goes for e.g. ```console``` (if you'd have any ```console.log``` statements in your code, ESLint would have raised the same error on ```console```).  
 
-There are actually 2 ways to get rid of this non-error?  You can configure [```globals```](http://eslint.org/docs/user-guide/configuring#specifying-globals) in ESLint which are then ignored, but there are quite a few globals in the browser environment and declaring all those every time is probably not a good idea.  Instead, you can actually tell ESLint which environment you are going to run your JavaScript code in.  These [```environments```](http://eslint.org/docs/user-guide/configuring#specifying-environments) define global variables that are predefined.  Since we are running our JavaScript in a browser, we will use the ```browser``` environment.  In your ```.eslintrc.js``` file, add the following:
+There are actually 2 ways to get rid of this false negative?  You can configure [```globals```](http://eslint.org/docs/user-guide/configuring#specifying-globals) in ESLint which are then ignored, but there are quite a few globals in the browser environment and declaring all those every time is probably not a good idea.  Instead, you can actually tell ESLint which environment you are going to run your JavaScript code in.  These [```environments```](http://eslint.org/docs/user-guide/configuring#specifying-environments) define global variables that are predefined.  Since we are running our JavaScript in a browser, we will use the ```browser``` environment.  In your ```.eslintrc.js``` file, add the following:
 
 ```JavaScript
 module.exports = {

@@ -11,7 +11,7 @@ Table Of Contents
 5. [Linting](Chapters/05 - Linting.md)
 6. Source Control (Coming Soon)
 7. Testing (Coming Soon)
-8. Building for Production (Coming Soon)
+8. [Building for Production](Chapters/08 - Building for Production.md)
 9. [Quick Start](Chapters/09 - Quick Start.md)
 
 Happy Reading!
