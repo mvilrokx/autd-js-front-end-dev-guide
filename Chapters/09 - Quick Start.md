@@ -12,7 +12,8 @@ I am going to assume that you have [Node.js (and npm)](https://nodejs.org/en/dow
 ## Prepare Your Project
 
 ```bash
-$ mkdir -p <Your-Project-Name>/src/lib  && mkdir <Your-Project-Name>/dist
+$ mkdir -p <Your-Project-Name>/src/lib && mkdir <Your-Project-Name>/dist \
+ && mkdir <Your-Project-Name>/test
 $ cd <Your-Project-Name>
 $ npm init --yes
 ```
@@ -21,7 +22,8 @@ $ npm init --yes
 
 ```bash
 $ npm install browser-sync babel-cli babel-preset-es2015 \
-  webpack babel-loader eslint eslint-loader strip-loader --save-dev
+  webpack babel-loader eslint eslint-loader strip-loader \
+  mocha chai babel-register --save-dev
 ```
 
 ## Configure
@@ -109,13 +111,15 @@ module.exports = {
 }
 ```
 ### package.json scripts
-Add the following to you ```package.json``` file:
+Add the following to you ```package.json``` file in the ```scripts``` section:
 
 ```JSON
   "scripts": {
+    "test":  "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --progress --colors",
     "watch": "webpack --progress --colors --watch",
-    "prod": "NODE_ENV=production webpack --config webpack.prod.config.js -p"
+    "test":  "mocha --require babel-register --watch",
+    "prod":  "NODE_ENV=production webpack --config webpack.prod.config.js -p"
   }
 ```
 
@@ -140,7 +144,7 @@ Create an ```index.html``` file in the root folder, add the following content:
 Create an ```sayHello.js``` file in the ```src/lib``` folder, add the following content:
 
 ```JavaScript
-const sayHello = (name = 'Mark') => `Hello ${ name }`
+const sayHello = (name = 'Mark') => `Hello ${name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()}`
 
 export default sayHello
 ```
@@ -151,6 +155,31 @@ Create an ```app.js``` file in the ```src``` folder, add the following content:
 import sayHello from './lib/sayHello'
 
 document.getElementById('app').innerHTML = `<h1>${ sayHello() }<h1>`
+```
+
+Create an ```sayHello-test.js``` file in the ```test``` folder, add the following content:
+
+```JavaScript
+import { expect } from 'chai'
+import sayHello from '../src/lib/sayHello'
+
+describe('sayHello', () => {
+  it('returns the String "Hello <userName>" when passing <userName>', () => {
+    expect(sayHello('Tony')).is.a('string').and.to.equal('Hello Tony')
+  })
+  it('returns the String "Hello Mark" when NOT passing any <userName>', () => {
+    expect(sayHello()).is.a('string').and.to.equal('Hello Mark')
+  })
+  it('Capitilizes the <userName>', () => {
+    expect(sayHello('jake')).is.a('string').and.to.equal('Hello Jake')
+  })
+})
+```
+
+## Test Application
+
+```bash
+$ npm run test
 ```
 
 ## Start Application
