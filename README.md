@@ -9,8 +9,8 @@ Table Of Contents
 3. [Start Project](Chapters/03 - Start Project.md)
 4. [Javascript Modules](Chapters/04 - JavaScript Modules.md)
 5. [Linting](Chapters/05 - Linting.md)
-6. Source Control (Coming Soon)
-7. Testing (Coming Soon)
+6. [Testing](Chapters/06 - Testing.md)
+7. Source Control (Coming Soon)
 8. [Building for Production](Chapters/08 - Building for Production.md)
 9. [Quick Start](Chapters/09 - Quick Start.md)
 
