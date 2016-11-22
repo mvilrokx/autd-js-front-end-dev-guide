@@ -115,7 +115,6 @@ Add the following to you ```package.json``` file in the ```scripts``` section:
 
 ```JSON
   "scripts": {
-    "test":  "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --progress --colors",
     "watch": "webpack --progress --colors --watch",
     "test":  "mocha --require babel-register --watch",

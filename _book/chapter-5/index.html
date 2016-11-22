@@ -1,0 +1,477 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Linting · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../chapter-6/" />
+    
+    
+    <link rel="prev" href="../chapter-4/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../chapter-1/">
+            
+                <a href="../chapter-1/">
+            
+                    
+                    Why This Guide
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../chapter-2/">
+            
+                <a href="../chapter-2/">
+            
+                    
+                    Environment Setup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chapter-3/">
+            
+                <a href="../chapter-3/">
+            
+                    
+                    Start Project
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../chapter-4/">
+            
+                <a href="../chapter-4/">
+            
+                    
+                    Javascript Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Linting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../chapter-6/">
+            
+                <a href="../chapter-6/">
+            
+                    
+                    Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Source Control (Coming Soon)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../chapter-8/">
+            
+                <a href="../chapter-8/">
+            
+                    
+                    Building for Production
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../chapter-9/">
+            
+                <a href="../chapter-9/">
+            
+                    
+                    Quick Start
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Linting</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="linting-your-code">Linting your Code</h1>
+<p>Linting is the practice of scanning your code and flagging &quot;syntactic discrepancies&quot;.  A <em>linter</em> is a software tool that compare your code against certain style guidelines and raises errors or warnings when it finds that your code deviates from those guidelines.  Think of it as the spell-checker or grammar-checker for the developer.</p>
+<p>The problem is that there is no such thing as &quot;correct&quot; spelling or grammar when it comes to programming languages.  Developers have different styles of coding; some people use tabs for indentation, others use spaces, some use 2 spaces, others 4 etc.  One way isn&apos;t inherently better than the other, it&apos;s just ... different.</p>
+<p>It turns out that JavaScript is particularly susceptible to this because it&apos;s so flexible, loosely-typed and it doesn&apos;t get compiled.  Some examples:</p>
+<ul>
+<li>semi-colons at the end of a line are optional</li>
+<li>single quotes and double quotes are interchangeable</li>
+<li>indentation is optional</li>
+</ul>
+<p>Inevitable, this means that in your code base you will get a mix of all these different styles of coding (even if there is only 1 developer).  Although you might brush this aside as just an ascetics issue and I &quot;should just get over it&quot;, there are actually many reasons to have a common style guide and have your developers adhere to this.  If all code looks the same, it becomes much easier to share this code with other developers or with your future self, they won&apos;t have to learn the ins-and-outs of your particular style, you all use the same style.  This makes code easier to maintain.  Developers also don&apos;t have to debate what is the best style, that decision has been made for them.  This should also improve on-boarding of new developers, they don&apos;t have to come up with their own style, it&apos;s all laid out for them already.</p>
+<p>A linter will also catch issues before you run your code and provide less cryptic errors than your runtime engine would throw at you for those types of errors, <em>this is a major time saver</em>.</p>
+<p>On top of all this, the JavaScript community has also consolidated around a bunch of &quot;Best practices&quot; for writing JavaScript (e.g. using === instead of == for comparisons) and these can also be enforced by linters.  In fact, the first linter, <a href="http://www.jslint.com/" target="_blank">JSLint</a> was created for exactly this reason; to enforce the best practices discussed in the book &quot;JavaScript, The Good Parts.&quot;</p>
+<p>All of this to convince you that you really should be linting your JavaScript code!</p>
+<h1 id="eslint">ESLint</h1>
+<p>True to form, there are several popular JavaScript linters out there, but we are going to settle on <a href="http://eslint.org/" target="_blank">ESLint</a> which offers the <a href="http://eslint.org/docs/rules/" target="_blank">most flexibility</a> and as a result seems to be the most poplar amongst JavaScript developers.  It also has the widest support of ES6 features.  To install it, run:</p>
+<pre><code class="lang-bash">$ npm install eslint --save-dev
+</code></pre>
+<p>After that, you&apos;ll need to configure ESLint, basically tell it what JavaScript coding style you prefer.  This is where ESLint shines, remember at the beginning I mentioned that there are many different, all acceptable, ways to code JavaScript, well ESLint allows you to configure it to check any and all of those ways.  You tell it what to check for and it will enforce consistency.  The <a href="http://eslint.org/docs/rules/" target="_blank">list of rules</a> is pretty overwhelming and you can even add your own ones.  However, instead of starting a configuration from scratch, you can actually use existing Style Guides, e.g. a popular one is the one that Airbnb created, you just tell ESLint that you want to use that one, which is what we will be doing.</p>
+<p>The easiest way to configure ESLint is to run:</p>
+<pre><code class="lang-bash">$ ./node_modules/.bin/eslint init
+</code></pre>
+<p>It will ask you a few questions which I answered as following:</p>
+<pre><code>? How would you like to configure ESLint? Use a popular style guide
+? Which style guide do you want to follow? Airbnb
+? What format do you want your config file to be in? JavaScript
+</code></pre><p>This should suffice to configure ESLint for our needs.  You can now run ESLint on our code with the following command:</p>
+<pre><code class="lang-bash">$ ./node_modules/.bin/eslint src/**
+</code></pre>
+<p>Of course, rather than running ESLint separate like this, we want to integrate it in our tool chain.  There are many ways you can integrate linters in your tool chain, including in your IDE, but we are going to add it to our &quot;build&quot;, which means adding it to Rollup.js or Webpack, depending which bundler you choose to use.</p>
+<h2 id="integrate-eslint-with-rollupjs">Integrate ESLint with Rollup.js</h2>
+<p>TODO</p>
+<h2 id="integrate-eslint-with-webpack">Integrate ESLint with Webpack</h2>
+<h3 id="installation">Installation</h3>
+<p>Just like with Babel, we need a loader to integrate ESLint into Webpack:</p>
+<pre><code class="lang-bash">$ npm install eslint-loader --save-dev
+</code></pre>
+<h3 id="configuration">Configuration</h3>
+<p>Once installed, we have to add some configuration to <code>webpack.config.js</code> to include it in our build process:</p>
+<pre><code>module: {
+  loaders: [{
+    test: /\.js$/,
+    exclude: /node_modules/,
+    loaders: [&apos;babel-loader&apos;, &apos;eslint-loader&apos;]
+  }]
+}
+</code></pre><blockquote>
+<p>Note that the order is important!  Webpack process each loader in the revers order they appear in the loaders array.  Since we want to lint our Source Code, i.e. our ES6 code, not the Babel processed code, we have to put eslint-loader after babel-loader.  ESLint can lint ES6 code just fine.</p>
+</blockquote>
+<h1 id="fine-tuning-our-lint-configuration">Fine Tuning Our Lint Configuration</h1>
+<p>When you run ESLint the first time, even on our small Source Code example, you will see that it immediately raises several errors.  Some of these are legit, but others are not, so lets get rid of those errors by tweaking the configuration of ESLint.</p>
+<p>When you ran <code>./node_modules/.bin/eslint init</code> it actually created a config file for you, it is called <code>.eslintrc.js</code> and it is in this file that we modify the ESLint configurations so go ahead and open it up.</p>
+<pre><code class="lang-JavaScript"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-string">&quot;extends&quot;</span>: <span class="hljs-string">&quot;airbnb&quot;</span>,
+  <span class="hljs-string">&quot;plugins&quot;</span>: [
+    <span class="hljs-string">&quot;react&quot;</span>,
+    <span class="hljs-string">&quot;jsx-a11y&quot;</span>,
+    <span class="hljs-string">&quot;import&quot;</span>
+  ]
+};
+</code></pre>
+<p>You can see here that we are using the Airbnb Style Guide, which in turn came with a few extra plugins that we actually don&apos;t need, so lets start by removing these.</p>
+<p>Both the <code>react</code> and the <code>jsx-a11j</code> plugins are only needed if you do React.js development, which we are not, so you can remove those lines from the <code>.eslintrc.js</code> file:</p>
+<pre><code class="lang-JavaScript"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-string">&quot;extends&quot;</span>: <span class="hljs-string">&quot;airbnb&quot;</span>,
+  <span class="hljs-string">&quot;plugins&quot;</span>: [
+    <span class="hljs-string">&quot;import&quot;</span>
+  ]
+};
+</code></pre>
+<p>These plugins were actually also installed (when you ran ESLint init) using npm (you can see this in your <code>package.json</code> file). I tried removing them as we don&apos;t use them, but when I did, ESLint raised an error (not a linting error, a runtime error) so looks like we have to keep them.</p>
+<h2 id="disallow-undeclared-variables-no-undef"><a href="http://eslint.org/docs/rules/no-undef" target="_blank">Disallow Undeclared Variables (no-undef)</a></h2>
+<p><code>3:1   error  &apos;document&apos; is not defined       no-undef</code> </p>
+<p>This error gets raised when ESLint finds a variable in your code that you did not declare first, maybe because you forgot to declare it (which is totally acceptable in JavaScript but considered (very) bad practice because it makes those variables implicitly &apos;globals&apos;) or because you misspelled them.</p>
+<p>In this case though it is raising the error on <code>document</code>, and yes, of course we did not declare this; <code>document</code> is available in the browser environment by default, I don&apos;t have to declare it.  The same goes for e.g. <code>console</code> (if you&apos;d have any <code>console.log</code> statements in your code, ESLint would have raised the same error on <code>console</code>).  </p>
+<p>There are actually 2 ways to get rid of this false negative?  You can configure <a href="http://eslint.org/docs/user-guide/configuring#specifying-globals" target="_blank"><code>globals</code></a> in ESLint which are then ignored, but there are quite a few globals in the browser environment and declaring all those every time is probably not a good idea.  Instead, you can actually tell ESLint which environment you are going to run your JavaScript code in.  These <a href="http://eslint.org/docs/user-guide/configuring#specifying-environments" target="_blank"><code>environments</code></a> define global variables that are predefined.  Since we are running our JavaScript in a browser, we will use the <code>browser</code> environment.  In your <code>.eslintrc.js</code> file, add the following:</p>
+<pre><code class="lang-JavaScript"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-string">&quot;extends&quot;</span>: <span class="hljs-string">&quot;airbnb&quot;</span>,
+  <span class="hljs-string">&quot;plugins&quot;</span>: [
+    <span class="hljs-string">&quot;import&quot;</span>
+  ],
+  <span class="hljs-string">&quot;env&quot;</span>: {
+    <span class="hljs-string">&quot;browser&quot;</span>: <span class="hljs-literal">true</span>
+  }
+};
+</code></pre>
+<p>Now when you run <code>npm run watch</code>, those types of errors will have disappeared.</p>
+<h2 id="require-or-disallow-semicolons-instead-of-asi-semi"><a href="http://eslint.org/docs/rules/semi" target="_blank">require or disallow semicolons instead of ASI (semi)</a></h2>
+<p><code>1:38  error  Missing semicolon               semi</code></p>
+<p>I actually prefer not to use semi-colons in JavaScript so this is an example of where my preference deviates from the airbnb standards.  No problem though, you can add exceptions to <code>.eslintrc.js</code> to ignore or change these errors:</p>
+<pre><code class="lang-JavaScript"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-string">&apos;extends&apos;</span>: <span class="hljs-string">&apos;airbnb&apos;</span>,
+  <span class="hljs-string">&apos;plugins&apos;</span>: [
+    <span class="hljs-string">&apos;import&apos;</span>
+  ],
+  <span class="hljs-string">&apos;rules&apos;</span>: {
+    <span class="hljs-string">&apos;semi&apos;</span>: [<span class="hljs-number">2</span>, <span class="hljs-string">&apos;never&apos;</span>]
+  },
+  <span class="hljs-string">&apos;env&apos;</span>: {
+    <span class="hljs-string">&apos;browser&apos;</span>: <span class="hljs-literal">true</span>
+  }
+}
+</code></pre>
+<p>Now ESLint will raise an error (0 = off, 1 = warn, <strong>2 = error</strong>) when it finds a semi-colon (&apos;never&apos; means never a semi-colon, the opposite, and default airbnb setting, is &apos;always&apos;).</p>
+<h1 id="automatically-fix-errors">Automatically fix errors</h1>
+<p>A nice feature of ESLint is that it can actually automatically fix errors for you.  It&apos;s pretty conservative when it does this, so it is really safe.  You enable this by passing the <code>--fix</code> flag to ESLint.  Since we are using Webpack to run ESLint, we have to configure this in our <code>webpack.config.js</code> file:</p>
+<pre><code class="lang-JavaScript"><span class="hljs-built_in">module</span>.exports = {
+  entry: <span class="hljs-string">&apos;./src/app.js&apos;</span>,
+  output: {
+    path: <span class="hljs-string">&apos;./dist&apos;</span>,
+    filename: <span class="hljs-string">&apos;app.js&apos;</span>,
+  },
+  devtool: <span class="hljs-string">&apos;inline-source-map&apos;</span>,
+  eslint: {
+    fix: <span class="hljs-literal">true</span>
+  },
+  <span class="hljs-built_in">module</span>: {
+    loaders: [{
+      test: <span class="hljs-regexp">/\.js$/</span>,
+      exclude: <span class="hljs-regexp">/node_modules/</span>,
+      loaders: [<span class="hljs-string">&apos;babel-loader&apos;</span>, <span class="hljs-string">&apos;eslint-loader&apos;</span>]
+    }]
+  }
+}
+</code></pre>
+<blockquote>
+<p>Note that there is an <a href="https://github.com/webpack/webpack/issues/2538" target="_blank">outstanding bug</a> for Webpack &quot;watch&quot; that causes ESLint NOT to re-run when you make a change to your source code that does not change the compiled code.  When you are in coding mode, this should not really be an issue as you are changing the code, but when you are fixing a few ESLint errors here or there and expect these errors to go away after you save the fix, it might now happen as you expect.  E.g. if you fix an issue with spaces in your source code, that usually doesn&apos;t affect the compiled code at all, so ESLint will not run in this case and it will appear as if the Linting errors are still there (they aren&apos;t though but because ESLint does not run, you cannot see this).  Simply adding some code and then deleting this code will run ESLint for you though.  Also note that enabling auto-fix will practically eliminate this issue as it will fix (and never report) all these issues for you anyway.</p>
+</blockquote>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../chapter-4/" class="navigation navigation-prev " aria-label="Previous page: Javascript Modules">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../chapter-6/" class="navigation navigation-next " aria-label="Next page: Testing">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Linting","level":"1.6","depth":1,"next":{"title":"Testing","level":"1.7","depth":1,"path":"chapter-6/README.md","ref":"chapter-6/README.md","articles":[]},"previous":{"title":"Javascript Modules","level":"1.5","depth":1,"path":"chapter-4/README.md","ref":"chapter-4/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-5/README.md","mtime":"2016-11-05T01:15:04.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-22T18:52:51.118Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

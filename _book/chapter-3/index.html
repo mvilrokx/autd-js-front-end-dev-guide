@@ -1,0 +1,419 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Start Project · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../chapter-4/" />
+    
+    
+    <link rel="prev" href="../chapter-2/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../chapter-1/">
+            
+                <a href="../chapter-1/">
+            
+                    
+                    Why This Guide
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../chapter-2/">
+            
+                <a href="../chapter-2/">
+            
+                    
+                    Environment Setup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Start Project
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../chapter-4/">
+            
+                <a href="../chapter-4/">
+            
+                    
+                    Javascript Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../chapter-5/">
+            
+                <a href="../chapter-5/">
+            
+                    
+                    Linting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../chapter-6/">
+            
+                <a href="../chapter-6/">
+            
+                    
+                    Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Source Control (Coming Soon)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../chapter-8/">
+            
+                <a href="../chapter-8/">
+            
+                    
+                    Building for Production
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../chapter-9/">
+            
+                <a href="../chapter-9/">
+            
+                    
+                    Quick Start
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Start Project</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="html-starter-page">HTML Starter Page</h1>
+<p>As we are going to build JavaScript that runs in the browser, we need a web page that can be loaded in the browser.  For now, this page will be blank, it will just contain a reference to our JavaScript so that it runs when we load the web page.  Open you favorite IDE, create an <code>index.html</code> file in the root folder of your project and put the following HTML in that file:</p>
+<pre><code class="lang-html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>JavaScript FTW<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/dist/app.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p>This will show an empty Web Page to the user.  Next, we will create some JavaScript that will add content to this Web Page.</p>
+<h1 id="our-first-javascript">Our First JavaScript</h1>
+<p>As you can see, we are referencing a JavaScript file called <code>app.js</code> that lives in the <code>dist</code> folder, so lets create this folder (but hold off on creating the file!):</p>
+<pre><code class="lang-bash">$ mkdir dist
+</code></pre>
+<p>This <code>dist</code> folder is where our &quot;compiled&quot; javascript code will live, our source code will live in a <code>src</code> folder, so lets create that folder next:</p>
+<pre><code class="lang-bash">$ mkdir src
+</code></pre>
+<p>And in there, we create our <code>app.js</code> file</p>
+<pre><code class="lang-bash">$ touch ./src/app.js
+</code></pre>
+<p>Open <code>app.js</code> in the <code>src</code> folder and add the following JavaScript:</p>
+<pre><code class="lang-javascript"><span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&apos;app&apos;</span>).innerHTML = <span class="hljs-string">&apos;It Works!&apos;</span>
+</code></pre>
+<p>This will simply grab the html element with an id of <code>app</code> and replace it&apos;s content (which is blank at the moment), with &apos;It Works!&apos;, resulting in that string showing up on the Web Page.</p>
+<p>Now we can transpile using the setup we did earlier:</p>
+<pre><code class="lang-bash">$ npm run build
+</code></pre>
+<p>This should have created the transpiled version of <code>app.js</code> in the <code>dist</code> folder.  If you open up that file you will see it looks exactly the same as the source file because we have not used any ES2015 features, so Babel did not have to transform any of our source code (don&apos;t worry, it soon will).</p>
+<h2 id="setup-a-simple-webserver-mandatory">Setup a Simple Webserver (mandatory)</h2>
+<p>You can now try to open up the <code>index.html</code> file in your browser, but nothing will happen.  It won&apos;t load the JavaScript file and as a result, nothing will be shown on the Web Page.  In order to get the JavaScript to load you need an actual Web Server that serves the <code>index.html</code> page and can then also serve the JavaScript that page is requesting.  The simplest way to to this (at least on Macs), is to use Python.  It comes preinstalled on most systems and it has a simple webserver build in.  You can invoke it from the command line, in the project root folder:</p>
+<pre><code class="lang-bash">$ python -m SimpleHTTPServer
+</code></pre>
+<p>If you now open <code>http://localhost:8000/</code> in your browser, you should see the message you wrote in JavaScript appear on the Web Page.</p>
+<h1 id="es2015-javascript-example">ES2015 JavaScript Example</h1>
+<p>Let&apos;s make our JavaScript example a little bit more interesting by introducing some ES2015 features.  Go ahead and replace the content of the app.js file with the following:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> sayHello = (name = <span class="hljs-string">&apos;Mark&apos;</span>) =&gt; <span class="hljs-string">`Hello <span class="hljs-subst">${ name }</span>`</span>
+
+<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&apos;app&apos;</span>).innerHTML = <span class="hljs-string">`&lt;h1&gt;<span class="hljs-subst">${ sayHello() }</span>&lt;h1&gt;`</span>
+</code></pre>
+<p>Here we create a function called <code>sayHello</code> that takes in 1 parameter called <code>name</code>.  The function is written as an Arrow Function which is a ES2015 feature.  To learn more about arrow functions and the difference between regular functions, feel free to go <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank">here</a>, but 1 feature of an arrow function is that it provides a more concise syntax than creating a regular function (it also doesn&apos;t bind to <code>this</code>).  The function is assigned to a Constant called <code>sayHello</code>, Constants are also a new ES2015 feature.  The function sets a default value  <code>Mark</code> for the <code>name</code> parameter; another ES2015 feature.  And finally the function returns (note that the return keyword is not needed as a single line arrow function performs an implicit return, also known as a <strong>lambda function</strong>) a string created using the new ES2015 Template Strings, which provides string interpolation.</p>
+<p>Of course, before we can see this new code in action, we first have to re-transpile our ES2015 code into ES5 code by running:</p>
+<pre><code class="lang-bash">$ npm run build
+</code></pre>
+<p>and then re-loading our browser window.  When you look at the compiled code now, you will that there is a big difference between your source code, and the code created by Babel.</p>
+<p>These 2 steps (recompiling the JavaScript and refreshing the browser window) will have to be performed every time we make the slightest change to our JavaScript.  This might not seem like a big deal, but I can tell you from experience, this gets very annoying very quickly.  Worse, over time, it will actually slow down your iterations: you will try to avoid these steps as much as possible, writing a lot more code between compile/refresh cycles.  When you eventually do compile/refresh to see what all that beautiful code you wrote actually does, you will eventually get errors or unexpected results.  Because you wrote a lot more code since the last iteration, it will be a lot harder to track down your errors.  Let&apos;s fix both these issues.</p>
+<h1 id="im-watching">I&apos;m Watching!</h1>
+<h2 id="javascript">JavaScript</h2>
+<p>Babel actually comes with a feature that allows you to &quot;watch&quot; your source files and trigger an automatic recompilation when it detects a change.  Lets add this to our <code>package.json</code> file as a new script, just add the following to the <code>scripts</code> section:</p>
+<pre><code class="lang-JSON">    <span class="hljs-string">&quot;watch&quot;</span>: <span class="hljs-string">&quot;babel -w src -d dist&quot;</span>
+</code></pre>
+<p>Now run this new script:</p>
+<pre><code class="lang-bash">$ npm run watch
+</code></pre>
+<p>You will see that, other than with the <code>build</code> script, this script does not finish, it just sits there ... watching.  Go ahead and make a change to the <code>app.js</code> file now and save it, e.g. change the <code>h1</code> tags to <code>h2</code> tags.  As soon as you save the JavaScript, you will see that Babel triggers a recompilation.  To kill the watch process you just hit <code>ctrl-c</code>.</p>
+<h2 id="html">HTML</h2>
+<p>To automatically refresh our browser (a feature usually called <strong>live-reload</strong>) we are going to leave behind our simple python web server and switch to something more powerful ... much much more powerful.  Fear not though, it is extremely easy to install and use, thanks to npm!</p>
+<p><a href="https://www.browsersync.io/" target="_blank">Browsersync</a> is the swiss army knife for Web Developers with an amazing array of features, 1 of them being live-reload.  We are going to leverage that feature to re-establish our fast iteration cycle.  Since Browsersync is a node package, you can easily install it with npm.  Unlike previous npm packages though, which we installed locally, I prefer to install Browsersync globally.  The reason for this is that there are many live-reload solutions out there and just because I prefer Browsersync does not mean that the next developer who is going to work on my projects will too.  Therefore I do not want to &quot;pollute&quot; the project with what in my opinion is the best live-reload solution.  If however you decide to install it locally, remember that Browsersync is a devDependency, so use the <code>--save-dev</code> flag.  To install Browsersync globally, run the following command:</p>
+<pre><code class="lang-bash">$ npm install -g browser-sync
+</code></pre>
+<p>Just like Babel, Browsersync comes with a &quot;watch&quot; feature.  When you start the server, you tell it which files to watch for and it will refresh the browser when any of those files change.  Note that these files can be anything, including JavaScript, CSS and HTML files.  Let&apos;s run <code>browser-sync</code> so that it watches all our JavaScript changes <em>and</em> any changes to our index.html file, run the following from the root folder of your project:</p>
+<pre><code class="lang-bash">$ browser-sync start --server --files <span class="hljs-string">&quot;dist/*.js, index.html&quot;</span>
+</code></pre>
+<p>This will immediately open up your web page in your default browser.</p>
+<p>Make sure that Babel watch is still running in a separate terminal.  Now make a change to your app.js source file and save it, you should see the browser window refresh on save, reflecting your JavaScript update.  Do the same with the index.html file, make a change and save.  Again, you should see the browser window refresh on save, this time reflecting your html update.  Later, when we add CSS, we will also add CSS changes to watch list of <code>browser-sync</code>.</p>
+<p>You can now hide the 2 terminals that run Babel watch and Browsersync and never have to worry about them again (well, almost never as you will see later).  Just leave your browser window open and put your IDE next to it.  Write some code, save it, and review it in the auto-refreshed browser window!</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../chapter-2/" class="navigation navigation-prev " aria-label="Previous page: Environment Setup">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../chapter-4/" class="navigation navigation-next " aria-label="Next page: Javascript Modules">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Start Project","level":"1.4","depth":1,"next":{"title":"Javascript Modules","level":"1.5","depth":1,"path":"chapter-4/README.md","ref":"chapter-4/README.md","articles":[]},"previous":{"title":"Environment Setup","level":"1.3","depth":1,"path":"chapter-2/README.md","ref":"chapter-2/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-3/README.md","mtime":"2016-11-02T22:51:36.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-22T18:52:51.118Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

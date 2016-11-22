@@ -1,0 +1,491 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Quick Start · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="../chapter-8/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../chapter-1/">
+            
+                <a href="../chapter-1/">
+            
+                    
+                    Why This Guide
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../chapter-2/">
+            
+                <a href="../chapter-2/">
+            
+                    
+                    Environment Setup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chapter-3/">
+            
+                <a href="../chapter-3/">
+            
+                    
+                    Start Project
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../chapter-4/">
+            
+                <a href="../chapter-4/">
+            
+                    
+                    Javascript Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../chapter-5/">
+            
+                <a href="../chapter-5/">
+            
+                    
+                    Linting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../chapter-6/">
+            
+                <a href="../chapter-6/">
+            
+                    
+                    Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Source Control (Coming Soon)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../chapter-8/">
+            
+                <a href="../chapter-8/">
+            
+                    
+                    Building for Production
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.10" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Quick Start
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Quick Start</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="quick-start">Quick Start</h1>
+<p>I&apos;m sure you don&apos;t want to go through this whole guide everytime you start a new JavaScript project, so I&apos;ve summerized everything to get you going quickly into as few steps as possible in this chapter.  </p>
+<blockquote>
+<p>If even this is too much for you, there is actually a starter-project included in this repository, under the <code>Code</code> folder, called <code>newProject</code>.  You could use that as a starter template for your projects, just copy it and rename the <code>newProject</code> folder to your project name, cd into that folder and run:</p>
+<pre><code class="lang-bash">$ npm init
+</code></pre>
+</blockquote>
+<p>I am going to assume that you have <a href="https://nodejs.org/en/download/" target="_blank">Node.js (and npm)</a> installed, if not please do so now.</p>
+<h2 id="prepare-your-project">Prepare Your Project</h2>
+<pre><code class="lang-bash">$ mkdir -p &lt;Your-Project-Name&gt;/src/lib &amp;&amp; mkdir &lt;Your-Project-Name&gt;/dist \
+ &amp;&amp; mkdir &lt;Your-Project-Name&gt;/<span class="hljs-built_in">test</span>
+$ <span class="hljs-built_in">cd</span> &lt;Your-Project-Name&gt;
+$ npm init --yes
+</code></pre>
+<h2 id="install-dependencies">Install Dependencies</h2>
+<pre><code class="lang-bash">$ npm install browser-sync babel-cli babel-preset-es2015 \
+  webpack babel-loader eslint eslint-loader strip-loader \
+  mocha chai babel-register --save-dev
+</code></pre>
+<h2 id="configure">Configure</h2>
+<h3 id="babel">Babel</h3>
+<p>Create a <code>.babelrc</code> file with the folowing content:</p>
+<pre><code class="lang-JSON">{
+  <span class="hljs-string">&quot;presets&quot;</span>: [
+    [
+      <span class="hljs-string">&quot;es2015&quot;</span>
+    ]
+  ]
+}
+</code></pre>
+<h3 id="eslint">ESLint</h3>
+<p>Run:</p>
+<pre><code class="lang-bash">$ ./node_modules/.bin/eslint init
+</code></pre>
+<p>Then edit <code>.eslintrc.js</code>:</p>
+<pre><code class="lang-JavaScript"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-string">&apos;extends&apos;</span>: <span class="hljs-string">&apos;airbnb&apos;</span>,
+  <span class="hljs-string">&apos;plugins&apos;</span>: [
+    <span class="hljs-string">&apos;import&apos;</span>
+  ],
+  <span class="hljs-string">&apos;rules&apos;</span>: {
+    <span class="hljs-string">&apos;semi&apos;</span>: [<span class="hljs-number">2</span>, <span class="hljs-string">&apos;never&apos;</span>]
+  },
+  <span class="hljs-string">&apos;env&apos;</span>: {
+    <span class="hljs-string">&apos;browser&apos;</span>: <span class="hljs-literal">true</span>
+  }
+}
+</code></pre>
+<h3 id="webpack">Webpack</h3>
+<p>Create a <code>webpack.config.js</code> file with the folowing content:</p>
+<pre><code class="lang-JavaScript"><span class="hljs-built_in">module</span>.exports = {
+  entry: <span class="hljs-string">&apos;./src/app.js&apos;</span>,
+  output: {
+    path: <span class="hljs-string">&apos;./dist&apos;</span>,
+    filename: <span class="hljs-string">&apos;app.js&apos;</span>,
+  },
+  devtool: <span class="hljs-string">&apos;inline-source-map&apos;</span>,
+  eslint: {
+    fix: <span class="hljs-literal">true</span>
+  },
+  <span class="hljs-built_in">module</span>: {
+    loaders: [{
+      test: <span class="hljs-regexp">/\.js$/</span>,
+      exclude: <span class="hljs-regexp">/node_modules/</span>,
+      loaders: [<span class="hljs-string">&apos;babel-loader&apos;</span>, <span class="hljs-string">&apos;eslint-loader&apos;</span>]
+    }]
+  }
+}
+</code></pre>
+<p>Create a <code>webpack.prod.config.js</code> file with the folowing content:</p>
+<pre><code class="lang-JavaScript"><span class="hljs-built_in">module</span>.exports = {
+  entry: <span class="hljs-string">&apos;./src/app.js&apos;</span>,
+  output: {
+    path: <span class="hljs-string">&apos;./dist&apos;</span>,
+    filename: <span class="hljs-string">&apos;app.js&apos;</span>,
+  },
+  devtool: <span class="hljs-string">&apos;cheap-module-source-map&apos;</span>,
+  eslint: {
+    fix: <span class="hljs-literal">true</span>
+  },
+  <span class="hljs-built_in">module</span>: {
+    loaders: [{
+      test: <span class="hljs-regexp">/\.js$/</span>,
+      exclude: <span class="hljs-regexp">/node_modules/</span>,
+      loaders: [<span class="hljs-string">&apos;babel-loader&apos;</span>, <span class="hljs-string">&apos;eslint-loader&apos;</span>, <span class="hljs-string">&apos;strip-loader?strip[]=console.log&apos;</span>]
+    }]
+  }
+}
+</code></pre>
+<h3 id="packagejson-scripts">package.json scripts</h3>
+<p>Add the following to you <code>package.json</code> file in the <code>scripts</code> section:</p>
+<pre><code class="lang-JSON">  <span class="hljs-string">&quot;scripts&quot;</span>: {
+    <span class="hljs-string">&quot;build&quot;</span>: <span class="hljs-string">&quot;webpack --progress --colors&quot;</span>,
+    <span class="hljs-string">&quot;watch&quot;</span>: <span class="hljs-string">&quot;webpack --progress --colors --watch&quot;</span>,
+    <span class="hljs-string">&quot;test&quot;</span>:  <span class="hljs-string">&quot;mocha --require babel-register --watch&quot;</span>,
+    <span class="hljs-string">&quot;prod&quot;</span>:  <span class="hljs-string">&quot;NODE_ENV=production webpack --config webpack.prod.config.js -p&quot;</span>
+  }
+</code></pre>
+<h2 id="start-files-this-is-optional">Start files (this is optional)</h2>
+<h3 id="html">HTML</h3>
+<p>Create an <code>index.html</code> file in the root folder, add the following content:</p>
+<pre><code class="lang-html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/dist/app.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<h3 id="javascript">JavaScript</h3>
+<p>Create an <code>sayHello.js</code> file in the <code>src/lib</code> folder, add the following content:</p>
+<pre><code class="lang-JavaScript"><span class="hljs-keyword">const</span> sayHello = (name = <span class="hljs-string">&apos;Mark&apos;</span>) =&gt; <span class="hljs-string">`Hello <span class="hljs-subst">${name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()}</span>`</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> sayHello
+</code></pre>
+<p>Create an <code>app.js</code> file in the <code>src</code> folder, add the following content:</p>
+<pre><code class="lang-JavaScript"><span class="hljs-keyword">import</span> sayHello <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./lib/sayHello&apos;</span>
+
+<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&apos;app&apos;</span>).innerHTML = <span class="hljs-string">`&lt;h1&gt;<span class="hljs-subst">${ sayHello() }</span>&lt;h1&gt;`</span>
+</code></pre>
+<p>Create an <code>sayHello-test.js</code> file in the <code>test</code> folder, add the following content:</p>
+<pre><code class="lang-JavaScript"><span class="hljs-keyword">import</span> { expect } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;chai&apos;</span>
+<span class="hljs-keyword">import</span> sayHello <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../src/lib/sayHello&apos;</span>
+
+describe(<span class="hljs-string">&apos;sayHello&apos;</span>, () =&gt; {
+  it(<span class="hljs-string">&apos;returns the String &quot;Hello &lt;userName&gt;&quot; when passing &lt;userName&gt;&apos;</span>, () =&gt; {
+    expect(sayHello(<span class="hljs-string">&apos;Tony&apos;</span>)).is.a(<span class="hljs-string">&apos;string&apos;</span>).and.to.equal(<span class="hljs-string">&apos;Hello Tony&apos;</span>)
+  })
+  it(<span class="hljs-string">&apos;returns the String &quot;Hello Mark&quot; when NOT passing any &lt;userName&gt;&apos;</span>, () =&gt; {
+    expect(sayHello()).is.a(<span class="hljs-string">&apos;string&apos;</span>).and.to.equal(<span class="hljs-string">&apos;Hello Mark&apos;</span>)
+  })
+  it(<span class="hljs-string">&apos;Capitilizes the &lt;userName&gt;&apos;</span>, () =&gt; {
+    expect(sayHello(<span class="hljs-string">&apos;jake&apos;</span>)).is.a(<span class="hljs-string">&apos;string&apos;</span>).and.to.equal(<span class="hljs-string">&apos;Hello Jake&apos;</span>)
+  })
+})
+</code></pre>
+<h2 id="test-application">Test Application</h2>
+<pre><code class="lang-bash">$ npm run <span class="hljs-built_in">test</span>
+</code></pre>
+<h2 id="start-application">Start Application</h2>
+<pre><code class="lang-bash">$ npm run watch
+</code></pre>
+<pre><code class="lang-bash">$ browser-sync start --server --files <span class="hljs-string">&quot;dist/*.js, index.html&quot;</span>
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../chapter-8/" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Building for Production">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Quick Start","level":"1.10","depth":1,"previous":{"title":"Building for Production","level":"1.9","depth":1,"path":"chapter-8/README.md","ref":"chapter-8/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-9/README.md","mtime":"2016-11-08T00:42:31.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-22T18:52:51.118Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

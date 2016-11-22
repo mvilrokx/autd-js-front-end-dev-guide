@@ -1,0 +1,421 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Testing · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="../chapter-5/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../chapter-1/">
+            
+                <a href="../chapter-1/">
+            
+                    
+                    Why This Guide
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../chapter-2/">
+            
+                <a href="../chapter-2/">
+            
+                    
+                    Environment Setup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chapter-3/">
+            
+                <a href="../chapter-3/">
+            
+                    
+                    Start Project
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../chapter-4/">
+            
+                <a href="../chapter-4/">
+            
+                    
+                    Javascript Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../chapter-5/">
+            
+                <a href="../chapter-5/">
+            
+                    
+                    Linting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.7" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Source Control (Coming Soon)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../chapter-8/">
+            
+                <a href="../chapter-8/">
+            
+                    
+                    Building for Production
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../chapter-9/">
+            
+                <a href="../chapter-9/">
+            
+                    
+                    Quick Start
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Testing</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="unit-testing">Unit Testing</h1>
+<p>Let&apos;s get this first out of the way: yes, you should be testing your JavaScript code.  Period.  There is a smorgasbord of testing software available for JavaScript, it doesn&apos;t matter which one you pick but you should pick one.  For our purpose, we are going to setup our application testing with <a href="http://mochajs.org/" target="_blank">Mocha</a> and <a href="http://chaijs.com/" target="_blank">Chai</a>.</p>
+<h1 id="mocha">Mocha</h1>
+<blockquote>
+<p>Mocha is a feature-rich JavaScript test framework&quot;</p>
+</blockquote>
+<p>It&apos;s basically a test runner that manages your tests.  You install it with npm:</p>
+<pre><code class="lang-bash">$ npm install mocha --save-dev
+</code></pre>
+<p>Mocha itself does not come with an assertion library but it allows you to use any assertion library you wish.</p>
+<h1 id="chai">Chai</h1>
+<blockquote>
+<p>Chai is a BDD / TDD assertion library for node and the browser that can be delightfully paired with any javascript testing framework.&quot;</p>
+</blockquote>
+<p>Sounds like a perfect match for Mocha.  The nice thing about Chai is that it has several assertion styles (<code>should</code>, <code>assert</code>, <code>expect</code>) that allow the developer to choose the most comfortable.  Installation is a breeze:</p>
+<pre><code class="lang-bash">$ npm install chai --save-dev
+</code></pre>
+<h1 id="setup">Setup</h1>
+<p>Once you have the tools installed, we need to configure our application to start using them.</p>
+<p>First create a <code>test</code> folder where we can put all our tests (this is the location where Mocha by default looks for tests):</p>
+<pre><code class="lang-bash">$ mkdir <span class="hljs-built_in">test</span>
+</code></pre>
+<p>Create a new file in this directory called <code>sayHello-test.js</code> and add the following content:</p>
+<pre><code class="lang-JavaScript"><span class="hljs-keyword">import</span> {expect} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;chai&apos;</span>;
+
+describe(<span class="hljs-string">&apos;Application&apos;</span>, () =&gt; {
+  it(<span class="hljs-string">&apos;is a useless test but gets us started&apos;</span>, () =&gt; {
+    expect(<span class="hljs-literal">true</span>).to.be.true;
+  });
+});
+</code></pre>
+<p>We are going to use the <code>expect</code> assertion style, which we indicate with the <code>import</code> statement on the first line.  What follows is the <code>describe</code> block that holds out test &quot;suite&quot;.  We can define multiple tests in a describe block, although here we only defined 1.  Our actual test is contained in an <code>it</code> block that clearly describes what that particular test is testing.  Finally, we have the test itself.  Note that this is obviously a useless test as it will always evaluate to true, but we can test our setup with this test.</p>
+<p>To run our tests with Mocha, we issue the following command:</p>
+<pre><code class="lang-bash">$ ./node_modules/mocha/bin/mocha
+</code></pre>
+<p><code>SyntaxError: Unexpected token import</code></p>
+<p>hmmm, not what we were expecting.  The problem is that we are using ES6 code in our tests itself (<code>import</code> is the ES6 way for importing modules) and currently, the way we are running Mocha, it doesn&apos;t recognize ES6.  The solution is to use the npm module <code>babel-register</code> which transpiles our source on the fly:</p>
+<pre><code class="lang-bash">$ npm install babel-register --save-dev
+</code></pre>
+<p>And then tell Mocha that we want to use babel-register:</p>
+<pre><code class="lang-bash">$ ./node_modules/mocha/bin/mocha --require babel-register
+</code></pre>
+<p>Rather than typing in this command all the time, lets add a &quot;test&quot; script to our <code>package.json</code> file and while we are at it, we can add the <code>--watch</code> flag to watch for changes:</p>
+<pre><code class="lang-JSON">    <span class="hljs-string">&quot;test&quot;</span>:  <span class="hljs-string">&quot;mocha --require babel-register --watch&quot;</span>
+</code></pre>
+<p>And now you can watch and test by running:</p>
+<pre><code class="lang-bash">$ npm run <span class="hljs-built_in">test</span>
+</code></pre>
+<p>You should now also see your test passing successfully.  Let&apos;s add some more useful tests.</p>
+<h1 id="add-tests">Add Tests</h1>
+<p>Change the content of <code>sayHello-test.js</code> to the following:</p>
+<pre><code class="lang-JavaScript"><span class="hljs-keyword">import</span> { expect } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;chai&apos;</span>
+<span class="hljs-keyword">import</span> sayHello <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../src/lib/sayHello&apos;</span>
+
+describe(<span class="hljs-string">&apos;sayHello&apos;</span>, () =&gt; {
+  it(<span class="hljs-string">&apos;returns the String &quot;Hello &lt;userName&gt;&quot; when passing &lt;userName&gt;&apos;</span>, () =&gt; {
+    expect(sayHello(<span class="hljs-string">&apos;Tony&apos;</span>)).is.a(<span class="hljs-string">&apos;string&apos;</span>).and.to.equal(<span class="hljs-string">&apos;Hello Tony&apos;</span>)
+  })
+  it(<span class="hljs-string">&apos;returns the String &quot;Hello Mark&quot; when NOT passing any &lt;userName&gt;&apos;</span>, () =&gt; {
+    expect(sayHello()).is.a(<span class="hljs-string">&apos;string&apos;</span>).and.to.equal(<span class="hljs-string">&apos;Hello Mark&apos;</span>)
+  })
+})
+</code></pre>
+<p>Note that we import the module that we want to test.  Because tests live in a different folder, we need to import it from <code>../src/lib/sayHello</code>.  We then add 2 tests in our sayHello suite, one tests that the default parameter is working and the other tests the procedure when passing in a value for the name parameter.  You should see the tests passing as it stands since this is testing already existing functionality.</p>
+<h1 id="test-driven-development">Test Driven Development</h1>
+<p>However, this is not how you should be testing or rather developing.  Ideally, you <strong>first</strong> create your <strong>tests</strong> and <strong>then</strong> you <strong>create</strong> the minimal <strong>code</strong> to pass that test.  This is called Test Driven Development or TDD.  Let&apos;s see that in action.</p>
+<p>We are going to enhance our <code>sayHello</code> function to always capitalize the name that is being passed into it.  First we will add a test to test this use case:</p>
+<pre><code class="lang-JavaScript">  it(<span class="hljs-string">&apos;Capitilizes the &lt;userName&gt;&apos;</span>, () =&gt; {
+    expect(sayHello(<span class="hljs-string">&apos;jake&apos;</span>)).is.a(<span class="hljs-string">&apos;string&apos;</span>).and.to.equal(<span class="hljs-string">&apos;Hello Jake&apos;</span>)
+  })
+</code></pre>
+<p>As soon as you save this (and you are still &quot;watching&quot; your tests), you will see that this fails your test, it should be nice and red.  We now have to add the code to our module to make this test pass and become green again which is why this is also known as red-green testing.  Open up <code>sayHello.js</code> and replace the content with:</p>
+<pre><code class="lang-JavaScript"><span class="hljs-keyword">const</span> sayHello = (name = <span class="hljs-string">&apos;Mark&apos;</span>) =&gt; <span class="hljs-string">`Hello <span class="hljs-subst">${name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()}</span>`</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> sayHello
+</code></pre>
+<p>On save, it should immediately pass all tests again.  You can now also refactor this code with confidence given that you have a test that validates your functionality.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../chapter-5/" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Linting">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Testing","level":"1.7","depth":1,"next":{"title":"Source Control (Coming Soon)","level":"1.8","depth":1,"ref":"","articles":[]},"previous":{"title":"Linting","level":"1.6","depth":1,"path":"chapter-5/README.md","ref":"chapter-5/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-6/README.md","mtime":"2016-11-08T00:03:23.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-22T18:52:51.118Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

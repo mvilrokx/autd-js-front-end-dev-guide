@@ -1,0 +1,421 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Environment Setup · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../chapter-3/" />
+    
+    
+    <link rel="prev" href="../chapter-1/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../chapter-1/">
+            
+                <a href="../chapter-1/">
+            
+                    
+                    Why This Guide
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Environment Setup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chapter-3/">
+            
+                <a href="../chapter-3/">
+            
+                    
+                    Start Project
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../chapter-4/">
+            
+                <a href="../chapter-4/">
+            
+                    
+                    Javascript Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../chapter-5/">
+            
+                <a href="../chapter-5/">
+            
+                    
+                    Linting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../chapter-6/">
+            
+                <a href="../chapter-6/">
+            
+                    
+                    Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Source Control (Coming Soon)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../chapter-8/">
+            
+                <a href="../chapter-8/">
+            
+                    
+                    Building for Production
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../chapter-9/">
+            
+                <a href="../chapter-9/">
+            
+                    
+                    Quick Start
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Environment Setup</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="setup-your-environment-for-modern-javascript-development">Setup Your Environment for Modern JavaScript Development</h1>
+<h2 id="prerequisites-nodejs-and-npm">Prerequisites: Node.js and npm</h2>
+<p>The tools we are going to use are actually written in JavaScript.  In order to run these tools we will need a JavaScript runtime. Node.js is such a JavaScript runtime (built on Chrome&apos;s V8 JavaScript engine) so the first step is to install Node.js.</p>
+<blockquote>
+<p>We are not going to write any Node.js JavaScript ourselves at the moment, all our code will run in a Browser (which has it&apos;s own JavaScript runtime), we just need Node.js for our tool chain.</p>
+</blockquote>
+<p>These build tools are delivered as &quot;node packages&quot;.  Node packages can easily be managed (installed, upgraded, uninstalled) with the Node Package Manager or <a href="https://www.npmjs.com/" target="_blank"><strong>npm</strong></a>.  This is very similar to how linux (e.g. APT or YUM), macOS (e.g. <a href="http://brew.sh/" target="_blank">Homebrew</a>) and now even Windows (<a href="https://github.com/oneget/oneget" target="_blank">OneGet</a>) handle software installation.  Since npm comes with Node.js you do not have to install it separately, but you will be using npm extensively during this setup phase and during development, so embrace it.</p>
+<h3 id="typical-install-mandatory">Typical install (mandatory)</h3>
+<p>The installation process varies from platform to platform, <a href="https://nodejs.org/en/download/" target="_blank">please follow the instructions for yours</a>.</p>
+<h3 id="alternative-install-method-optional">Alternative install method (optional)</h3>
+<p>As you start getting more and more into JavaScript development, you might want to start writing your own Node.js applications or tools.  When you go down this road, you will soon find that it is often necessary to switch versions of Node.js, either to support code you wrote a long time ago and don&apos;t want to upgrade (but e.g. you still need to be able to fix minor bugs) or maybe because the cloud platforms you deploy these applications to support only certain version of Node.js.  Whatever the reason, the typical install does not allow you to switch versions easily; you would have to uninstall and then re-install Node.js all the time.  Therefore, rather than installing Node.js directly, you can use something called a version management tool.</p>
+<p>Node has several version managers, the most common once are <a href="https://github.com/creationix/nvm" target="_blank">nvm</a> and <a href="https://github.com/tj/n" target="_blank">n</a>.  I personally use n because I use the <a href="https://fishshell.com/" target="_blank">fish shell</a> and nvm does not support fish, but other members in our team use nvm just without any issues.  The provided links give ample instructions on how to install either one.  We are not going to use this feature at in this guide (we will stick to whatever version of node you installed earlier), I am just mentioning it in case you start wondering how to accommodate coding using different version of the Node.js runtime.</p>
+<h3 id="alternative-install-method-2-optional">Alternative install method 2 (optional)</h3>
+<p>Facebook is very active in the JavaScript community these days and has released an alternative to npm called <a href="https://yarnpkg.com/" target="_blank">Yarn</a>.  It is supposed to be a much faster alternative to npm but it does not (yet) offer 100% coverage of npm functionality, so I have not made the switch yet.  We will be using npm, however, you are free to use Yarn yourself, it should work just as well as npm for what we are going to do.</p>
+<h2 id="initializing-the-project">Initializing the Project</h2>
+<p>To start a new JavaScript project, we are going to create a new directory that will hold all our code and then change into that new directory:</p>
+<pre><code class="lang-bash">$ mkdir newProject
+$ <span class="hljs-built_in">cd</span> newProject
+</code></pre>
+<p>We are going to manage our project as a node package.  This makes it much easier to manage our dependencies and our project as a whole.  For this we first have to initialize our node package which we do with the <code>npm init</code> command.  All this really does is create a <code>package.json</code> file in our project folder (you could create it manually too) that can hold our dependencies and some other interesting stuff.</p>
+<pre><code class="lang-bash">$ npm init --yes
+</code></pre>
+<p>The <code>--yes</code> flag will create a <code>package.json</code> file with &quot;reasonable guesses&quot;, i.e. default values, which for us, right now, is all we need.  We can now start installing our dependencies.</p>
+<h2 id="babel">Babel</h2>
+<p>ES2015 was a significant update to the JavaScript language, providing many new features that make programming in JavaScript more idiomatic.  Also, <a href="http://kangax.github.io/compat-table/es6/" target="_blank">the latest versions of most browsers have by now adopted almost all features of this standard</a> and so you should really be coding using ES2015, which is what we will be doing.</p>
+<p>Unfortunately, although browser vendors are getting better all the time at forcing users to upgrade to the latest versions, not everybody is.  Exposing ES2015 to those users will cause your JavaScript to fail for them.  This can be mitigated by techniques like &apos;progressive enhancement&apos; or &apos;graceful degradation&apos;, but why not have your &#x1F382;, and eat it too?  And you can, with a tool called a &apos;transpiler&apos;.</p>
+<p>Transpilers have been around for a while and they typically allow you to write code in one language (e.g. C) and then transpile it into another language (e.g. JS).  This usage of transpilers is typically used to ease the transition from one language to another.  An alternative usage of transpilers is to create abstractions of existing languages (e.g. CoffeeScript) and transpile that to the target language; JavaScript in the case of CoffeeScript.  The authors of those languages typically add features that they feel are missing from the target language.  The transpiler that we need to use though does not transpile cross-language, but cross-version within the same language, i.e. from ES2015 -&gt; ES5.  There are actually several ES2015 -&gt; ES5 transpilers but the one that has been emerging is called <a href="https://babeljs.io/" target="_blank">Babel</a>, and that is the one we will be using.  It allows you to develop your applications using ES2015, run your ES2015 code through Babel and out comes ES5 code.</p>
+<h3 id="installation">Installation</h3>
+<p>Babel is delivered as a node package (actually multiple packages as you will see).  npm packages can be installed globally (with the -g flag) or locally (default).  While you <em>can</em> install Babel CLI globally on your machine, I prefer to install it locally, project by project.</p>
+<p>There are two primary reasons for this (from the Babel documentation):</p>
+<ol>
+<li>Different projects on the same machine can depend on different versions of Babel allowing you to update one at a time.</li>
+<li>It means you do not have an implicit dependency on the environment you are working in. Making your project far more portable and easier to setup.
+We can install Babel CLI locally by running:</li>
+</ol>
+<pre><code class="lang-bash">$ npm install babel-cli --save-dev
+</code></pre>
+<p>Note the <code>--save-dev</code> flag passed to npm.  This records the dependency into the <code>package.json</code> file.  <code>package.json</code> can record 2 types of dependencies, development dependencies (using the --save-dev flag) which are packages that are only needed for development and testing.  Since we are only going to use babel during development and testing (in production we will run the code produced by babel, which itself obviously does not need babel anymore, it&apos;s just ES5 JavaScript).  Dependencies that are also required during production are &quot;regular&quot; dependencies and get recorded using the <code>-save</code> flag.  When you deploy a npm project to production, you can tell it to skip installing devDependencies, saving resources on your Production machines.  Go ahead and open up the package.json file, you should see  a new line added under devDependencies that looks something like:</p>
+<pre><code class="lang-JSON"><span class="hljs-string">&quot;devDependencies&quot;</span>: {
+  <span class="hljs-string">&quot;babel-cli&quot;</span>: <span class="hljs-string">&quot;^6.0.0&quot;</span>
+}
+</code></pre>
+<p>Don&apos;t worry too much about this, just know that this is how we are going to manage our project dependencies: this line tells us that our project has a devDependency on babel-cli v6.0.0.</p>
+<p>Now, out of the box, Babel doesn&#x2019;t do anything (welcome to the weird and wonderful world of JavaScript tooling!). It parses your JavaScript code and then generates the same code back out again.  In order for it to actually do anything, you have to provide it plugins.  It is these plugins that perform the transformations on the parsed code.  And there are many, many plugins.  In fact, there is a plugin for each ES2015 feature that can be transformed (<a href="https://en.wikipedia.org/wiki/Unix_philosophy" target="_blank">&quot;Do one thing, and do it well&quot;</a>), e.g. there is a plugin for <a href="https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-es2015-arrow-functions" target="_blank">ES2015 arrow functions</a>, <a href="https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-es2015-classes" target="_blank">ES2015 Classes</a>, <a href="https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-es2015-destructuring" target="_blank">ES2015 destructuring</a> etc.  If you want to cover all of ES2015 features, you need to include all those plugins.  Obviously, if you would have to do this every time you create a new project, this would get annoying very quickly.</p>
+<p>Luckily the Babel people thought of this and gave us what they call <strong>Presets</strong>.  These are pre-configured collections of plugins that cover most use cases.  E.g. there is a <a href="http://babeljs.io/docs/plugins/preset-es2015/" target="_blank">Preset for ES2015</a> that contains all the plugins to transform all ES2015 features to ES5, that would be a good start for us.  These Presets are delivered as Node packages and can be installed with a simple npm command:</p>
+<pre><code class="lang-javascript">$ npm install babel-preset-es2015 --save-dev
+</code></pre>
+<p>The only thing that remains now is telling Babel to use this &quot;es2015&quot; Preset.  You can do this by creating a file called .babelrc in your project root folder and add the following in this file:</p>
+<pre><code class="lang-JSON">{
+  <span class="hljs-string">&quot;presets&quot;</span>: [
+    [
+      <span class="hljs-string">&quot;es2015&quot;</span>,
+    ]
+  ]
+}
+</code></pre>
+<p>And now, you can finally churn out ES5 code from your ES2015 source code.  Since we installed babel locally, the executable actually resides in <code>./node_modules/.bin/babel</code> of your project.  Assuming that your source code lives in ./src and you want to write your compiled code to ./dist, the full command would be:</p>
+<pre><code class="lang-bash">$ ./node_modules/.bin/babel src <span class="hljs-_">-d</span> dist
+</code></pre>
+<p>Because this is a bit long to type every time, we can also create a script alias in the package.json file called &quot;build&quot;:</p>
+<pre><code class="lang-JSON"><span class="hljs-string">&quot;scripts&quot;</span>: {
+  <span class="hljs-string">&quot;build&quot;</span>: <span class="hljs-string">&quot;babel src -d dist&quot;</span>
+},
+</code></pre>
+<blockquote>
+<p>Note that in package.json you do not have to specify the location of the babel executable, it knows where it lives.</p>
+</blockquote>
+<p>You can now run your build by simply executing:</p>
+<pre><code class="lang-bash">$ npm run build
+</code></pre>
+<p>That&apos;s enough of setup for now, lets code something!</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../chapter-1/" class="navigation navigation-prev " aria-label="Previous page: Why This Guide">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../chapter-3/" class="navigation navigation-next " aria-label="Next page: Start Project">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Environment Setup","level":"1.3","depth":1,"next":{"title":"Start Project","level":"1.4","depth":1,"path":"chapter-3/README.md","ref":"chapter-3/README.md","articles":[]},"previous":{"title":"Why This Guide","level":"1.2","depth":1,"path":"chapter-1/README.md","ref":"chapter-1/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-2/README.md","mtime":"2016-11-02T22:41:32.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-22T18:52:51.118Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

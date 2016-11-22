@@ -1,0 +1,507 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Javascript Modules · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../chapter-5/" />
+    
+    
+    <link rel="prev" href="../chapter-3/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../chapter-1/">
+            
+                <a href="../chapter-1/">
+            
+                    
+                    Why This Guide
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../chapter-2/">
+            
+                <a href="../chapter-2/">
+            
+                    
+                    Environment Setup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chapter-3/">
+            
+                <a href="../chapter-3/">
+            
+                    
+                    Start Project
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Javascript Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../chapter-5/">
+            
+                <a href="../chapter-5/">
+            
+                    
+                    Linting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../chapter-6/">
+            
+                <a href="../chapter-6/">
+            
+                    
+                    Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Source Control (Coming Soon)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../chapter-8/">
+            
+                <a href="../chapter-8/">
+            
+                    
+                    Building for Production
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../chapter-9/">
+            
+                <a href="../chapter-9/">
+            
+                    
+                    Quick Start
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Javascript Modules</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="modular-javascript">Modular JavaScript</h1>
+<p>Modularity has always been a staple of good development; it promotes code-reuse and enhances maintainability.  Unfortunately, writing modular JavaScript was not easy, at least not until node.js came along.  In fact, JavaScript did not have a way to write modules build into the language.  (Read that last sentence again, out loud.)  Over time, this lead to developers building their own strategies and tools to create modular JavaScript.  I will spare you the history lesson and the cornucopia of solutions this has lead to (but you should definitely Google it) and just let you know that, <em>finally</em>, ES2015 introduced a native feature in the JavaScript language that supports the creation of modules.  And since we are coding in ES2015 already, this is the only solution we will be using going forward.</p>
+<h1 id="our-first-module">Our first Module</h1>
+<p>Lets go back to our example <code>app.js</code> and introduce some JavaScript Modules to see how they work.  First we create a new folder called <code>lib</code> in our <code>src</code> folder that will hold all our JavaScript Modules. </p>
+<pre><code class="lang-bash">$ <span class="hljs-built_in">cd</span> src
+$ mkdir lib
+$ <span class="hljs-built_in">cd</span> lib
+</code></pre>
+<p>In this directory, we create a file called sayHello.js and we move the sayHello function into this new file.  To turn this function into a module, all we need to do is export the function:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> sayHello = (name = <span class="hljs-string">&apos;Mark&apos;</span>) =&gt; <span class="hljs-string">`Hello <span class="hljs-subst">${ name }</span>`</span>
+</code></pre>
+<p>To use the module in <code>app.js</code> we have to import the module:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { sayHello } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;lib/sayHello&apos;</span>
+
+<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&apos;app&apos;</span>).innerHTML = <span class="hljs-string">`&lt;h1&gt;<span class="hljs-subst">${ sayHello() }</span>&lt;h1&gt;`</span>
+</code></pre>
+<p>We can actually simplify this a little bit, a module can namely export multiple objects, but one of those can be set as the default:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> sayHello = (name = <span class="hljs-string">&apos;Mark&apos;</span>) =&gt; <span class="hljs-string">`Hello <span class="hljs-subst">${ name }</span>`</span>
+</code></pre>
+<p>When you do this, the import statement does not require curly braces for the default object:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> sayHello <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;lib/sayHello&apos;</span>
+
+<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&apos;app&apos;</span>).innerHTML = <span class="hljs-string">`&lt;h1&gt;<span class="hljs-subst">${ sayHello() }</span>&lt;h1&gt;`</span>
+</code></pre>
+<p>Note that you can name your imported object anything you want, I prefer to call it the same as the function that is being imported, but you don&apos;t have to, this works just as well:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> welcome <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;lib/sayHello&apos;</span>
+
+<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&apos;app&apos;</span>).innerHTML = <span class="hljs-string">`&lt;h1&gt;<span class="hljs-subst">${ welcome() }</span>&lt;h1&gt;`</span>
+</code></pre>
+<p>After saving this, your browser should have already refreshed itself with the new code and you will see that ... it does not work.  You will see an error message in the console of your browser (e.g. DevTools in Chrome) that reads something like this:</p>
+<p><code>Uncaught ReferenceError: require is not defined(&#x2026;)</code></p>
+<p>If you cannot remember having used <code>require</code> in your code, well, you are right, you didn&apos;t.  This error is coming from our compiled code, not from our source code.  And this is raising an interesting problem: how do I know which line in my source code is responsible for this error in the compiled code?  In other words, how does the source code map to the compiled code?</p>
+<h2 id="source-maps">Source Maps</h2>
+<p>Of course the JavaScript community has a solution for this issue.  &quot;Source Maps&quot; map your source code to your compiled code so that you can keep writing ES2015 code at development time, run ES5 code (compiled by Babel) in the browser, and still see where in the source code the error comes from (even though the browser never gets to see the actual source code).  This feature is actually build into Babel and can easily be switched on by using the <code>-s</code> or <code>--source-maps</code> flag, so lets add this to our <code>package.json</code> watch script:</p>
+<pre><code class="lang-JSON">    <span class="hljs-string">&quot;watch&quot;</span>: <span class="hljs-string">&quot;babel -w src -d dist -s&quot;</span>
+</code></pre>
+<p>At this point, you do actually have to stop Babel in the terminal that is &quot;watching&quot; and restart it.  Babel watch does only watch changes in JavaScript, not in the actual Babel configuration.  In order to pick up the fact that you now also want to generate Source Maps, you have to stop and restart watch:</p>
+<pre><code class="lang-bash">$ npm run watch
+</code></pre>
+<p>Now you will see that the error actually comes from our <code>import</code> statement in <code>app.js</code>.  So what is going on here?</p>
+<h1 id="module-loaders">Module Loaders</h1>
+<p>As we discussed at the beginning of this chapter, before ES2015 there was no support for modules in the JavaScript language.  Instead, several tools had emerged that added this sort of functionality to the language.  Babel can actually transpile to most of those solutions but by default it transpiles to the CommonJS model (also used by Node.js), which is where the <code>require</code> comes from: it transpiles our <code>import</code> statement into a the following:</p>
+<pre><code class="lang-JavaScript"><span class="hljs-keyword">var</span> _sayHello = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;lib/sayHello&apos;</span>);
+</code></pre>
+<p>Now, <code>require</code> is a function that is provided by e.g. Node.js, but not by the browser, hence the error <code>require is not defined</code>.  So we are now in the interesting situation where we transpiled <code>import</code>, which is not yet supported by any browser, to <code>require</code>, which is also not supported by any browser.  In fact, none of the Module Loaders are supported by any browser.  There&apos;s actually a good reason for this; think about it, these modules are separate files and <code>require</code> needs to load these files from the File System, but a browser does not have a File System, so how <em>could</em> this work?</p>
+<p>The solution to this problem is to &quot;bundle&quot; all the modules into 1 large file so that when the browser loads this 1 file, it has access to all modules.</p>
+<h2 id="rollupjs">Rollup.js</h2>
+<p>There are several Module Bundlers out there but we are going to use <a href="http://rollupjs.org/" target="_blank">rollup.js</a>.  This is a relatively new kid on the block, but it has a few features that other Module Bundlers are missing, most importantly it has native support for ES2015 modules.  Because it does, we don&apos;t actually have to transpile <code>import</code> anymore with Babel.  You can tell Babel to not transpile <code>import</code> by adding the following to your Babel configuration in <code>.babelrc</code>:</p>
+<pre><code class="lang-JSON">{
+  <span class="hljs-string">&quot;presets&quot;</span>: [
+    [
+      <span class="hljs-string">&quot;es2015&quot;</span>,
+      {
+        <span class="hljs-string">&quot;modules&quot;</span>: <span class="hljs-literal">false</span>
+      }
+    ]
+  ]
+}
+</code></pre>
+<h3 id="installation">Installation</h3>
+<p>rollup.js is a node package, so installation is simple:</p>
+<pre><code class="lang-bash">$ npm install rollup --save-dev
+</code></pre>
+<p>Rather than running Babel directly, from now on, we are going to run rollup, which will invoke Babel.  In order to make this work, we need to install the Babel plugin for rollup.  Of course, this is an npm package:</p>
+<pre><code class="lang-bash">$ npm install rollup-plugin-babel --save-dev
+</code></pre>
+<h3 id="configuration">Configuration</h3>
+<p>Once all this is installed we need to configure rollup.  This is done using a file called <code>rollup.config.js</code>, so create this at the project root folder and add the following into it:</p>
+<pre><code class="lang-JavaScript"><span class="hljs-comment">// Rollup plugins</span>
+<span class="hljs-keyword">import</span> babel <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;rollup-plugin-babel&apos;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  entry: <span class="hljs-string">&apos;src/app.js&apos;</span>,
+  dest: <span class="hljs-string">&apos;dist/app.js&apos;</span>,
+  format: <span class="hljs-string">&apos;iife&apos;</span>,
+  sourceMap: <span class="hljs-string">&apos;inline&apos;</span>,
+  plugins: [
+    babel({
+      exclude: <span class="hljs-string">&apos;node_modules/**&apos;</span>,
+    }),
+  ],
+}
+</code></pre>
+<h3 id="build">Build</h3>
+<p>Now we just have to change the build script in <code>package.json</code> to use rollup.js instead of Babel:</p>
+<pre><code class="lang-JSON">    <span class="hljs-string">&quot;build&quot;</span>: <span class="hljs-string">&quot;rollup -c&quot;</span>,
+</code></pre>
+<h3 id="watch">Watch</h3>
+<p>Rollup.js has also &quot;watch&quot; functionality, it just has to be installed separately:</p>
+<pre><code class="lang-bash">npm install rollup-watch --save-dev
+</code></pre>
+<p>Once this is installed, you can use the <code>-w</code> flag with the rollup command, lets change this as well in <code>`package.json</code>:</p>
+<pre><code class="lang-JSON">    <span class="hljs-string">&quot;watch&quot;</span>: <span class="hljs-string">&quot;rollup -c -w&quot;</span>
+</code></pre>
+<p>Now when you run <code>npm run watch</code> your web page should work again.  Rollup.js bundles all your JavaScripts using native ES2015 import/export and converts them into IIFE format (which browsers understand) and then uses Babel to convert all other ES2015 features into ES5 (which the browsers also understand).  You now have a fully functioning, modern JavaScript Front End tooling set up.</p>
+<h2 id="webpack">Webpack</h2>
+<p>I must admit I never used Rollup.js myself until I started the research for this guide and stumbled upon it, I have always used Webpack so I am going to devote this chapter to Webpack as an alternative to Rollup.js.  Feel free to skip it if you are happy using Rollup.js but for those that prefer Webpack, read on.</p>
+<p>Webpack&apos;s scope is actually much broader than just a JavaScript bundler, it can also bundle CSS and even image files (e.g. png files) which is one of the reasons I hesitated to use it as my default in this beginner JavaScript setup guide: all this functionality makes it very flexible, but also a bit trickier to configure.  Another reason is that Webpack does not natively support ES2015 modules yet (this is being addressed though in the upcoming WebPack 2).  As it turns out though, when you use Babel, this is actually a bit of an advantage over Rollup where we had to &quot;re-configure&quot; Babel to <em>not</em> convert modules.</p>
+<p>So if you already configured your project for Rollup and now want to use Webpack instead, please undo the changes we did to the <code>.babelrc</code> file and revert it back to it&apos;s original:</p>
+<pre><code class="lang-JSON">{
+  <span class="hljs-string">&quot;presets&quot;</span>: [
+    [
+      <span class="hljs-string">&quot;es2015&quot;</span>
+    ]
+  ]
+}
+</code></pre>
+<h3 id="installation">Installation</h3>
+<p>Webpack is a node package, so installation is simple:</p>
+<pre><code class="lang-bash">$ npm install webpack --save-dev
+</code></pre>
+<blockquote>
+<p>If you want to be thorough and uninstall Rollup.js, you do this as followed:</p>
+<pre><code class="lang-bash">$ npm uninstall rollup rollup-plugin-babel rollup-watch --save-dev
+$ rm rollup.config.js
+</code></pre>
+</blockquote>
+<p>Just like with Rollup.js, rather than running Babel directly, from now on, we are going to run Webpack, which will invoke Babel.  And just like rollup.js we have to install a the Babel plugin for Webpack to make this work.  The plugins are called &quot;loaders&quot; in Webpack lingo, and they are (all together now!) available as node packages:</p>
+<pre><code class="lang-bash">$ npm install babel-loader --save-dev
+</code></pre>
+<h3 id="configuration">Configuration</h3>
+<p>Once all this is installed we need to configure Webpack.  This is done using a file called <code>webpack.config.js</code>, so create this at the project root folder and add the following into it:</p>
+<pre><code class="lang-JavaScript"><span class="hljs-built_in">module</span>.exports = {
+  entry: <span class="hljs-string">&apos;./src/app.js&apos;</span>,
+  output: {
+    path: <span class="hljs-string">&apos;./dist&apos;</span>,
+    filename: <span class="hljs-string">&apos;app.js&apos;</span>,
+  },
+  devtool: <span class="hljs-string">&apos;inline-source-map&apos;</span>,
+  <span class="hljs-built_in">module</span>: {
+    loaders: [{
+      test: <span class="hljs-regexp">/\.js$/</span>,
+      exclude: <span class="hljs-regexp">/node_modules/</span>,
+      loader: <span class="hljs-string">&apos;babel-loader&apos;</span>
+    }]
+  }
+}
+</code></pre>
+<p>This is the exact same setup as we did for rollup.js, with the same entry point, same output into the <code>dist</code> folder, Source Maps inlined and ignoring node_modules.</p>
+<h3 id="build">Build</h3>
+<p>Now we just have to change the build script in <code>package.json</code> to use Webpack instead of rollup.js (or Babel):</p>
+<pre><code class="lang-JSON">    <span class="hljs-string">&quot;build&quot;</span>: <span class="hljs-string">&quot;webpack&quot;</span>
+</code></pre>
+<p>As you project grows, the compilation will take a bit longer.  You can make this a more pleasant experience by adding a progress bar and some colors.  If you like that sort of thing, change the build line to:</p>
+<pre><code class="lang-JSON">    <span class="hljs-string">&quot;build&quot;</span>: <span class="hljs-string">&quot;webpack --progress --colors&quot;</span>
+</code></pre>
+<h3 id="watch">Watch</h3>
+<p>Webpack (unlike Rollup.js) has a build in Watch feature, which you enable with the <code>---watch</code> flag, so let&apos;s change the watch script in <code>package.json</code> to:</p>
+<pre><code class="lang-JSON">    <span class="hljs-string">&quot;watch&quot;</span>: <span class="hljs-string">&quot;webpack --progress --colors --watch&quot;</span>
+</code></pre>
+<h3 id="additional-features">Additional Features</h3>
+<p>Webpack comes with a feature called the Webpack Development Server which offers somewhat similar functionality than browser-sync.  Since we are already using browser-sync, we are going to stick to that, but if you are going to do React.js development you should really look into this tool (with <a href="https://webpack.github.io/docs/hot-module-replacement.html" target="_blank">Hot Module Replacement</a>).  You can install it with:</p>
+<pre><code class="lang-bash">$ npm install webpack-dev-server --save-dev
+</code></pre>
+<p>And then, replace watch in <code>package.json</code> with the following line:</p>
+<pre><code class="lang-JSON">    <span class="hljs-string">&quot;watch&quot;</span>: <span class="hljs-string">&quot;webpack-dev-server --progress --colors&quot;</span>
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../chapter-3/" class="navigation navigation-prev " aria-label="Previous page: Start Project">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../chapter-5/" class="navigation navigation-next " aria-label="Next page: Linting">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Javascript Modules","level":"1.5","depth":1,"next":{"title":"Linting","level":"1.6","depth":1,"path":"chapter-5/README.md","ref":"chapter-5/README.md","articles":[]},"previous":{"title":"Start Project","level":"1.4","depth":1,"path":"chapter-3/README.md","ref":"chapter-3/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-4/README.md","mtime":"2016-11-02T23:02:59.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-22T18:52:51.118Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
