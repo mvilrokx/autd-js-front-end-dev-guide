@@ -44,7 +44,14 @@ Create a ```.babelrc``` file with the folowing content:
 Run:
 
 ```bash
-$ ./node_modules/.bin/eslint init
+$ ./node_modules/.bin/eslint --init
+```
+
+```bash
+$ (
+  export PKG=eslint-config-airbnb;
+  npm info "$PKG@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install --save-dev "$PKG@latest"
+)
 ```
 
 Then edit ```.eslintrc.js```:
