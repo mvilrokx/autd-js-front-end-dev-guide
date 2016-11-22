@@ -1,4 +1,4 @@
-# Setup Your Environment for Modern JavaScript Development
+# Environment Set Up
 
 ## Prerequisites: Node.js and npm
 The tools we are going to use are actually written in JavaScript.  In order to run these tools we will need a JavaScript runtime. Node.js is such a JavaScript runtime (built on Chrome's V8 JavaScript engine) so the first step is to install Node.js.
@@ -8,15 +8,15 @@ The tools we are going to use are actually written in JavaScript.  In order to r
 These build tools are delivered as "node packages".  Node packages can easily be managed (installed, upgraded, uninstalled) with the Node Package Manager or [__npm__](https://www.npmjs.com/).  This is very similar to how linux (e.g. APT or YUM), macOS (e.g. [Homebrew](http://brew.sh/)) and now even Windows ([OneGet](https://github.com/oneget/oneget)) handle software installation.  Since npm comes with Node.js you do not have to install it separately, but you will be using npm extensively during this setup phase and during development, so embrace it.
 
 ### Typical install (mandatory)
-The installation process varies from platform to platform, [please follow the instructions for yours](https://nodejs.org/en/download/).
+The installation process varies from platform to platform. [Please follow the instructions for yours](https://nodejs.org/en/download/).
 
 ### Alternative install method (optional)
 As you start getting more and more into JavaScript development, you might want to start writing your own Node.js applications or tools.  When you go down this road, you will soon find that it is often necessary to switch versions of Node.js, either to support code you wrote a long time ago and don't want to upgrade (but e.g. you still need to be able to fix minor bugs) or maybe because the cloud platforms you deploy these applications to support only certain version of Node.js.  Whatever the reason, the typical install does not allow you to switch versions easily; you would have to uninstall and then re-install Node.js all the time.  Therefore, rather than installing Node.js directly, you can use something called a version management tool.
 
-Node has several version managers, the most common once are [nvm](https://github.com/creationix/nvm) and [n](https://github.com/tj/n).  I personally use n because I use the [fish shell](https://fishshell.com/) and nvm does not support fish, but other members in our team use nvm just without any issues.  The provided links give ample instructions on how to install either one.  We are not going to use this feature at in this guide (we will stick to whatever version of node you installed earlier), I am just mentioning it in case you start wondering how to accommodate coding using different version of the Node.js runtime.
+Node has several version managers, the most common once are [nvm](https://github.com/creationix/nvm) and [n](https://github.com/tj/n).  I personally use ```n``` because I use the [fish shell](https://fishshell.com/) and ```nvm``` does not support fish, but other members in our team use nvm without any issues.  The provided links give ample instructions on how to install either one.  We are not going to use this feature in this guide (we will stick to whatever version of node you installed earlier).  I am just mentioning it in case you start wondering how to accommodate coding using different version of the Node.js runtime.
 
 ### Alternative install method 2 (optional)
-Facebook is very active in the JavaScript community these days and has released an alternative to npm called [Yarn](https://yarnpkg.com/).  It is supposed to be a much faster alternative to npm but it does not (yet) offer 100% coverage of npm functionality, so I have not made the switch yet.  We will be using npm, however, you are free to use Yarn yourself, it should work just as well as npm for what we are going to do.
+Facebook is very active in the JavaScript community these days and has released an alternative to npm called [Yarn](https://yarnpkg.com/).  It is supposed to be a much faster alternative to npm but it does not (yet) offer 100% coverage of npm functionality, so I have not made the switch yet.  We will be using npm.  However, you are free to use Yarn yourself.  It should work just as well as npm for what we are going to do.
 
 ## Initializing the Project
 To start a new JavaScript project, we are going to create a new directory that will hold all our code and then change into that new directory:
@@ -55,7 +55,7 @@ We can install Babel CLI locally by running:
 $ npm install babel-cli --save-dev
 ```
 
-Note the ```--save-dev``` flag passed to npm.  This records the dependency into the ```package.json``` file.  ```package.json``` can record 2 types of dependencies, development dependencies (using the --save-dev flag) which are packages that are only needed for development and testing.  Since we are only going to use babel during development and testing (in production we will run the code produced by babel, which itself obviously does not need babel anymore, it's just ES5 JavaScript).  Dependencies that are also required during production are "regular" dependencies and get recorded using the ```-save``` flag.  When you deploy a npm project to production, you can tell it to skip installing devDependencies, saving resources on your Production machines.  Go ahead and open up the package.json file, you should see  a new line added under devDependencies that looks something like:
+Note the ```--save-dev``` flag passed to npm.  This records the dependency into the ```package.json``` file.  ```package.json``` can record 2 types of dependencies, development dependencies (using the --save-dev flag) which are packages that are only needed for development and testing.  Since we are only going to use Babel during development and testing (in production we will run the code produced by Babel, which itself obviously does not need Babel anymore, it's just ES5 JavaScript).  Dependencies that are also required during production are "regular" dependencies and get recorded using the ```-save``` flag.  When you deploy an npm project to production, you can tell it to skip installing devDependencies, saving resources on your Production machines.  Go ahead and open up the package.json file, you should see  a new line added under devDependencies that looks something like:
 
 ```JSON
 "devDependencies": {
@@ -85,21 +85,23 @@ The only thing that remains now is telling Babel to use this "es2015" Preset.  Y
 }
 ```
 
-And now, you can finally churn out ES5 code from your ES2015 source code.  Since we installed babel locally, the executable actually resides in ```./node_modules/.bin/babel``` of your project.  Assuming that your source code lives in ./src and you want to write your compiled code to ./dist, the full command would be:
+And now, you can finally churn out ES5 code from your ES2015 source code.  Since we installed Babel locally, the executable actually resides in ```./node_modules/.bin/babel``` of your project.  Assuming that your source code lives in ./src and you want to write your compiled code to ./dist, the full command would be:
 
 ```bash
 $ ./node_modules/.bin/babel src -d dist
 ```
 
-Because this is a bit long to type every time, we can also create a script alias in the package.json file called "build":
+Because this is a bit long to type every time, we can also create a script alias in the package.json file called "build".  Add the following to the existing ```scripts``` object:
 
 ```JSON
 "scripts": {
+  ...
   "build": "babel src -d dist"
+  ...
 },
 ```
 
->Note that in package.json you do not have to specify the location of the babel executable, it knows where it lives.
+>Note that in package.json you do not have to specify the location of the Babel executable.  It knows where it lives.
 
 You can now run your build by simply executing:
 

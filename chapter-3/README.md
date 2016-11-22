@@ -1,5 +1,5 @@
 # HTML Starter Page
-As we are going to build JavaScript that runs in the browser, we need a web page that can be loaded in the browser.  For now, this page will be blank, it will just contain a reference to our JavaScript so that it runs when we load the web page.  Open you favorite IDE, create an ```index.html``` file in the root folder of your project and put the following HTML in that file:
+As we are going to build JavaScript that runs in the browser, we need a web page that can be loaded in the browser.  For now, this page will be blank, it will just contain a reference to our JavaScript so that it runs when we load the web page.  Open your favorite IDE, create an ```index.html``` file in the root folder of your project and put the following HTML in that file:
 
 ```html
 <!DOCTYPE html>
@@ -23,13 +23,13 @@ As you can see, we are referencing a JavaScript file called ```app.js``` that li
 $ mkdir dist
 ```
 
-This ```dist``` folder is where our "compiled" javascript code will live, our source code will live in a ```src``` folder, so lets create that folder next:
+This ```dist``` folder is where our "compiled" JavaScript code will live.  Our source code will live in a ```src``` folder, so lets create that folder next:
 
 ```bash
 $ mkdir src
 ```
 
-And in there, we create our ```app.js``` file
+And in there, we create our ```app.js``` file:
 
 ```bash
 $ touch ./src/app.js
@@ -41,7 +41,7 @@ Open ```app.js``` in the ```src``` folder and add the following JavaScript:
 document.getElementById('app').innerHTML = 'It Works!'
 ```
 
-This will simply grab the html element with an id of ```app``` and replace it's content (which is blank at the moment), with 'It Works!', resulting in that string showing up on the Web Page.
+This will simply grab the HTML element with an id of ```app``` and replace it's content (which is blank at the moment), with 'It Works!', resulting in that string showing up on the Web Page.
 
 Now we can transpile using the setup we did earlier:
 
@@ -49,10 +49,10 @@ Now we can transpile using the setup we did earlier:
 $ npm run build
 ```
 
-This should have created the transpiled version of ```app.js``` in the ```dist``` folder.  If you open up that file you will see it looks exactly the same as the source file because we have not used any ES2015 features, so Babel did not have to transform any of our source code (don't worry, it soon will).
+This should have created the transpiled version of ```app.js``` in the ```dist``` folder.  If you open up that file you will see it looks exactly the same as the source file, with the exception of having added ```"use strict";```.  This is because we have not used any ES2015 features yet, so Babel did not have to transform any of our source code (don't worry, it soon will).
 
-## Setup a Simple Webserver (mandatory)
-You can now try to open up the ```index.html``` file in your browser, but nothing will happen.  It won't load the JavaScript file and as a result, nothing will be shown on the Web Page.  In order to get the JavaScript to load you need an actual Web Server that serves the ```index.html``` page and can then also serve the JavaScript that page is requesting.  The simplest way to to this (at least on Macs), is to use Python.  It comes preinstalled on most systems and it has a simple webserver build in.  You can invoke it from the command line, in the project root folder:
+## Setup a Simple Web server (mandatory)
+You can now try to open up the ```index.html``` file in your browser, but nothing will happen.  It won't load the JavaScript file and as a result, nothing will be shown on the Web Page.  In order to get the JavaScript to load you need an actual Web Server that serves the ```index.html``` page and can then also serve the JavaScript that page is requesting (```/dist/app.js```).  The simplest way to to this (at least on Macs), is to use Python.  It comes preinstalled on most systems and it has a simple web server build in.  You can invoke it from the command line, in the project root folder:
 
 ```bash
 $ python -m SimpleHTTPServer
@@ -66,7 +66,7 @@ Let's make our JavaScript example a little bit more interesting by introducing s
 ```javascript
 const sayHello = (name = 'Mark') => `Hello ${ name }`
 
-document.getElementById('app').innerHTML = `<h1>${ sayHello() }<h1>`
+document.getElementById('app').innerHTML = `<h1>${ sayHello() }</h1>`
 ```
 
 Here we create a function called ```sayHello``` that takes in 1 parameter called ```name```.  The function is written as an Arrow Function which is a ES2015 feature.  To learn more about arrow functions and the difference between regular functions, feel free to go [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), but 1 feature of an arrow function is that it provides a more concise syntax than creating a regular function (it also doesn't bind to ```this```).  The function is assigned to a Constant called ```sayHello```, Constants are also a new ES2015 feature.  The function sets a default value  ```Mark``` for the ```name``` parameter; another ES2015 feature.  And finally the function returns (note that the return keyword is not needed as a single line arrow function performs an implicit return, also known as a __lambda function__) a string created using the new ES2015 Template Strings, which provides string interpolation.
@@ -98,9 +98,9 @@ $ npm run watch
 You will see that, other than with the ```build``` script, this script does not finish, it just sits there ... watching.  Go ahead and make a change to the ```app.js``` file now and save it, e.g. change the ```h1``` tags to ```h2``` tags.  As soon as you save the JavaScript, you will see that Babel triggers a recompilation.  To kill the watch process you just hit ```ctrl-c```.
 
 ## HTML
-To automatically refresh our browser (a feature usually called __live-reload__) we are going to leave behind our simple python web server and switch to something more powerful ... much much more powerful.  Fear not though, it is extremely easy to install and use, thanks to npm!
+To automatically refresh our browser (a feature usually called __live-reload__) we are going to leave behind our simple python web server (please kill the process now with ```CTRL+C```) and switch to something more powerful ... much, much more powerful.  Fear not though, it is extremely easy to install and use, thanks to npm!
 
-[Browsersync](https://www.browsersync.io/) is the swiss army knife for Web Developers with an amazing array of features, 1 of them being live-reload.  We are going to leverage that feature to re-establish our fast iteration cycle.  Since Browsersync is a node package, you can easily install it with npm.  Unlike previous npm packages though, which we installed locally, I prefer to install Browsersync globally.  The reason for this is that there are many live-reload solutions out there and just because I prefer Browsersync does not mean that the next developer who is going to work on my projects will too.  Therefore I do not want to "pollute" the project with what in my opinion is the best live-reload solution.  If however you decide to install it locally, remember that Browsersync is a devDependency, so use the ```--save-dev``` flag.  To install Browsersync globally, run the following command:
+[Browsersync](https://www.browsersync.io/) is the Swiss army knife for Web Developers with an amazing array of features, 1 of them being live-reload.  We are going to leverage that feature to re-establish our fast iteration cycle.  Since Browsersync is a node package, you can easily install it with npm.  Unlike previous npm packages though, which we installed locally, I prefer to install Browsersync globally.  The reason for this is that there are many live-reload solutions out there and just because I prefer Browsersync does not mean that the next developer who is going to work on my projects will too.  Therefore I do not want to "pollute" the project with what in my opinion is the best live-reload solution.  If however you decide to install it locally, remember that Browsersync is a devDependency, so use the ```--save-dev``` flag.  To install Browsersync globally, run the following command:
 
 ```bash
 $ npm install -g browser-sync
