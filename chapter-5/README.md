@@ -29,7 +29,7 @@ After that, you'll need to configure ESLint, basically tell it what JavaScript c
 The easiest way to configure ESLint is to run:
 
 ```bash
-$ ./node_modules/.bin/eslint init
+$ ./node_modules/.bin/eslint --init
 ```
 
 It will ask you a few questions which I answered as following:
@@ -38,6 +38,21 @@ It will ask you a few questions which I answered as following:
 ? How would you like to configure ESLint? Use a popular style guide
 ? Which style guide do you want to follow? Airbnb
 ? What format do you want your config file to be in? JavaScript
+```
+
+Next we have to ensure packages are installed with correct version numbers by running:
+
+```bash
+(
+  export PKG=eslint-config-airbnb;
+  npm info "$PKG@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install --save-dev "$PKG@latest"
+)
+```
+
+Which produces and runs a command like:
+
+```bash
+npm install --save-dev eslint-config-airbnb eslint@^#.#.# eslint-plugin-jsx-a11y@^#.#.# eslint-plugin-import@^#.#.# eslint-plugin-react@^#.#.#
 ```
 
 This should suffice to configure ESLint for our needs.  You can now run ESLint on our code with the following command:
@@ -78,7 +93,7 @@ module: {
 # Fine Tuning Our Lint Configuration
 When you run ESLint the first time, even on our small Source Code example, you will see that it immediately raises several errors.  Some of these are legit, but others are not, so lets get rid of those errors by tweaking the configuration of ESLint.
 
-When you ran ```./node_modules/.bin/eslint init``` it actually created a config file for you, it is called ```.eslintrc.js``` and it is in this file that we modify the ESLint configurations so go ahead and open it up.
+When you ran ```./node_modules/.bin/eslint --init``` it actually created a config file for you, it is called ```.eslintrc.js``` and it is in this file that we modify the ESLint configurations so go ahead and open it up.
 
 ```JavaScript
 module.exports = {
