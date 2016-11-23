@@ -1,7 +1,7 @@
 # Unit Testing
 Let's get this first out of the way: yes, you should be testing your JavaScript code.  Period.  There is a smorgasbord of testing software available for JavaScript, it doesn't matter which one you pick but you should pick one.  For our purpose, we are going to setup our application testing with [Mocha](http://mochajs.org/) and [Chai](http://chaijs.com/).
 
-# Mocha
+## Mocha
 >Mocha is a feature-rich JavaScript test framework"
 
 It's basically a test runner that manages your tests.  You install it with npm:
@@ -12,7 +12,7 @@ $ npm install mocha --save-dev
 
 Mocha itself does not come with an assertion library but it allows you to use any assertion library you wish.
 
-# Chai
+## Chai
 >Chai is a BDD / TDD assertion library for node and the browser that can be delightfully paired with any javascript testing framework."
 
 Sounds like a perfect match for Mocha.  The nice thing about Chai is that it has several assertion styles (```should```, ```assert```, ```expect```) that allow the developer to choose the most comfortable.  Installation is a breeze:
@@ -21,7 +21,7 @@ Sounds like a perfect match for Mocha.  The nice thing about Chai is that it has
 $ npm install chai --save-dev
 ```
 
-# Setup
+## Setup
 Once you have the tools installed, we need to configure our application to start using them.
 
 First create a ```test``` folder where we can put all our tests (this is the location where Mocha by default looks for tests):
@@ -78,7 +78,7 @@ $ npm run test
 
 You should now also see your test passing successfully.  Let's add some more useful tests.
 
-# Add Tests
+## Add Tests
 Change the content of ```sayHello-test.js``` to the following:
 
 ```JavaScript
@@ -97,7 +97,7 @@ describe('sayHello', () => {
 
 Note that we import the module that we want to test.  Because tests live in a different folder, we need to import it from ```../src/lib/sayHello```.  We then add 2 tests in our sayHello suite, one tests that the default parameter is working and the other tests the procedure when passing in a value for the name parameter.  You should see the tests passing as it stands since this is testing already existing functionality.
 
-# Test Driven Development
+## Test Driven Development
 However, this is not how you should be testing or rather developing.  Ideally, you __first__ create your __tests__ and __then__ you __create__ the minimal __code__ to pass that test.  This is called Test Driven Development or TDD.  Let's see that in action.
 
 We are going to enhance our ```sayHello``` function to always capitalize the name that is being passed into it.  First we will add a test to test this use case:

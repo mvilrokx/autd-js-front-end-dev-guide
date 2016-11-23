@@ -1,7 +1,7 @@
 # Building for Production
 So far, we have been using the "watch" script to run our application in development.  This is however not how we want to run our application in production.  For starters, let's look at the size of our bundled JavaScript, it tops out at 4.8K.  Considering we have barely any code in our source file (106B), that's pretty large, so we want to minimize this; smaller JavaScript means less bandwidth usage for our users and faster downloads.
 
-# Webpack Config for Production
+## Webpack Config for Production
 We are going to have to tinker with the Webpack configuration to create our production ready build, however, rather than changing the (development) configuration we currently are using, we will keep that and create a separate configuration for production.  We can tell Webpack to use that configuration rather than the default ```webpack.config.js``` with a flag.  Make a copy of ```webpack.config.js``` and call it ```webpack.prod.config.js```:
 
 ```bash
@@ -38,10 +38,10 @@ We can push this even further down by telling Webpack to run in the node ```PROD
 
 >This actually did not change the size of my compiled files at all but this could be due to the extremely small size of the source code to begin with.  As your application gets more complex, this should reduce the size of your compiled code.
 
-# Plugins to improve Production Building
+## Plugins to improve Production Building
 There are [several Webpack plugins](https://webpack.github.io/docs/list-of-plugins.html#normalmodulereplacementplugin) available that perform other enhancements to your code, you can add them to your build process as required.
 
-## Remove debugging statements
+### Remove debugging statements
 ```strip-loader``` is a Webpack plugin that can strip custom functions from your code. This can be useful if you want to use debug statements while developing your application but don't want this info exposed in your production code.  It comes as an npm package so you install it with:
 
 ```bash

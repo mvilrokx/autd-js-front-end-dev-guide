@@ -17,7 +17,7 @@ On top of all this, the JavaScript community has also consolidated around a bunc
 
 All of this to convince you that you really should be linting your JavaScript code!
 
-# ESLint
+## ESLint
 True to form, there are several popular JavaScript linters out there, but we are going to settle on [ESLint](http://eslint.org/) which offers the [most flexibility](http://eslint.org/docs/rules/) and as a result seems to be the most poplar amongst JavaScript developers.  It also has the widest support of ES6 features.  To install it, run:
 
 ```bash
@@ -68,14 +68,14 @@ TODO
 
 ## Integrate ESLint with Webpack
 
-### Installation
+#### Installation
 Just like with Babel, we need a loader to integrate ESLint into Webpack:
 
 ```bash
 $ npm install eslint-loader --save-dev
 ```
 
-### Configuration
+#### Configuration
 Once installed, we have to add some configuration to ```webpack.config.js``` to include it in our build process:
 
 ```
@@ -90,7 +90,7 @@ module: {
 
 >Note that the order is important!  Webpack process each loader in the revers order they appear in the loaders array.  Since we want to lint our Source Code, i.e. our ES6 code, not the Babel processed code, we have to put eslint-loader after babel-loader.  ESLint can lint ES6 code just fine.
 
-# Fine Tuning Our Lint Configuration
+## Fine Tuning Our Lint Configuration
 When you run ESLint the first time, even on our small Source Code example, you will see that it immediately raises several errors.  Some of these are legit, but others are not, so lets get rid of those errors by tweaking the configuration of ESLint.
 
 When you ran ```./node_modules/.bin/eslint --init``` it actually created a config file for you, it is called ```.eslintrc.js``` and it is in this file that we modify the ESLint configurations so go ahead and open it up.
@@ -166,7 +166,7 @@ module.exports = {
 
 Now ESLint will raise an error (0 = off, 1 = warn, __2 = error__) when it finds a semi-colon ('never' means never a semi-colon, the opposite, and default airbnb setting, is 'always').
 
-# Automatically fix errors
+## Automatically fix errors
 A nice feature of ESLint is that it can actually automatically fix errors for you.  It's pretty conservative when it does this, so it is really safe.  You enable this by passing the ```--fix``` flag to ESLint.  Since we are using Webpack to run ESLint, we have to configure this in our ```webpack.config.js``` file:
 
 ```JavaScript

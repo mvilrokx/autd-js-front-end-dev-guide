@@ -1,4 +1,6 @@
-# HTML Starter Page
+# Start Project
+
+## HTML Starter Page
 As we are going to build JavaScript that runs in the browser, we need a web page that can be loaded in the browser.  For now, this page will be blank, it will just contain a reference to our JavaScript so that it runs when we load the web page.  Open your favorite IDE, create an ```index.html``` file in the root folder of your project and put the following HTML in that file:
 
 ```html
@@ -16,7 +18,7 @@ As we are going to build JavaScript that runs in the browser, we need a web page
 
 This will show an empty Web Page to the user.  Next, we will create some JavaScript that will add content to this Web Page.
 
-# Our First JavaScript
+## Our First JavaScript
 As you can see, we are referencing a JavaScript file called ```app.js``` that lives in the ```dist``` folder, so lets create this folder (but hold off on creating the file!):
 
 ```bash
@@ -51,7 +53,7 @@ $ npm run build
 
 This should have created the transpiled version of ```app.js``` in the ```dist``` folder.  If you open up that file you will see it looks exactly the same as the source file, with the exception of having added ```"use strict";```.  This is because we have not used any ES2015 features yet, so Babel did not have to transform any of our source code (don't worry, it soon will).
 
-## Setup a Simple Web server (mandatory)
+### Setup a Simple Web server (mandatory)
 You can now try to open up the ```index.html``` file in your browser, but nothing will happen.  It won't load the JavaScript file and as a result, nothing will be shown on the Web Page.  In order to get the JavaScript to load you need an actual Web Server that serves the ```index.html``` page and can then also serve the JavaScript that page is requesting (```/dist/app.js```).  The simplest way to to this (at least on Macs), is to use Python.  It comes preinstalled on most systems and it has a simple web server build in.  You can invoke it from the command line, in the project root folder:
 
 ```bash
@@ -60,7 +62,7 @@ $ python -m SimpleHTTPServer
 
 If you now open ```http://localhost:8000/``` in your browser, you should see the message you wrote in JavaScript appear on the Web Page.
 
-# ES2015 JavaScript Example
+## ES2015 JavaScript Example
 Let's make our JavaScript example a little bit more interesting by introducing some ES2015 features.  Go ahead and replace the content of the app.js file with the following:
 
 ```javascript
@@ -81,8 +83,8 @@ and then re-loading our browser window.  When you look at the compiled code now,
 
 These 2 steps (recompiling the JavaScript and refreshing the browser window) will have to be performed every time we make the slightest change to our JavaScript.  This might not seem like a big deal, but I can tell you from experience, this gets very annoying very quickly.  Worse, over time, it will actually slow down your iterations: you will try to avoid these steps as much as possible, writing a lot more code between compile/refresh cycles.  When you eventually do compile/refresh to see what all that beautiful code you wrote actually does, you will eventually get errors or unexpected results.  Because you wrote a lot more code since the last iteration, it will be a lot harder to track down your errors.  Let's fix both these issues.
 
-# I'm Watching!
-## JavaScript
+## I'm Watching!
+### JavaScript
 Babel actually comes with a feature that allows you to "watch" your source files and trigger an automatic recompilation when it detects a change.  Lets add this to our ```package.json``` file as a new script, just add the following to the ```scripts``` section:
 
 ```JSON
@@ -97,7 +99,7 @@ $ npm run watch
 
 You will see that, other than with the ```build``` script, this script does not finish, it just sits there ... watching.  Go ahead and make a change to the ```app.js``` file now and save it, e.g. change the ```h1``` tags to ```h2``` tags.  As soon as you save the JavaScript, you will see that Babel triggers a recompilation.  To kill the watch process you just hit ```ctrl-c```.
 
-## HTML
+### HTML
 To automatically refresh our browser (a feature usually called __live-reload__) we are going to leave behind our simple python web server (please kill the process now with ```CTRL+C```) and switch to something more powerful ... much, much more powerful.  Fear not though, it is extremely easy to install and use, thanks to npm!
 
 [Browsersync](https://www.browsersync.io/) is the Swiss army knife for Web Developers with an amazing array of features, 1 of them being live-reload.  We are going to leverage that feature to re-establish our fast iteration cycle.  Since Browsersync is a node package, you can easily install it with npm.  Unlike previous npm packages though, which we installed locally, I prefer to install Browsersync globally.  The reason for this is that there are many live-reload solutions out there and just because I prefer Browsersync does not mean that the next developer who is going to work on my projects will too.  Therefore I do not want to "pollute" the project with what in my opinion is the best live-reload solution.  If however you decide to install it locally, remember that Browsersync is a devDependency, so use the ```--save-dev``` flag.  To install Browsersync globally, run the following command:

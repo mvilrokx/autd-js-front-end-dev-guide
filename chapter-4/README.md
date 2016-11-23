@@ -1,7 +1,7 @@
 # Modular JavaScript
 Modularity has always been a staple of good development; it promotes code reuse and enhances maintainability.  Unfortunately, writing modular JavaScript was not easy, at least not until node.js came along.  In fact, JavaScript did not have a way to write modules built into the language.  (Read that last sentence again, out loud.)  Over time, this lead to developers building their own strategies and tools to create modular JavaScript.  I will spare you the history lesson and the cornucopia of solutions this has lead to (but you should definitely Google it) and just let you know that, _finally_, ES2015 introduced a native feature in the JavaScript language that supports the creation of modules.  And since we are coding in ES2015 already, this is the only solution we will be using going forward.
 
-# Our first Module
+## Our first Module
 Lets go back to our example ```app.js``` and introduce some JavaScript Modules to see how they work.  First we create a new folder called ```lib``` in our ```src``` folder that will hold all our JavaScript Modules. 
 
 ```bash
@@ -56,7 +56,7 @@ After saving this, your browser should have already refreshed itself with the ne
 
 If you cannot remember having used ```require``` in your code, well, you are right, you didn't.  This error is coming from our compiled code, not from our source code.  And this is raising an interesting problem: how do I know which line in my source code is responsible for this error in the compiled code?  In other words, how does the source code map to the compiled code?
 
-## Source Maps
+### Source Maps
 Of course the JavaScript community has a solution for this issue.  "Source Maps" map your source code to your compiled code so that you can keep writing ES2015 code at development time, run ES5 code (compiled by Babel) in the browser, and still see where in the source code the error comes from (even though the browser never gets to see the actual source code).  This feature is actually built into Babel and can easily be switched on by using the ```-s``` or ```--source-maps``` flag, so let's add this to our ```package.json``` watch script:
 
 ```JSON
@@ -71,7 +71,7 @@ $ npm run watch
 
 Now you will see that the error actually comes from our ```import``` statement in ```app.js```.  So what is going on here?
 
-# Module Loaders
+## Module Loaders
 As we discussed at the beginning of this chapter, before ES2015 there was no support for modules in the JavaScript language.  Instead, several tools had emerged that added this sort of functionality to the language.  Babel can actually transpile to most of those solutions but by default it transpiles to the CommonJS model (also used by Node.js), which is where the ```require``` comes from: it transpiles our ```import``` statement into the following:
 
 ```JavaScript
@@ -84,7 +84,7 @@ The solution to this problem is to "bundle" all the modules into 1 large file so
 
 >Note that these bundlers require quite a bit of setup (explained in the next sections), even for our simple setup.  However, over time, the advantages they provide far outweight these annoyances.  Also, once you have 1 project setup it can serve as a template for any new projects, just clone it, run ```npm init``` and you are good to go.
 
-## Rollup.js
+### Rollup.js
 There are several Module Bundlers out there but we are going to use [rollup.js](http://rollupjs.org/).  This is a relatively new kid on the block, but it has a few features that other Module Bundlers are missing, most importantly it has native support for ES2015 modules.  Because it does, we don't actually have to transpile ```import``` anymore with Babel.  You can tell Babel to not transpile ```import``` by adding the following to your Babel configuration in ```.babelrc```:
 
 ```JSON
@@ -100,7 +100,7 @@ There are several Module Bundlers out there but we are going to use [rollup.js](
 }
 ```
 
-### Installation
+#### Installation
 rollup.js is a node package, so installation is simple:
 
 ```bash
@@ -113,7 +113,7 @@ Rather than running Babel directly, from now on, we are going to run rollup, whi
 $ npm install rollup-plugin-babel --save-dev
 ```
 
-### Configuration
+#### Configuration
 Once all this is installed we need to configure rollup.  This is done using a file called ```rollup.config.js```, so create this at the project root folder and add the following into it:
 
 ```JavaScript
@@ -133,14 +133,14 @@ export default {
 }
 ```
 
-### Build
+#### Build
 Now we just have to change the build script in ```package.json``` to use rollup.js instead of Babel:
 
 ```JSON
     "build": "rollup -c",
 ```
 
-### Watch
+#### Watch
 Rollup.js also has "watch" functionality, it just has to be installed separately:
 
 ```bash
@@ -155,7 +155,7 @@ Once this is installed, you can use the ```-w``` flag with the rollup command, l
 
 Now when you run ```npm run watch``` your web page should work again.  Rollup.js bundles all your JavaScript files using native ES2015 import/export and converts them into IIFE format (which browsers understand) and then uses Babel to convert all other ES2015 features into ES5 (which browsers also understand).  You now have a fully functioning, modern JavaScript Front End tooling set up.
 
-## Webpack
+### Webpack
 I must admit I never used Rollup.js myself until I started the research for this guide and stumbled upon it, I have always used Webpack so I am going to devote this chapter to Webpack as an alternative to Rollup.js.  Feel free to skip it if you are happy using Rollup.js but for those that prefer Webpack, read on.
 
 Webpack's scope is actually much broader than just a JavaScript bundler, it can also bundle CSS and even image files (e.g. png files) which is one of the reasons I hesitated to use it as my default in this beginner JavaScript setup guide: all this functionality makes it very flexible, but also a bit trickier to configure.  Another reason is that Webpack does not natively support ES2015 modules yet (this is being addressed though in the upcoming WebPack 2).  As it turns out though, when you use Babel, this is actually a bit of an advantage over Rollup where we had to "re-configure" Babel to _not_ convert modules.
@@ -172,7 +172,7 @@ So if you already configured your project for Rollup and now want to use Webpack
 }
 ```
 
-### Installation
+#### Installation
 Webpack is a node package, so installation is simple:
 
 ```bash
@@ -192,7 +192,7 @@ Just like with Rollup.js, rather than running Babel directly, from now on, we ar
 $ npm install babel-loader --save-dev
 ```
 
-### Configuration
+#### Configuration
 Once all this is installed we need to configure Webpack.  This is done using a file called ```webpack.config.js```, so create this at the project root folder and add the following into it:
 
 ```JavaScript
@@ -215,7 +215,7 @@ module.exports = {
 
 This is the exact same setup as we did for rollup.js, with the same entry point, same output into the ```dist``` folder, Source Maps inlined and ignoring node_modules.
 
-### Build
+#### Build
 Now we just have to change the build script in ```package.json``` to use Webpack instead of rollup.js (or Babel):
 
 ```JSON
@@ -228,14 +228,14 @@ As you project grows, the compilation will take a bit longer.  You can make this
     "build": "webpack --progress --colors"
 ```
 
-### Watch
+#### Watch
 Webpack (unlike Rollup.js) has a built-in Watch feature, which you enable with the ```---watch``` flag, so let's change the watch script in ```package.json``` to:
 
 ```JSON
     "watch": "webpack --progress --colors --watch"
 ```
 
-### Additional Features
+#### Additional Features
 Webpack comes with a feature called the Webpack Development Server which offers somewhat similar functionality to browser-sync.  Since we are already using browser-sync, we are going to stick to that, but if you are going to do React.js development you should really look into this tool (with [Hot Module Replacement](https://webpack.github.io/docs/hot-module-replacement.html)).  You can install it with:
 
 ```bash
