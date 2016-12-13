@@ -62,6 +62,8 @@ $ python -m SimpleHTTPServer
 
 If you now open ```http://localhost:8000/``` in your browser, you should see the message you wrote in JavaScript appear on the Web Page.
 
+>If you are having trouble getting this to work, don't worry, we will be using a different Web Server later so you can skip this part if needed.  Alternatively, if you remove the front '/' from ```/dist/app.js```, i.e. ```dist/app.js``` in the ```html```, you don't need the Web Server at all, just open the ```index.html``` page and it will serve the JavaScript.  Just don't forget to add the forward slash back in when you continue.
+
 ## ES2015 JavaScript Example
 Let's make our JavaScript example a little bit more interesting by introducing some ES2015 features.  Go ahead and replace the content of the app.js file with the following:
 
