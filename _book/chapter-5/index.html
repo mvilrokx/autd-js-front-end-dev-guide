@@ -287,19 +287,6 @@
     
         <li class="chapter " data-level="1.5.2.1" data-path="../chapter-4/">
             
-                <a href="../chapter-4/#rollupjs">
-            
-                    
-                    Rollup.js
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.2.2" data-path="../chapter-4/">
-            
                 <a href="../chapter-4/#webpack">
             
                     
@@ -629,9 +616,7 @@
 <p>This should suffice to configure ESLint for our needs.  You can now run ESLint on our code with the following command:</p>
 <pre><code class="lang-bash">$ ./node_modules/.bin/eslint src/**
 </code></pre>
-<p>Of course, rather than running ESLint separate like this, we want to integrate it in our tool chain.  There are many ways you can integrate linters in your tool chain, including in your IDE, but we are going to add it to our &quot;build&quot;, which means adding it to Rollup.js or Webpack, depending which bundler you choose to use.</p>
-<h2 id="integrate-eslint-with-rollupjs">Integrate ESLint with Rollup.js</h2>
-<p>TODO</p>
+<p>Of course, rather than running ESLint separate like this, we want to integrate it in our tool chain.  There are many ways you can integrate linters in your tool chain, including in your IDE, but we are going to add it to our &quot;build&quot;, which means adding it to Webpack, depending which bundler you choose to use.</p>
 <h2 id="integrate-eslint-with-webpack">Integrate ESLint with Webpack</h2>
 <h4 id="installation">Installation</h4>
 <p>Just like with Babel, we need a loader to integrate ESLint into Webpack:</p>
@@ -771,7 +756,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Linting","level":"1.6","depth":1,"next":{"title":"ESLint","level":"1.6.1","depth":2,"anchor":"#eslint","path":"chapter-5/README.md","ref":"chapter-5/README.md#eslint","articles":[]},"previous":{"title":"Webpack","level":"1.5.2.2","depth":3,"anchor":"#webpack","path":"chapter-4/README.md","ref":"chapter-4/README.md#webpack","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-5/README.md","mtime":"2016-11-22T20:18:04.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-22T20:05:12.963Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Linting","level":"1.6","depth":1,"next":{"title":"ESLint","level":"1.6.1","depth":2,"anchor":"#eslint","path":"chapter-5/README.md","ref":"chapter-5/README.md#eslint","articles":[]},"previous":{"title":"Webpack","level":"1.5.2.1","depth":3,"anchor":"#webpack","path":"chapter-4/README.md","ref":"chapter-4/README.md#webpack","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-5/README.md","mtime":"2016-12-14T00:18:09.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-12-14T00:19:57.584Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

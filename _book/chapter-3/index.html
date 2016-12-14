@@ -287,19 +287,6 @@
     
         <li class="chapter " data-level="1.5.2.1" data-path="../chapter-4/">
             
-                <a href="../chapter-4/#rollupjs">
-            
-                    
-                    Rollup.js
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.2.2" data-path="../chapter-4/">
-            
                 <a href="../chapter-4/#webpack">
             
                     
@@ -630,6 +617,9 @@
 <pre><code class="lang-bash">$ python -m SimpleHTTPServer
 </code></pre>
 <p>If you now open <code>http://localhost:8000/</code> in your browser, you should see the message you wrote in JavaScript appear on the Web Page.</p>
+<blockquote>
+<p>If you are having trouble getting this to work, don&apos;t worry, we will be using a different Web Server later so you can skip this part if needed.  Alternatively, if you remove the front &apos;/&apos; from <code>/dist/app.js</code>, i.e. <code>dist/app.js</code> in the <code>html</code>, you don&apos;t need the Web Server at all, just open the <code>index.html</code> page and it will serve the JavaScript.  Just don&apos;t forget to add the forward slash back in when you continue.</p>
+</blockquote>
 <h2 id="es2015-javascript-example">ES2015 JavaScript Example</h2>
 <p>Let&apos;s make our JavaScript example a little bit more interesting by introducing some ES2015 features.  Go ahead and replace the content of the app.js file with the following:</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> sayHello = (name = <span class="hljs-string">&apos;Mark&apos;</span>) =&gt; <span class="hljs-string">`Hello <span class="hljs-subst">${ name }</span>`</span>
@@ -705,7 +695,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Start Project","level":"1.4","depth":1,"next":{"title":"HTML Starter Page","level":"1.4.1","depth":2,"anchor":"#html-starter-page","path":"chapter-3/README.md","ref":"chapter-3/README.md#html-starter-page","articles":[]},"previous":{"title":"Babel","level":"1.3.3","depth":2,"anchor":"#babel","path":"chapter-2/README.md","ref":"chapter-2/README.md#babel","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-3/README.md","mtime":"2016-11-22T20:11:33.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-22T20:05:12.963Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Start Project","level":"1.4","depth":1,"next":{"title":"HTML Starter Page","level":"1.4.1","depth":2,"anchor":"#html-starter-page","path":"chapter-3/README.md","ref":"chapter-3/README.md#html-starter-page","articles":[]},"previous":{"title":"Babel","level":"1.3.3","depth":2,"anchor":"#babel","path":"chapter-2/README.md","ref":"chapter-2/README.md#babel","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-3/README.md","mtime":"2016-12-13T23:59:12.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-12-14T00:19:57.584Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -287,19 +287,6 @@
     
         <li class="chapter " data-level="1.5.2.1" data-path="./">
             
-                <a href="./#rollupjs">
-            
-                    
-                    Rollup.js
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.2.2" data-path="./">
-            
                 <a href="./#webpack">
             
                     
@@ -645,78 +632,13 @@ $ <span class="hljs-built_in">cd</span> lib
 <blockquote>
 <p>Note that these bundlers require quite a bit of setup (explained in the next sections), even for our simple setup.  However, over time, the advantages they provide far outweight these annoyances.  Also, once you have 1 project setup it can serve as a template for any new projects, just clone it, run <code>npm init</code> and you are good to go.</p>
 </blockquote>
-<h3 id="rollupjs">Rollup.js</h3>
-<p>There are several Module Bundlers out there but we are going to use <a href="http://rollupjs.org/" target="_blank">rollup.js</a>.  This is a relatively new kid on the block, but it has a few features that other Module Bundlers are missing, most importantly it has native support for ES2015 modules.  Because it does, we don&apos;t actually have to transpile <code>import</code> anymore with Babel.  You can tell Babel to not transpile <code>import</code> by adding the following to your Babel configuration in <code>.babelrc</code>:</p>
-<pre><code class="lang-JSON">{
-  <span class="hljs-string">&quot;presets&quot;</span>: [
-    [
-      <span class="hljs-string">&quot;es2015&quot;</span>,
-      {
-        <span class="hljs-string">&quot;modules&quot;</span>: <span class="hljs-literal">false</span>
-      }
-    ]
-  ]
-}
-</code></pre>
-<h4 id="installation">Installation</h4>
-<p>rollup.js is a node package, so installation is simple:</p>
-<pre><code class="lang-bash">$ npm install rollup --save-dev
-</code></pre>
-<p>Rather than running Babel directly, from now on, we are going to run rollup, which will invoke Babel.  In order to make this work, we need to install the Babel plugin for rollup.  Of course, this is an npm package:</p>
-<pre><code class="lang-bash">$ npm install rollup-plugin-babel --save-dev
-</code></pre>
-<h4 id="configuration">Configuration</h4>
-<p>Once all this is installed we need to configure rollup.  This is done using a file called <code>rollup.config.js</code>, so create this at the project root folder and add the following into it:</p>
-<pre><code class="lang-JavaScript"><span class="hljs-comment">// Rollup plugins</span>
-<span class="hljs-keyword">import</span> babel <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;rollup-plugin-babel&apos;</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-  entry: <span class="hljs-string">&apos;src/app.js&apos;</span>,
-  dest: <span class="hljs-string">&apos;dist/app.js&apos;</span>,
-  format: <span class="hljs-string">&apos;iife&apos;</span>,
-  sourceMap: <span class="hljs-string">&apos;inline&apos;</span>,
-  plugins: [
-    babel({
-      exclude: <span class="hljs-string">&apos;node_modules/**&apos;</span>,
-    }),
-  ],
-}
-</code></pre>
-<h4 id="build">Build</h4>
-<p>Now we just have to change the build script in <code>package.json</code> to use rollup.js instead of Babel:</p>
-<pre><code class="lang-JSON">    <span class="hljs-string">&quot;build&quot;</span>: <span class="hljs-string">&quot;rollup -c&quot;</span>,
-</code></pre>
-<h4 id="watch">Watch</h4>
-<p>Rollup.js also has &quot;watch&quot; functionality, it just has to be installed separately:</p>
-<pre><code class="lang-bash">npm install rollup-watch --save-dev
-</code></pre>
-<p>Once this is installed, you can use the <code>-w</code> flag with the rollup command, let&apos;s change this as well in ``package.json```:</p>
-<pre><code class="lang-JSON">    <span class="hljs-string">&quot;watch&quot;</span>: <span class="hljs-string">&quot;rollup -c -w&quot;</span>
-</code></pre>
-<p>Now when you run <code>npm run watch</code> your web page should work again.  Rollup.js bundles all your JavaScript files using native ES2015 import/export and converts them into IIFE format (which browsers understand) and then uses Babel to convert all other ES2015 features into ES5 (which browsers also understand).  You now have a fully functioning, modern JavaScript Front End tooling set up.</p>
 <h3 id="webpack">Webpack</h3>
-<p>I must admit I never used Rollup.js myself until I started the research for this guide and stumbled upon it, I have always used Webpack so I am going to devote this chapter to Webpack as an alternative to Rollup.js.  Feel free to skip it if you are happy using Rollup.js but for those that prefer Webpack, read on.</p>
-<p>Webpack&apos;s scope is actually much broader than just a JavaScript bundler, it can also bundle CSS and even image files (e.g. png files) which is one of the reasons I hesitated to use it as my default in this beginner JavaScript setup guide: all this functionality makes it very flexible, but also a bit trickier to configure.  Another reason is that Webpack does not natively support ES2015 modules yet (this is being addressed though in the upcoming WebPack 2).  As it turns out though, when you use Babel, this is actually a bit of an advantage over Rollup where we had to &quot;re-configure&quot; Babel to <em>not</em> convert modules.</p>
-<p>So if you already configured your project for Rollup and now want to use Webpack instead, please undo the changes we did to the <code>.babelrc</code> file and revert it back to it&apos;s original:</p>
-<pre><code class="lang-JSON">{
-  <span class="hljs-string">&quot;presets&quot;</span>: [
-    [
-      <span class="hljs-string">&quot;es2015&quot;</span>
-    ]
-  ]
-}
-</code></pre>
+<p>There are several Module Bundlers out there but we are going to use <a href="http://webpack.github.io/docs/" target="_blank">WebPack 1.x</a>.  Webpack&apos;s scope is actually much broader than just a JavaScript bundler, it can also bundle CSS and even image files (e.g. png files).  All this functionality makes it very flexible, but also a bit trickier to configure.</p>
 <h4 id="installation">Installation</h4>
 <p>Webpack is a node package, so installation is simple:</p>
 <pre><code class="lang-bash">$ npm install webpack --save-dev
 </code></pre>
-<blockquote>
-<p>If you want to be thorough and uninstall Rollup.js, you do this as follows:</p>
-<pre><code class="lang-bash">$ npm uninstall rollup rollup-plugin-babel rollup-watch --save-dev
-$ rm rollup.config.js
-</code></pre>
-</blockquote>
-<p>Just like with Rollup.js, rather than running Babel directly, from now on, we are going to run Webpack, which will invoke Babel.  And just like rollup.js we have to install the Babel plugin for Webpack to make this work.  The plugins are called &quot;loaders&quot; in Webpack lingo, and they are (all together now!) available as node packages:</p>
+<p>Rather than running Babel directly, from now on, we are going to run Webpack, which will invoke Babel.  We have to install the Babel plugin for Webpack to make this work.  The plugins are called &quot;loaders&quot; in Webpack lingo, and they are (all together now!) available as node packages:</p>
 <pre><code class="lang-bash">$ npm install babel-loader --save-dev
 </code></pre>
 <h4 id="configuration">Configuration</h4>
@@ -737,16 +659,16 @@ $ rm rollup.config.js
   }
 }
 </code></pre>
-<p>This is the exact same setup as we did for rollup.js, with the same entry point, same output into the <code>dist</code> folder, Source Maps inlined and ignoring node_modules.</p>
+<p>Here we configure Web Pack to &apos;start&apos; (<code>entry</code>) from our <code>./src/app.js</code> file.  Web Pack will analyze the dependencies of this file and then the dependencies of those files etc. and &apos;bundle&apos; them in a file called <code>./dist/app.js</code> (<code>output</code>).  We also setup Webpack to create inline source maps (<code>devtool</code>)</p>
 <h4 id="build">Build</h4>
-<p>Now we just have to change the build script in <code>package.json</code> to use Webpack instead of rollup.js (or Babel):</p>
+<p>Now we just have to add a build script in <code>package.json</code> to use Webpack instead of Babel:</p>
 <pre><code class="lang-JSON">    <span class="hljs-string">&quot;build&quot;</span>: <span class="hljs-string">&quot;webpack&quot;</span>
 </code></pre>
 <p>As you project grows, the compilation will take a bit longer.  You can make this a more pleasant experience by adding a progress bar and some colors.  If you like that sort of thing, change the build line to:</p>
 <pre><code class="lang-JSON">    <span class="hljs-string">&quot;build&quot;</span>: <span class="hljs-string">&quot;webpack --progress --colors&quot;</span>
 </code></pre>
 <h4 id="watch">Watch</h4>
-<p>Webpack (unlike Rollup.js) has a built-in Watch feature, which you enable with the <code>---watch</code> flag, so let&apos;s change the watch script in <code>package.json</code> to:</p>
+<p>Webpack has a built-in Watch feature, which you enable with the <code>---watch</code> flag, so let&apos;s change the watch script in <code>package.json</code> to:</p>
 <pre><code class="lang-JSON">    <span class="hljs-string">&quot;watch&quot;</span>: <span class="hljs-string">&quot;webpack --progress --colors --watch&quot;</span>
 </code></pre>
 <h4 id="additional-features">Additional Features</h4>
@@ -799,7 +721,7 @@ $ rm rollup.config.js
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Javascript Modules","level":"1.5","depth":1,"next":{"title":"Our first Module","level":"1.5.1","depth":2,"anchor":"#our-first-module","path":"chapter-4/README.md","ref":"chapter-4/README.md#our-first-module","articles":[]},"previous":{"title":"I'm Watching!","level":"1.4.4","depth":2,"anchor":"#im-watching","path":"chapter-3/README.md","ref":"chapter-3/README.md#im-watching","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-4/README.md","mtime":"2016-11-22T20:14:39.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-22T20:05:12.963Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Javascript Modules","level":"1.5","depth":1,"next":{"title":"Our first Module","level":"1.5.1","depth":2,"anchor":"#our-first-module","path":"chapter-4/README.md","ref":"chapter-4/README.md#our-first-module","articles":[]},"previous":{"title":"I'm Watching!","level":"1.4.4","depth":2,"anchor":"#im-watching","path":"chapter-3/README.md","ref":"chapter-3/README.md#im-watching","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter-4/README.md","mtime":"2016-12-14T00:13:00.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-12-14T00:19:57.584Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

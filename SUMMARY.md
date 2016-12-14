@@ -13,7 +13,6 @@
 * [Javascript Modules](chapter-4/README.md)
     - [Our first Module](chapter-4/README.md#our-first-module)
     - [Module Loaders](chapter-4/README.md#module-loaders)
-        + [Rollup.js](chapter-4/README.md#rollupjs)
         + [Webpack](chapter-4/README.md#webpack)
 * [Linting](chapter-5/README.md)
     - [ESLint](chapter-5/README.md#eslint)

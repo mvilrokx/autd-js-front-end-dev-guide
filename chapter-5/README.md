@@ -61,10 +61,7 @@ This should suffice to configure ESLint for our needs.  You can now run ESLint o
 $ ./node_modules/.bin/eslint src/**
 ```
 
-Of course, rather than running ESLint separate like this, we want to integrate it in our tool chain.  There are many ways you can integrate linters in your tool chain, including in your IDE, but we are going to add it to our "build", which means adding it to Rollup.js or Webpack, depending which bundler you choose to use.
-
-## Integrate ESLint with Rollup.js
-TODO
+Of course, rather than running ESLint separate like this, we want to integrate it in our tool chain.  There are many ways you can integrate linters in your tool chain, including in your IDE, but we are going to add it to our "build", which means adding it to Webpack, depending which bundler you choose to use.
 
 ## Integrate ESLint with Webpack
 
