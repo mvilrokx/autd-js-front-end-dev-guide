@@ -1,8 +1,8 @@
 # Unit Testing
-Let's get this first out of the way: yes, you should be testing your JavaScript code.  Period.  There is a smorgasbord of testing software available for JavaScript, it doesn't matter which one you pick but you should pick one.  For our purpose, we are going to setup our application testing with [Mocha](http://mochajs.org/) and [Chai](http://chaijs.com/).
+Let's get this first out of the way: yes, you should be testing your JavaScript code.  Period.  There is a smorgasbord of testing software available for JavaScript.  It doesn't matter which one you pick but you should pick one.  For our purposes, we are going to setup our application testing with [Mocha](http://mochajs.org/) and [Chai](http://chaijs.com/).
 
 ## Mocha
->Mocha is a feature-rich JavaScript test framework"
+>"Mocha is a feature-rich JavaScript test framework"
 
 It's basically a test runner that manages your tests.  You install it with npm:
 
@@ -13,7 +13,7 @@ $ npm install mocha --save-dev
 Mocha itself does not come with an assertion library but it allows you to use any assertion library you wish.
 
 ## Chai
->Chai is a BDD / TDD assertion library for node and the browser that can be delightfully paired with any javascript testing framework."
+>"Chai is a BDD / TDD assertion library for node and the browser that can be delightfully paired with any javascript testing framework."
 
 Sounds like a perfect match for Mocha.  The nice thing about Chai is that it has several assertion styles (```should```, ```assert```, ```expect```) that allow the developer to choose the most comfortable.  Installation is a breeze:
 
@@ -52,7 +52,7 @@ $ ./node_modules/mocha/bin/mocha
 
 ```SyntaxError: Unexpected token import```
 
-hmmm, not what we were expecting.  The problem is that we are using ES6 code in our tests itself (```import``` is the ES6 way for importing modules) and currently, the way we are running Mocha, it doesn't recognize ES6.  The solution is to use the npm module ```babel-register``` which transpiles our source on the fly:
+hmmm, not what we were expecting.  The problem is that we are using ES6 code in our test itself (```import``` is the ES6 way for importing modules) and currently, the way we are running Mocha, it doesn't recognize ES6.  The solution is to use the npm module ```babel-register``` which transpiles our source on the fly:
 
 ```bash
 $ npm install babel-register --save-dev
@@ -64,10 +64,14 @@ And then tell Mocha that we want to use babel-register:
 $ ./node_modules/mocha/bin/mocha --require babel-register
 ```
 
-Rather than typing in this command all the time, lets add a "test" script to our ```package.json``` file and while we are at it, we can add the ```--watch``` flag to watch for changes:
+Rather than typing in this command all the time, lets add a "test" script to our ```package.json``` file (if it already exists, just replace it with this)and while we are at it, we can add the ```--watch``` flag to watch for changes:
 
 ```JSON
-    "test":  "mocha --require babel-register --watch"
+  "scripts": {
+    ...,
+    __"test":  "mocha --require babel-register --watch"__
+    ...,
+  },
 ```
 
 And now you can watch and test by running:
@@ -95,10 +99,10 @@ describe('sayHello', () => {
 })
 ```
 
-Note that we import the module that we want to test.  Because tests live in a different folder, we need to import it from ```../src/lib/sayHello```.  We then add 2 tests in our sayHello suite, one tests that the default parameter is working and the other tests the procedure when passing in a value for the name parameter.  You should see the tests passing as it stands since this is testing already existing functionality.
+Note that we import the module that we want to test.  Because tests live in a different folder, we need to import it from ```../src/lib/sayHello```.  We then add 2 tests in our sayHello suite: one tests that the default parameter is working and the other tests the procedure when passing in a value for the name parameter.  You should see the tests passing as it stands since this is testing already existing functionality.
 
 ## Test Driven Development
-However, this is not how you should be testing or rather developing.  Ideally, you __first__ create your __tests__ and __then__ you __create__ the minimal __code__ to pass that test.  This is called Test Driven Development or TDD.  Let's see that in action.
+However, this is not how you should be testing, or rather, developing.  Ideally, you __first__ create your __tests__ and __then__ you __create__ the minimal __code__ to pass that test.  This is called Test Driven Development or TDD.  Let's see that in action.
 
 We are going to enhance our ```sayHello``` function to always capitalize the name that is being passed into it.  First we will add a test to test this use case:
 
@@ -108,7 +112,7 @@ We are going to enhance our ```sayHello``` function to always capitalize the nam
   })
 ```
 
-As soon as you save this (and you are still "watching" your tests), you will see that this fails your test, it should be nice and red.  We now have to add the code to our module to make this test pass and become green again which is why this is also known as red-green testing.  Open up ```sayHello.js``` and replace the content with:
+As soon as you save this (and you are still "watching" your tests), you will see that this fails your test.  It should be nice and red.  We now have to add the code to our module to make this test pass and become green again, which is why this is also known as red-green testing.  Open up ```sayHello.js``` and replace the content with:
 
 ```JavaScript
 const sayHello = (name = 'Mark') => `Hello ${name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()}`

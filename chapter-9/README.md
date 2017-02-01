@@ -1,13 +1,13 @@
 # Quick Start
-I'm sure you don't want to go through this whole guide everytime you start a new JavaScript project, so I've summerized everything to get you going quickly into as few steps as possible in this chapter.  
+I'm sure you don't want to go through this whole guide every time you start a new JavaScript project, so I've summarized everything to get you going quickly in as few steps as possible in this chapter.
 
->If _even this_ is _too much_ for you, there is actually a starter-project included in this repository, under the ```Code``` folder, called ```newProject```.  You could use that as a starter template for your projects, just copy it and rename the ```newProject ``` folder to your project name, cd into that folder and run:
+>If _even this_ is _too much_ for you, there is actually a starter-project included in this repository, under the ```Code``` folder, called ```newProject```.  You could use that as a starter template for your projects.  Just copy it and rename the ```newProject ``` folder to your project name, cd into that folder and run:
 >
 >```bash
 >$ npm init
 >```
 
-I am going to assume that you have [Node.js (and npm)](https://nodejs.org/en/download/) installed, if not please do so now.
+I am going to assume that you have [Node.js (and npm)](https://nodejs.org/en/download/) installed.  If not, please do so now.
 
 ## Prepare Your Project
 
@@ -147,7 +147,7 @@ Create an ```index.html``` file in the root folder, add the following content:
 ```
 
 ### JavaScript
-Create an ```sayHello.js``` file in the ```src/lib``` folder, add the following content:
+Create a ```sayHello.js``` file in the ```src/lib``` folder and add the following content:
 
 ```JavaScript
 const sayHello = (name = 'Mark') => `Hello ${name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()}`
@@ -163,7 +163,7 @@ import sayHello from './lib/sayHello'
 document.getElementById('app').innerHTML = `<h1>${ sayHello() }<h1>`
 ```
 
-Create an ```sayHello-test.js``` file in the ```test``` folder, add the following content:
+Create a ```sayHello-test.js``` file in the ```test``` folder and add the following content:
 
 ```JavaScript
 import { expect } from 'chai'

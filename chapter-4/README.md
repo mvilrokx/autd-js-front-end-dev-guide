@@ -2,7 +2,7 @@
 Modularity has always been a staple of good development; it promotes code reuse and enhances maintainability.  Unfortunately, writing modular JavaScript was not easy, at least not until node.js came along.  In fact, JavaScript did not have a way to write modules built into the language.  (Read that last sentence again, out loud.)  Over time, this lead to developers building their own strategies and tools to create modular JavaScript.  I will spare you the history lesson and the cornucopia of solutions this has lead to (but you should definitely Google it) and just let you know that, _finally_, ES2015 introduced a native feature in the JavaScript language that supports the creation of modules.  And since we are coding in ES2015 already, this is the only solution we will be using going forward.
 
 ## Our first Module
-Lets go back to our example ```app.js``` and introduce some JavaScript Modules to see how they work.  First we create a new folder called ```lib``` in our ```src``` folder that will hold all our JavaScript Modules. 
+Let's go back to our example ```app.js``` and introduce some JavaScript Modules to see how they work.  First we create a new folder called ```lib``` in our ```src``` folder that will hold all our JavaScript Modules. 
 
 ```bash
 $ cd src
@@ -26,7 +26,7 @@ import { sayHello } from './lib/sayHello'
 document.getElementById('app').innerHTML = `<h1>${ sayHello() }</h1>`
 ```
 
-We can actually simplify this a little bit, a module can namely export multiple objects, but one of those can be set as the default:
+We can actually simplify ```sayHello.js``` a little bit, a module can namely export multiple objects, but one of those can be set as the default:
 
 ```javascript
 const sayHello = (name = 'Mark') => `Hello ${ name }`
@@ -34,7 +34,7 @@ const sayHello = (name = 'Mark') => `Hello ${ name }`
 export default sayHello
 ```
 
-When you do this, the import statement does not require curly braces for the default object:
+When you do this, the import statement in ```app.js``` does not require curly braces for the default object:
 
 ```javascript
 import sayHello from './lib/sayHello'
@@ -63,7 +63,7 @@ Of course the JavaScript community has a solution for this issue.  "Source Maps"
     "watch": "babel -w src -d dist -s"
 ```
 
-At this point, you do actually have to stop Babel in the terminal that is "watching" and restart it.  Babel only watches for changes in the JavaScript code, not in the actual Babel configuration.  In order to pick up the fact that you now also want to generate Source Maps, you have to stop and restart watch:
+At this point, you do actually have to stop Babel in the terminal that is "watching" and restart it.  Babel only watches for changes in the JavaScript code, not in the actual Babel configuration.  In order to pick up the fact that you now also want to generate Source Maps, stop and restart watch:
 
 ```bash
 $ npm run watch
@@ -82,7 +82,7 @@ Now, ```require``` is a function that is provided by e.g. Node.js, but not by th
 
 The solution to this problem is to "bundle" all the modules into 1 large file so that when the browser loads this 1 file, it has access to all modules.
 
->Note that these bundlers require quite a bit of setup (explained in the next sections), even for our simple setup.  However, over time, the advantages they provide far outweight these annoyances.  Also, once you have 1 project setup it can serve as a template for any new projects, just clone it, run ```npm init``` and you are good to go.
+>Note that these bundlers require quite a bit of setup (explained in the next sections), even for our simple setup.  However, over time, the advantages they provide far outweigh these annoyances.  Also, once you have 1 project set up it can serve as a template for any new projects, just clone it, run ```npm init``` and you are good to go.
 
 ### Webpack
 There are several Module Bundlers out there but we are going to use [WebPack 1.x](http://webpack.github.io/docs/).  Webpack's scope is actually much broader than just a JavaScript bundler, it can also bundle CSS and even image files (e.g. png files).  All this functionality makes it very flexible, but also a bit trickier to configure.
@@ -121,7 +121,7 @@ module.exports = {
 }
 ```
 
-Here we configure Web Pack to 'start' (```entry```) from our ```./src/app.js``` file.  Web Pack will analyze the dependencies of this file and then the dependencies of those files etc. and 'bundle' them in a file called ```./dist/app.js``` (```output```).  We also setup Webpack to create inline source maps (```devtool```)
+Here we configure Webpack to 'start' (```entry```) from our ```./src/app.js``` file.  Webpack will analyze the dependencies of this file and then the dependencies of those files, etc. and 'bundle' them in a file called ```./dist/app.js``` (```output```).  We also set up Webpack to create inline source maps (```devtool```).
 
 #### Build
 Now we just have to add a build script in ```package.json``` to use Webpack instead of Babel:
