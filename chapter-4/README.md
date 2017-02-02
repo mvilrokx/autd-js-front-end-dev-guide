@@ -85,7 +85,7 @@ The solution to this problem is to "bundle" all the modules into 1 large file so
 >Note that these bundlers require quite a bit of setup (explained in the next sections), even for our simple setup.  However, over time, the advantages they provide far outweigh these annoyances.  Also, once you have 1 project set up it can serve as a template for any new projects, just clone it, run ```npm init``` and you are good to go.
 
 ### Webpack
-There are several Module Bundlers out there but we are going to use [WebPack 1.x](http://webpack.github.io/docs/).  Webpack's scope is actually much broader than just a JavaScript bundler, it can also bundle CSS and even image files (e.g. png files).  All this functionality makes it very flexible, but also a bit trickier to configure.
+There are several Module Bundlers out there but we are going to use [WebPack 2.x](https://webpack.js.org/).  Webpack's scope is actually much broader than just a JavaScript bundler, it can also bundle CSS and even image files (e.g. png files).  All this functionality makes it very flexible, but also a bit trickier to configure.
 
 #### Installation
 Webpack is a node package, so installation is simple:
@@ -104,19 +104,27 @@ $ npm install babel-loader --save-dev
 Once all this is installed we need to configure Webpack.  This is done using a file called ```webpack.config.js```, so create this at the project root folder and add the following into it:
 
 ```JavaScript
+var path = require('path')
+
 module.exports = {
   entry: './src/app.js',
   output: {
-    path: './dist',
-    filename: 'app.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'app.js'
   },
   devtool: 'inline-source-map',
   module: {
-    loaders: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader'
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader'
+          }
+        ]
+      }
+    ]
   }
 }
 ```
@@ -144,7 +152,7 @@ Webpack has a built-in Watch feature, which you enable with the ```---watch``` f
 ```
 
 #### Additional Features
-Webpack comes with a feature called the Webpack Development Server which offers somewhat similar functionality to browser-sync.  Since we are already using browser-sync, we are going to stick to that, but if you are going to do React.js development you should really look into this tool (with [Hot Module Replacement](https://webpack.github.io/docs/hot-module-replacement.html)).  You can install it with:
+Webpack comes with a feature called the Webpack Development Server which offers somewhat similar functionality to browser-sync.  Since we are already using browser-sync, we are going to stick to that, but if you are going to do React.js development you should really look into this tool (with [Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/)).  You can install it with:
 
 ```bash
 $ npm install webpack-dev-server --save-dev

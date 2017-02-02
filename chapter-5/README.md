@@ -76,13 +76,21 @@ $ npm install eslint-loader --save-dev
 Once installed, we have to add some configuration to ```webpack.config.js``` to include it in our build process:
 
 ```
-module: {
-  loaders: [{
-    test: /\.js$/,
-    exclude: /node_modules/,
-    __loaders: ['babel-loader', 'eslint-loader']__
-  }]
-}
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader'
+          }, {
+            loader: 'eslint-loader'
+          }
+        ]
+      }
+    ]
+  }
 ```
 
 >Note that the order is important!  Webpack process each loader in the reverse order they appear in the loaders array.  Since we want to lint our Source Code, i.e. our ES6 code, not the Babel processed code, we have to put eslint-loader after babel-loader.  ESLint can lint ES6 code just fine.
@@ -167,24 +175,22 @@ Now ESLint will raise an error (0 = off, 1 = warn, __2 = error__) when it finds 
 A nice feature of ESLint is that it can actually automatically fix errors for you.  It's pretty conservative when it does this, so it is really safe.  You enable this by passing the ```--fix``` flag to ESLint.  Since we are using Webpack to run ESLint, we have to configure this in our ```webpack.config.js``` file:
 
 ```JavaScript
-module.exports = {
-  entry: './src/app.js',
-  output: {
-    path: './dist',
-    filename: 'app.js',
-  },
-  devtool: 'inline-source-map',
-  eslint: {
-    fix: true
-  },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loaders: ['babel-loader', 'eslint-loader']
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader'
+          }, {
+            loader: 'eslint-loader',
+            options: { fix: true }
+          }
+        ]
+      }
+    ]
   }
-}
 ```
 
 > Note that there is an [outstanding bug](https://github.com/webpack/webpack/issues/2538) for Webpack "watch" that causes ESLint NOT to re-run when you make a change to your source code that does not change the compiled code.  When you are in coding mode, this should not really be an issue as you are changing the code, but when you are fixing a few ESLint errors here or there and expect these errors to go away after you save the fix, it might now happen as you expect.  E.g. if you fix an issue with spaces in your source code, that usually doesn't affect the compiled code at all, so ESLint will not run in this case and it will appear as if the Linting errors are still there (they aren't though but because ESLint does not run, you cannot see this).  Simply adding some code and then deleting this code will run ESLint for you though.  Also note that enabling auto-fix will practically eliminate this issue as it will fix (and never report) all these issues for you anyway.

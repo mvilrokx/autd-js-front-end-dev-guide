@@ -22,8 +22,8 @@ $ npm init --yes
 
 ```bash
 $ npm install browser-sync babel-cli babel-preset-es2015 \
-  webpack babel-loader eslint eslint-loader strip-loader \
-  mocha chai babel-register --save-dev
+  webpack babel-loader eslint eslint-loader mocha chai \
+  babel-register --save-dev
 ```
 
 ## Configure
@@ -75,22 +75,30 @@ module.exports = {
 Create a ```webpack.config.js``` file with the folowing content:
 
 ```JavaScript
+var path = require('path')
+
 module.exports = {
   entry: './src/app.js',
   output: {
-    path: './dist',
-    filename: 'app.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'app.js'
   },
   devtool: 'inline-source-map',
-  eslint: {
-    fix: true
-  },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loaders: ['babel-loader', 'eslint-loader']
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader'
+          }, {
+            loader: 'eslint-loader',
+            options: { fix: true }
+          }
+        ]
+      }
+    ]
   }
 }
 ```
@@ -98,25 +106,34 @@ module.exports = {
 Create a ```webpack.prod.config.js``` file with the folowing content:
 
 ```JavaScript
+var path = require('path')
+
 module.exports = {
   entry: './src/app.js',
   output: {
-    path: './dist',
-    filename: 'app.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'app.js'
   },
   devtool: 'cheap-module-source-map',
-  eslint: {
-    fix: true
-  },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loaders: ['babel-loader', 'eslint-loader', 'strip-loader?strip[]=console.log']
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader'
+          }, {
+            loader: 'eslint-loader',
+            options: { fix: true }
+          }
+        ]
+      }
+    ]
   }
 }
 ```
+
 ### package.json scripts
 Add the following to you ```package.json``` file in the ```scripts``` section:
 
@@ -124,8 +141,9 @@ Add the following to you ```package.json``` file in the ```scripts``` section:
   "scripts": {
     "build": "webpack --progress --colors",
     "watch": "webpack --progress --colors --watch",
-    "test":  "mocha --require babel-register --watch",
-    "prod":  "NODE_ENV=production webpack --config webpack.prod.config.js -p"
+    "test": "mocha --require babel-register",
+    "test:watch": "npm run test -- --watch",
+    "prod": "npm run test && webpack --config webpack.prod.config.js -p"
   }
 ```
 

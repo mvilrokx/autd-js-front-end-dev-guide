@@ -30,34 +30,9 @@ $ npm run prod
 
 When you look at the produced JavaScript files now, you'll see a dramatic drop in file size, mine went from 4.8K to 596B, that's less than 15% of the development build.
 
-We can push this even further down by telling Webpack to run in the node ```PRODUCTION``` environment.  This will remove various test helpers from our budle which we do not need in production.  Change your "prod" script to the following:
-
-```JSON
-    "prod": "NODE_ENV=production webpack --config webpack.prod.config.js -p"
-```
-
->This actually did not change the size of my compiled files at all, but this could be due to the extremely small size of the source code to begin with.  As your application gets more complex, this should reduce the size of your compiled code.
+This also tells Webpack to run in the node ```PRODUCTION``` environment.  This will remove various test helpers from our bundle which we do not need in production.
 
 ## Plugins to improve Production Building
 There are [several Webpack plugins](https://webpack.github.io/docs/list-of-plugins.html#normalmodulereplacementplugin) available that perform other enhancements to your code.  You can add them to your build process as required.
-
-### Remove debugging statements
-```strip-loader``` is a Webpack plugin that can strip custom functions from your code. This can be useful if you want to use debug statements while developing your application but don't want this info exposed in your production code.  It comes as an npm package so you install it with:
-
-```bash
-$ npm install strip-loader --save-dev
-```
-
-as you can see, it is just another loader (like Babel-loader and eslint-loader) and so we can include it in the loader array.  When you do, you pass it configuration in the form of a query string.  In our case, we want to strip console.log statements so add this to your ```webpack.prod.config.js``` file:
-
-```JavaScript
-      loaders: ['babel-loader', 'eslint-loader', 'strip-loader?strip[]=console.log']
-```
-
-If you want to strip other things, e.g. ```debug```, you can add them to the query string:
-
-```JavaScript
-      loaders: ['babel-loader', 'eslint-loader', 'strip-loader?strip[]=console.log,strip[]=debug']
-```
 
 __For other plugins, and how to use them, please see https://webpack.github.io/docs/list-of-plugins.html#normalmodulereplacementplugin__

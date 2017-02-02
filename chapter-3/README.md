@@ -72,7 +72,7 @@ const sayHello = (name = 'Mark') => `Hello ${ name }`
 
 document.getElementById('app').innerHTML = `<h1>${ sayHello() }</h1>`
 ```
->Note that we are using backticks (\`) in this code in some places (see more below)
+>Note that we are using backticks ( \` ) in this code in some places (see more below)
 
 Here we create a function called ```sayHello``` that takes in 1 parameter called ```name```.  The function is written as an Arrow Function which is a ES2015 feature.  To learn more about arrow functions and the difference between regular functions, feel free to go [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), but 1 feature of an arrow function is that it provides a more concise syntax than creating a regular function (it also doesn't bind to ```this```).  The function is assigned to a Constant called ```sayHello```, Constants are also a new ES2015 feature.  The function sets a default value  ```Mark``` for the ```name``` parameter; another ES2015 feature.  And finally the function returns (note that the return keyword is not needed as a single line arrow function performs an implicit return, also known as a __lambda function__) a string created using the new ES2015 Template Strings (using backticks instead of aphostrophes), which provides string interpolation.
 

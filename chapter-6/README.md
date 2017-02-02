@@ -69,7 +69,7 @@ Rather than typing in this command all the time, lets add a "test" script to our
 ```JSON
   "scripts": {
     ...,
-    __"test":  "mocha --require babel-register --watch"__
+    "test":  "mocha --require babel-register --watch"
     ...,
   },
 ```

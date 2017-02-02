@@ -1,18 +1,26 @@
+var path = require('path')
+
 module.exports = {
   entry: './src/app.js',
   output: {
-    path: './dist',
-    filename: 'app.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'app.js'
   },
   devtool: 'cheap-module-source-map',
-  eslint: {
-    fix: true
-  },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loaders: ['babel-loader', 'eslint-loader', 'strip-loader?strip[]=console.log']
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader'
+          }, {
+            loader: 'eslint-loader',
+            options: { fix: true }
+          }
+        ]
+      }
+    ]
   }
 }
