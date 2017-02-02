@@ -1,12 +1,12 @@
 module.exports = {
-  'extends': 'airbnb',
+  'extends': 'airbnb-base',
   'plugins': [
     'import'
   ],
-  'rules': {
-    'semi': [2, 'never']
-  },
   'env': {
     'browser': true
+  },
+  'rules': {
+    'semi': [2, 'never']
   }
 }
