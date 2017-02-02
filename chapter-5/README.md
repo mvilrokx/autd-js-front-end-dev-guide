@@ -37,22 +37,8 @@ It will ask you a few questions which I answered as following:
 ```
 ? How would you like to configure ESLint? Use a popular style guide
 ? Which style guide do you want to follow? Airbnb
+? Do you use React? No
 ? What format do you want your config file to be in? JavaScript
-```
-
-Next we have to ensure packages are installed with correct version numbers by running:
-
-```bash
-$ (
-  export PKG=eslint-config-airbnb;
-  npm info "$PKG@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install --save-dev "$PKG@latest"
-)
-```
-
-Which produces and runs a command like:
-
-```bash
-npm install --save-dev eslint-config-airbnb eslint@^#.#.# eslint-plugin-jsx-a11y@^#.#.# eslint-plugin-import@^#.#.# eslint-plugin-react@^#.#.#
 ```
 
 This should suffice to configure ESLint for our needs.  You can now run ESLint on our code with the following command:
@@ -98,33 +84,18 @@ Once installed, we have to add some configuration to ```webpack.config.js``` to 
 ## Fine Tuning Our Lint Configuration
 When you run ESLint the first time, even on our small Source Code example, you will see that it immediately raises several errors.  Some of these are legit, but others are not, so let' s get rid of those errors by tweaking the configuration of ESLint.
 
-When you ran ```./node_modules/.bin/eslint --init``` it actually created a config file for you, it is called ```.eslintrc.js``` and it is in this file that we modify the ESLint configurations so go ahead and open it up.
+When you ran ```./node_modules/.bin/eslint --init``` it actually created a config file for you, it is called ```.eslintrc.js``` and it is in this file that we modify the ESLint configurations so go ahead and open it up:
 
 ```JavaScript
 module.exports = {
-  "extends": "airbnb",
-  "plugins": [
-    "react",
-    "jsx-a11y",
-    "import"
-  ]
+    'extends': 'airbnb-base',
+    'plugins': [
+        'import'
+    ]
 };
 ```
 
-You can see here that we are using the Airbnb Style Guide, which in turn came with a few extra plugins that we actually don't need, so let's start by removing these.
-
-Both the ```react``` and the ```jsx-a11j``` plugins are only needed if you do React.js development, which we are not, so you can remove those lines from the ```.eslintrc.js``` file:
-
-```JavaScript
-module.exports = {
-  "extends": "airbnb",
-  "plugins": [
-    "import"
-  ]
-};
-```
-
-These plugins were actually also installed (when you ran ESLint init) using npm (you can see this in your ```package.json``` file). I tried removing them as we don't use them, but when I did, ESLint raised an error (not a linting error, a runtime error) so looks like we have to keep them.
+You can see here that we are using the Airbnb Style Guide.
 
 ## [Disallow Undeclared Variables (no-undef)](http://eslint.org/docs/rules/no-undef)
 ```3:1   error  'document' is not defined       no-undef``` 
@@ -133,16 +104,16 @@ This error gets raised when ESLint finds a variable in your code that you did no
 
 In this case though it is raising the error on ```document```, and yes, of course we did not declare this; ```document``` is available in the browser environment by default, I don't have to declare it.  The same goes for e.g. ```console``` (if you'd have any ```console.log``` statements in your code, ESLint would have raised the same error on ```console```).  
 
-There are actually 2 ways to get rid of this false negative.  You can configure [```globals```](http://eslint.org/docs/user-guide/configuring#specifying-globals) in ESLint which are then ignored, but there are quite a few globals in the browser environment and declaring all those every time is probably not a good idea.  Instead, you can actually tell ESLint which environment you are going to run your JavaScript code in.  These [```environments```](http://eslint.org/docs/user-guide/configuring#specifying-environments) define global variables that are predefined.  Since we are running our JavaScript in a browser, we will use the ```browser``` environment.  In your ```.eslintrc.js``` file, add the following:
+There are actually 2 ways to get rid of this false negative.  You can configure [```globals```](http://eslint.org/docs/user-guide/configuring#specifying-globals) in ESLint which are then ignored, but there are quite a few globals in the browser environment and declaring all those every time is probably not a good idea.  Instead, you can tell ESLint which environment you are going to run your JavaScript code in.  These [```environments```](http://eslint.org/docs/user-guide/configuring#specifying-environments) define global variables that are predefined.  Since we are running our JavaScript in a browser, we will use the ```browser``` environment.  In your ```.eslintrc.js``` file, add the following:
 
 ```JavaScript
 module.exports = {
-  "extends": "airbnb",
-  "plugins": [
-    "import"
+  'extends': 'airbnb',
+  'plugins': [
+    'import'
   ],
-  __"env": {__
-    __"browser": true__
+  'env': {
+    'browser': true
   }
 };
 ```
@@ -160,8 +131,8 @@ module.exports = {
   'plugins': [
     'import'
   ],
-  __'rules': {__
-    __'semi': [2, 'never']__
+  'rules': {
+    'semi': [2, 'never']
   },
   'env': {
     'browser': true
@@ -169,7 +140,7 @@ module.exports = {
 }
 ```
 
-Now ESLint will raise an error (0 = off, 1 = warn, __2 = error__) when it finds a semi-colon ('never' means never a semi-colon, the opposite, and default airbnb setting, is 'always').
+Now ESLint will raise an error (0 = off, 1 = warn, __2 = error__) when it finds a semi-colon ('never' means never a semi-colon. The opposite, and default airbnb setting, is 'always').
 
 ## Automatically fix errors
 A nice feature of ESLint is that it can actually automatically fix errors for you.  It's pretty conservative when it does this, so it is really safe.  You enable this by passing the ```--fix``` flag to ESLint.  Since we are using Webpack to run ESLint, we have to configure this in our ```webpack.config.js``` file:
