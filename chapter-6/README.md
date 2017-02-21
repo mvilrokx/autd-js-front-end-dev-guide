@@ -146,8 +146,7 @@ test('sayHello capitalizes the name', (t) => {
 })
 ```
 
-Now when you run your tests
-As soon as you save this (and you are still "watching" your tests), you will see that this fails your test.  It should be nice and red.  We now have to add the code to our module to make this test pass and become green again, which is why this is also known as red-green testing.  Open up ```sayHello.js``` and replace the content with:
+Now when you run your tests, you will see that this fails your test.  It should be nice and red.  We now have to add the code to our module to make this test pass and become green again, which is why this is also known as red-green testing.  Open up ```sayHello.js``` and replace the content with:
 
 ```JavaScript
 const sayHello = (name = 'Mark') => `Hello ${name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()}`
@@ -155,4 +154,4 @@ const sayHello = (name = 'Mark') => `Hello ${name.charAt(0).toUpperCase() + name
 export default sayHello
 ```
 
-On save, it should immediately pass all tests again.  You can now also refactor this code with confidence given that you have a test that validates your functionality.
+Rerun the tests and they should pass all tests again.  You can now also refactor this code with confidence given that you have a test that validates your functionality.
