@@ -58,7 +58,7 @@ Then edit ```.eslintrc.js```:
 
 ```JavaScript
 module.exports = {
-  'extends': 'airbnb',
+  'extends': 'airbnb-base',
   'plugins': [
     'import'
   ],
