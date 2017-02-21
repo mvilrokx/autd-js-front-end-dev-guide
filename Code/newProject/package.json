@@ -4,6 +4,7 @@
   "description": "Sample application",
   "main": "index.js",
   "scripts": {
+    "prebuild": "rm -rf ./dist",
     "build": "webpack --progress --colors",
     "watch": "webpack --progress --colors --watch",
     "test": "mocha --require babel-register",

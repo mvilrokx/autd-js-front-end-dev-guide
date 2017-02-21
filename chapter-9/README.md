@@ -139,6 +139,7 @@ Add the following to you ```package.json``` file in the ```scripts``` section:
 
 ```JSON
   "scripts": {
+    "prebuild": "rm -rf dist",
     "build": "webpack --progress --colors",
     "watch": "webpack --progress --colors --watch",
     "test": "mocha --require babel-register",

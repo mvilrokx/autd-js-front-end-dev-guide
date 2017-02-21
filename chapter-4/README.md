@@ -144,6 +144,16 @@ As you project grows, the compilation will take a bit longer.  You can make this
     "build": "webpack --progress --colors"
 ```
 
+Additionally, you probably want to remove the dist folder right before you (re)build, just to avoid having left over scripts accumulate in that folder.  As webpack will comnpletely rebuild the dist folder every time you run build, this is good practice.  ```npm``` actually supports ```pre``` and ```post``` hooks for scripts. They are automatically run by ```npm``` before (pre) and after (post) their respectively script.  These pre/post scripts are just another script in your package.json file, except they start with either ```pre``` or ```post``` and they are automatically run by npm when you run their namesake script, so e.g. ```prebuild``` will run automatically before you run ```build```.  So let's add our ```prebuild``` script to ```package.json```:
+
+```JSON
+    "prebuild": "rm -rf dist",
+    "build": "webpack --progress --colors"
+```
+
+>Note that this uses a cli-command (```rm```) which only works on a ```-nix``` OS like MacOS.  If you want to make this more OS agnostic you can use a tool like [del-cli](https://www.npmjs.com/package/del-cli).
+
+
 #### Watch
 Webpack has a built-in Watch feature, which you enable with the ```---watch``` flag, so let's change the watch script in ```package.json``` to:
 
