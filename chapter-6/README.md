@@ -1,67 +1,74 @@
 # Unit Testing
-Let's get this first out of the way: yes, you should be testing your JavaScript code.  Period.  There is a smorgasbord of testing software available for JavaScript.  It doesn't matter which one you pick but you should pick one.  For our purposes, we are going to setup our application testing with [Mocha](http://mochajs.org/) and [Chai](http://chaijs.com/).
+Let's get this first out of the way: yes, you should be testing your JavaScript code.  Period.  There is a smorgasbord of testing software available for JavaScript.  It doesn't matter which one you pick but you should pick one.  For our purposes, we are going to setup our application testing with [Tape](https://github.com/substack/tape).
 
-## Mocha
->"Mocha is a feature-rich JavaScript test framework"
 
-It's basically a test runner that manages your tests.  You install it with npm:
+## Tape
+>"tap-producing test harness for node and browsers"
 
+TAP stands for [Test Anything Protocol](https://en.wikipedia.org/wiki/Test_Anything_Protocol) and has been around for several decades.  Most automated testing tools actually support TAP output and because it is a standard, there are many processors (reporters) that can take TAP output and generate beautiful reports from it (we will see how, later in this chapter)
+
+So Tape is just a CLI tool that takes in tests and generates TAP as output.
+
+To install:
 ```bash
-$ npm install mocha --save-dev
-```
-
-Mocha itself does not come with an assertion library but it allows you to use any assertion library you wish.
-
-## Chai
->"Chai is a BDD / TDD assertion library for node and the browser that can be delightfully paired with any javascript testing framework."
-
-Sounds like a perfect match for Mocha.  The nice thing about Chai is that it has several assertion styles (```should```, ```assert```, ```expect```) that allow the developer to choose the most comfortable.  Installation is a breeze:
-
-```bash
-$ npm install chai --save-dev
+$ npm install tape --save-dev
 ```
 
 ## Setup
-Once you have the tools installed, we need to configure our application to start using them.
+Once installed, we need to configure our application to start using it.
 
-First create a ```test``` folder where we can put all our tests (this is the location where Mocha by default looks for tests):
+First create a ```test``` folder where we can put all our tests:
 
 ```bash
 $ mkdir test
 ```
 
-Create a new file in this directory called ```sayHello-test.js``` and add the following content:
+Create a new file in this directory called ```sayHello.spec.js``` and add the following content:
 
 ```JavaScript
-import {expect} from 'chai';
+import test from 'tape'
 
-describe('Application', () => {
-  it('is a useless test but gets us started', () => {
-    expect(true).to.be.true;
-  });
-});
+test('A passing test', (assert) => {
+  assert.pass('This test will pass.')
+  assert.end()
+})
 ```
 
-We are going to use the ```expect``` assertion style, which we indicate with the ```import``` statement on the first line.  What follows is the ```describe``` block that holds out test "suite".  We can define multiple tests in a describe block, although here we only defined 1.  Our actual test is contained in an ```it``` block that clearly describes what that particular test is testing.  Finally, we have the test itself.  Note that this is obviously a useless test as it will always evaluate to true, but we can test our setup with this test.
+First we import ```tape``` (and call it ```test```).  Then we created a test using the ```test``` method with the name 'A passing test'.  ```test``` also takes a callback that receives the test object (called ```assert``` in this example).  We then use this test object in our callback to perform the actual test assertions.  In this case we use ```pass``` to generate a passing assertion with a message 'This test will pass.'.  You have to end the test with a call to ```end()``` (otherwise your test will hang).  Alternatively you can tell Tape how many assertions you are planning to run in a test using ```plan()```.  ```end()``` will be called automatically after the nth assertion. If there are any more assertions after the nth, or after ```end()``` is called, they will generate errors, so this is the same as above:
 
-To run our tests with Mocha, we issue the following command:
+```JavaScript
+import test from 'tape'
+
+test('A passing test', (assert) => {
+  assert.plan(1)
+  assert.pass('This test will pass.')
+})
+```
+
+To run this tests with Tape, we just run the script with ```node```:
 
 ```bash
-$ ./node_modules/mocha/bin/mocha
+$ node test/sayHello.spec.js
+```
+
+You can also run tests using the tape binary to utilize globbing, for example:
+
+```bash
+$ ./node_modules/.bin/tape ./test/*.js
 ```
 
 ```SyntaxError: Unexpected token import```
 
-hmmm, not what we were expecting.  The problem is that we are using ES6 code in our test itself (```import``` is the ES6 way for importing modules) and currently, the way we are running Mocha, it doesn't recognize ES6.  The solution is to use the npm module ```babel-register``` which transpiles our source on the fly:
+hmmm, not what we were expecting.  The problem is that we are using ES6 code in our test itself (```import``` is the ES6 way for importing modules) and currently, the way we are running Tape, it doesn't recognize ES6.  The solution is to use the npm module ```babel-register``` which transpiles our source on the fly.
 
 ```bash
 $ npm install babel-register --save-dev
 ```
 
-And then tell Mocha that we want to use babel-register:
+We tell Tape to use babel-register with the ```require``` flag (```-r``` or ```-require```):
 
 ```bash
-$ ./node_modules/mocha/bin/mocha --require babel-register
+$ ./node_modules/.bin/tape -r babel-register ./test/*.js
 ```
 
 Rather than typing in this command all the time, lets add a "test" script to our ```package.json``` file (if it already exists, just replace it with this)and while we are at it, we can add the ```--watch``` flag to watch for changes:
@@ -69,37 +76,60 @@ Rather than typing in this command all the time, lets add a "test" script to our
 ```JSON
   "scripts": {
     ...,
-    "test":  "mocha --require babel-register --watch"
+    "test":  "tape --require babel-register test/**/*.js"
     ...,
   },
 ```
 
-And now you can watch and test by running:
+And now you can run our tests using:
 
 ```bash
-$ npm run test
+$ npm test
 ```
 
-You should now also see your test passing successfully.  Let's add some more useful tests.
+You should now also see your test passing successfully.  As mentioned earlier, we can pipe TAP into tools that produce better looking reports.  An example of such a tool is ```faucet``` so lets install that
+
+```bash
+npm install faucet --save-dev
+```
+
+We can now run our results through ```faucet``` by simply piping the output of ```tape``` through ```faucet```.  Addapt your ```test script``` in ```package.json```:
+
+```JSON
+  "scripts": {
+    ...,
+    "test":  "tape --require babel-register test/**/*.js | faucet"
+    ...,
+  },
+```
+
+And now, let's add some more useful tests.
 
 ## Add Tests
-Change the content of ```sayHello-test.js``` to the following:
+Change the content of ```sayHello.spec.js``` to the following:
 
 ```JavaScript
-import { expect } from 'chai'
+import test from 'tape'
 import sayHello from '../src/lib/sayHello'
 
-describe('sayHello', () => {
-  it('returns the String "Hello <userName>" when passing <userName>', () => {
-    expect(sayHello('Tony')).is.a('string').and.to.equal('Hello Tony')
-  })
-  it('returns the String "Hello Mark" when NOT passing any <userName>', () => {
-    expect(sayHello()).is.a('string').and.to.equal('Hello Mark')
-  })
+test('sayHello without a parameter', (t) => {
+  const actual = sayHello()
+  const expected = 'Hello Mark'
+
+  t.equal(actual, expected, 'When passing no parameters to sayHello(), the resulting string equals "Hello Mark"')
+  t.end()
+})
+
+test('sayHello with a parameter', (t) => {
+  const actual = sayHello('Tony')
+  const expected = 'Hello Tony'
+
+  t.equal(actual, expected, 'When passing "Tony" to sayHello(), the resulting string equals "Hello Tony"')
+  t.end()
 })
 ```
 
-Note that we import the module that we want to test.  Because tests live in a different folder, we need to import it from ```../src/lib/sayHello```.  We then add 2 tests in our sayHello suite: one tests that the default parameter is working and the other tests the procedure when passing in a value for the name parameter.  You should see the tests passing as it stands since this is testing already existing functionality.
+Note that we import the module that we want to test.  Because tests live in a different folder, we need to import it from ```../src/lib/sayHello```.  We then add 2 tests: one tests that the default parameter is working and the other tests the procedure when passing in a value for the name parameter.  You should see the tests passing as it stands since this is testing already existing functionality.
 
 ## Test Driven Development
 However, this is not how you should be testing, or rather, developing.  Ideally, you __first__ create your __tests__ and __then__ you __create__ the minimal __code__ to pass that test.  This is called Test Driven Development or TDD.  Let's see that in action.
@@ -107,11 +137,16 @@ However, this is not how you should be testing, or rather, developing.  Ideally,
 We are going to enhance our ```sayHello``` function to always capitalize the name that is being passed into it.  First we will add a test to test this use case:
 
 ```JavaScript
-  it('Capitilizes the <userName>', () => {
-    expect(sayHello('jake')).is.a('string').and.to.equal('Hello Jake')
-  })
+test('sayHello capitalizes the name', (t) => {
+  const actual = sayHello('jake')
+  const expected = 'Hello Jake'
+
+  t.equal(actual, expected, 'When passing "jake" to sayHello(), the resulting string equals "Hello Jake"')
+  t.end()
+})
 ```
 
+Now when you run your tests
 As soon as you save this (and you are still "watching" your tests), you will see that this fails your test.  It should be nice and red.  We now have to add the code to our module to make this test pass and become green again, which is why this is also known as red-green testing.  Open up ```sayHello.js``` and replace the content with:
 
 ```JavaScript

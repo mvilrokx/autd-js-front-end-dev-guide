@@ -22,7 +22,7 @@ $ npm init --yes
 
 ```bash
 $ npm install browser-sync babel-cli babel-preset-es2015 \
-  webpack babel-loader eslint eslint-loader mocha chai \
+  webpack babel-loader eslint eslint-loader tape \
   babel-register --save-dev
 ```
 
@@ -139,12 +139,12 @@ Add the following to you ```package.json``` file in the ```scripts``` section:
 
 ```JSON
   "scripts": {
-    "prebuild": "rm -rf dist",
+    "prebuild": "rm -rf ./dist",
     "build": "webpack --progress --colors",
     "watch": "webpack --progress --colors --watch",
-    "test": "mocha --require babel-register",
-    "test:watch": "npm run test -- --watch",
-    "prod": "npm run test && webpack --config webpack.prod.config.js -p"
+    "test": "tape --require babel-register test/**/*.js | faucet",
+    "preprod": "rm -rf ./dist",
+    "prod": "npm test && webpack --config webpack.prod.config.js -p"
   }
 ```
 
@@ -182,29 +182,41 @@ import sayHello from './lib/sayHello'
 document.getElementById('app').innerHTML = `<h1>${ sayHello() }<h1>`
 ```
 
-Create a ```sayHello-test.js``` file in the ```test``` folder and add the following content:
+Create a ```sayHello.spec.js``` file in the ```test``` folder and add the following content:
 
 ```JavaScript
-import { expect } from 'chai'
+import test from 'tape'
 import sayHello from '../src/lib/sayHello'
 
-describe('sayHello', () => {
-  it('returns the String "Hello <userName>" when passing <userName>', () => {
-    expect(sayHello('Tony')).is.a('string').and.to.equal('Hello Tony')
-  })
-  it('returns the String "Hello Mark" when NOT passing any <userName>', () => {
-    expect(sayHello()).is.a('string').and.to.equal('Hello Mark')
-  })
-  it('Capitilizes the <userName>', () => {
-    expect(sayHello('jake')).is.a('string').and.to.equal('Hello Jake')
-  })
+test('sayHello without a parameter', (t) => {
+  const actual = sayHello()
+  const expected = 'Hello Mark'
+
+  t.equal(actual, expected, 'When passing no parameters to sayHello(), the resulting string equals "Hello Mark"')
+  t.end()
+})
+
+test('sayHello with a parameter', (t) => {
+  const actual = sayHello('Tony')
+  const expected = 'Hello Tony'
+
+  t.equal(actual, expected, 'When passing "Tony" to sayHello(), the resulting string equals "Hello Tony"')
+  t.end()
+})
+
+test('sayHello capitalizes the name', (t) => {
+  const actual = sayHello('jake')
+  const expected = 'Hello Jake'
+
+  t.equal(actual, expected, 'When passing "jake" to sayHello(), the resulting string equals "Hello Jake"')
+  t.end()
 })
 ```
 
 ## Test Application
 
 ```bash
-$ npm run test
+$ npm test
 ```
 
 ## Start Application
