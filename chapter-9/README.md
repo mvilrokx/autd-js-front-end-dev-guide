@@ -22,7 +22,7 @@ $ npm init --yes
 
 ```bash
 $ npm install browser-sync babel-cli babel-preset-es2015 \
-  webpack babel-loader eslint eslint-loader tape \
+  webpack babel-loader eslint eslint-loader lodash tape \
   babel-register --save-dev
 ```
 
@@ -77,6 +77,7 @@ Create a ```webpack.config.js``` file with the folowing content:
 ```JavaScript
 var webpack = require('webpack')
 var path = require('path')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -88,6 +89,9 @@ module.exports = {
     filename: '[name].js'
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html'
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor', 'manifest'],
       minChunks: function (module) {
@@ -121,6 +125,7 @@ Create a ```webpack.prod.config.js``` file with the folowing content:
 ```JavaScript
 var webpack = require('webpack')
 var path = require('path')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -132,6 +137,9 @@ module.exports = {
     filename: '[name].js'
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html'
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor', 'manifest'],
       minChunks: function (module) {
@@ -197,7 +205,9 @@ Create an ```index.html``` file in the root folder, add the following content:
 Create a ```sayHello.js``` file in the ```src/lib``` folder and add the following content:
 
 ```JavaScript
-const sayHello = (name = 'Mark') => `Hello ${name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()}`
+import _ from 'lodash'
+
+const sayHello = (name = 'Mark') => `Hello ${_.trim(name).charAt(0).toUpperCase() + _.trim(name).slice(1).toLowerCase()}`
 
 export default sayHello
 ```
@@ -237,6 +247,15 @@ test('sayHello capitalizes the name', (t) => {
   const expected = 'Hello Jake'
 
   t.equal(actual, expected, 'When passing "jake" to sayHello(), the resulting string equals "Hello Jake"')
+  t.end()
+})
+
+
+test('sayHello trims the name', (t) => {
+  const actual = sayHello('  Thao  ')
+  const expected = 'Hello Thao'
+
+  t.equal(actual, expected, 'When passing "   Thao   " to sayHello(), the resulting string equals "Hello Thao"')
   t.end()
 })
 ```

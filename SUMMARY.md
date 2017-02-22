@@ -19,7 +19,7 @@
         + [Build](chapter-4/README.md#build)
         + [Watch](chapter-4/README.md#watch)
         + [Code Splitting](chapter-4/README.md#code-splitting)
-        + [Caching](chapter-4/README.md#caching)
+        + [HTML Webpack Plugin](chapter-4/README.md#html-webpack-plugin)
 * [Linting](chapter-5/README.md)
     - [ESLint](chapter-5/README.md#eslint)
     - [Integrate ESLint with Webpack](chapter-5/README.md#integrate-eslint-with-webpack)

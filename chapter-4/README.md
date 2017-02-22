@@ -295,6 +295,86 @@ We now have to reference these 3 scripts in our HTML so please change index.html
 </html>
 ```
 
+### HTML Webpack Plugin
+That last part feels a bit ... labor intensive, i.e. I started with the promise of bundling all my JavaScript into 1 bundle so that, among other things, I never have to touch my HTML ```<script>``` tags again, worry about the order that I need to add them etc.  But now I have to worry about that again?  What if I want to create more bundles?  The solution is to let Webpack also take care of adding the script tags to your HTML.  You see, Webpack knows which bundles it is generating and it can, using the right plugin, update an HTML "template" to include those scripts.
+
+We are going to use the HTML Webpack Plugin to handle this for us, install it with:
+
+```bash
+$ npm install html-webpack-plugin --save-dev
+```
+
+Then require the plugin in your ```webpack.config.js``` file and use it, change your ```webpack.config.js``` like this:
+
+```JavaScript
+var webpack = require('webpack')
+var path = require('path')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: {
+    app: './src/app.js',
+    vendor: 'lodash'
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js'
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html'
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['vendor', 'manifest'],
+      minChunks: function (module) {
+        // this assumes your vendor imports exist in the node_modules directory
+        return module.context && module.context.indexOf('node_modules') !== -1;
+      }
+    })
+  ],
+  devtool: 'inline-source-map',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader'
+          }, {
+            loader: 'eslint-loader',
+            options: { fix: true }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Then move ```index.html``` to ```src/index.html``` and remove all the script tags from it:
+
+```bash
+$ mv index.html ./src/index.html
+```
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript FTW</title>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
+```
+
+This will serve as our "template".  When you now run ```npm run build``` it will not only generate the bundles, but it will also produce a new ```index.html``` file in the ```dist``` directory.  We now need to serve this file instead of the ```index.html``` file in the root folder of our project, so when using ```browser-sync``` we do:
+
+```bash
+$ browser-sync start --server --files "dist/*.js, dist/index.html"
+```
 
 ### Additional Features
 Webpack comes with a feature called the Webpack Development Server which offers somewhat similar functionality to browser-sync.  Since we are already using browser-sync, we are going to stick to that, but if you are going to do ```React.js``` development you should really look into this tool (with [Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/)).  You can install it with:
