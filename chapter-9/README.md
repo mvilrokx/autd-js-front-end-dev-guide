@@ -75,14 +75,27 @@ module.exports = {
 Create a ```webpack.config.js``` file with the folowing content:
 
 ```JavaScript
+var webpack = require('webpack')
 var path = require('path')
 
 module.exports = {
-  entry: './src/app.js',
+  entry: {
+    app: './src/app.js',
+    vendor: 'lodash'
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'app.js'
+    filename: '[name].js'
   },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['vendor', 'manifest'],
+      minChunks: function (module) {
+        // this assumes your vendor imports exist in the node_modules directory
+        return module.context && module.context.indexOf('node_modules') !== -1;
+      }
+    })
+  ],
   devtool: 'inline-source-map',
   module: {
     rules: [
@@ -106,14 +119,27 @@ module.exports = {
 Create a ```webpack.prod.config.js``` file with the folowing content:
 
 ```JavaScript
+var webpack = require('webpack')
 var path = require('path')
 
 module.exports = {
-  entry: './src/app.js',
+  entry: {
+    app: './src/app.js',
+    vendor: 'lodash'
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'app.js'
+    filename: '[name].js'
   },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['vendor', 'manifest'],
+      minChunks: function (module) {
+        // this assumes your vendor imports exist in the node_modules directory
+        return module.context && module.context.indexOf('node_modules') !== -1;
+      }
+    })
+  ],
   devtool: 'cheap-module-source-map',
   module: {
     rules: [
@@ -160,6 +186,8 @@ Create an ```index.html``` file in the root folder, add the following content:
   </head>
   <body>
     <div id="app"><div>
+    <script src="/dist/manifest.js"></script>
+    <script src="/dist/vendor.js"></script>
     <script src="/dist/app.js"></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 # Modular JavaScript
-Modularity has always been a staple of good development; it promotes code reuse and enhances maintainability.  Unfortunately, writing modular JavaScript was not easy, at least not until node.js came along.  In fact, JavaScript did not have a way to write modules built into the language.  (Read that last sentence again, out loud.)  Over time, this lead to developers building their own strategies and tools to create modular JavaScript.  I will spare you the history lesson and the cornucopia of solutions this has lead to (but you should definitely Google it) and just let you know that, _finally_, ES2015 introduced a native feature in the JavaScript language that supports the creation of modules.  And since we are coding in ES2015 already, this is the only solution we will be using going forward.
+Modularity has always been a staple of good development; it promotes code reuse and enhances maintainability.  Unfortunately, writing modular JavaScript _was_ not easy, at least not until node.js came along.  In fact, JavaScript did not have a way to write modules built into the language.  (Read that last sentence again, out loud.)  Over time, this lead to developers building their own strategies and tools to create modular JavaScript.  I will spare you the history lesson and the cornucopia of solutions this has lead to (but you should definitely Google it) and just let you know that, _finally_, ES2015 introduced a native feature in the JavaScript language that supports the creation of modules.  And since we are coding in ES2015 already, this is the only solution we will be using going forward.
 
 ## Our first Module
 Let's go back to our example ```app.js``` and introduce some JavaScript Modules to see how they work.  First we create a new folder called ```lib``` in our ```src``` folder that will hold all our JavaScript Modules. 
@@ -10,7 +10,7 @@ $ mkdir lib
 $ cd lib
 ```
 
-In this directory, we create a file called sayHello.js and we move the sayHello function into this new file.  To turn this function into a module, all we need to do is export the function:
+In this directory, we create a file called ```sayHello.js``` and we move the sayHello function into this new file.  To turn this function into a module, all we need to do is export the function:
 
 ```javascript
 const sayHello = (name = 'Mark') => `Hello ${ name }`
@@ -84,10 +84,10 @@ The solution to this problem is to "bundle" all the modules into 1 large file so
 
 >Note that these bundlers require quite a bit of setup (explained in the next sections), even for our simple setup.  However, over time, the advantages they provide far outweigh these annoyances.  Also, once you have 1 project set up it can serve as a template for any new projects, just clone it, run ```npm init``` and you are good to go.
 
-### Webpack
+## Webpack
 There are several Module Bundlers out there but we are going to use [WebPack 2.x](https://webpack.js.org/).  Webpack's scope is actually much broader than just a JavaScript bundler, it can also bundle CSS and even image files (e.g. png files).  All this functionality makes it very flexible, but also a bit trickier to configure.
 
-#### Installation
+### Installation
 Webpack is a node package, so installation is simple:
 
 ```bash
@@ -100,7 +100,7 @@ Rather than running Babel directly, from now on, we are going to run Webpack, wh
 $ npm install babel-loader --save-dev
 ```
 
-#### Configuration
+### Configuration
 Once all this is installed we need to configure Webpack.  This is done using a file called ```webpack.config.js```, so create this at the project root folder and add the following into it:
 
 ```JavaScript
@@ -131,7 +131,7 @@ module.exports = {
 
 Here we configure Webpack to 'start' (```entry```) from our ```./src/app.js``` file.  Webpack will analyze the dependencies of this file and then the dependencies of those files, etc. and 'bundle' them in a file called ```./dist/app.js``` (```output```).  We also set up Webpack to create inline source maps (```devtool```).
 
-#### Build
+### Build
 Now we just have to add a build script in ```package.json``` to use Webpack instead of Babel:
 
 ```JSON
@@ -154,15 +154,150 @@ Additionally, you probably want to remove the dist folder right before you (re)b
 >Note that this uses a cli-command (```rm```) which only works on a ```-nix``` OS like MacOS.  If you want to make this more OS agnostic you can use a tool like [del-cli](https://www.npmjs.com/package/del-cli).
 
 
-#### Watch
+### Watch
 Webpack has a built-in Watch feature, which you enable with the ```---watch``` flag, so let's change the watch script in ```package.json``` to:
 
 ```JSON
     "watch": "webpack --progress --colors --watch"
 ```
 
-#### Additional Features
-Webpack comes with a feature called the Webpack Development Server which offers somewhat similar functionality to browser-sync.  Since we are already using browser-sync, we are going to stick to that, but if you are going to do React.js development you should really look into this tool (with [Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/)).  You can install it with:
+### Code Splitting
+At the moment, our application is not using any 3rd party libraries but a typical JavaScript application will.  With our current setup, when we ```build``` our bundle, any 3rd party library will be bundled with our custom application logic.
+
+This is not ideal. Our application logic will change regularly whereas the code in the 3rd party libabry will not change at all, assuming we keep using the same version of that libabry.  Browsers can cache asset files if its contents does not change but, because there is only 1 bundle/file who's content will change every time we make a change to our application logic, browsers will have to download the whole bundle every time, including the large part of 3rd party code that did not change.
+
+It would be much better if we could split the bundle into at least 2 chunks, 1 relatively small chunk that contains our application logic and that will change regularly, and one relatively large chunk that contains all the vendor libraries and rarely changes.  That way, browsers can cache the large vendor chunk and just have to download our application logic every time.
+
+Luckily, with Webpack, this is relatively easy to configure.  Lets introduce a 3rd party libary and see what happens with the current setup.  We will use ```lodash``` as an example as it is a very popular libary that you most likely will be using yourself at some point.  Start by installing it from npm:
+
+```bash
+$ npm install lodash --save
+```
+
+Then introduce it in your code by importing it in ```sayHello.js``` (there are better ways to import from lodash, this is just an example) and use it, here we are using the ```trim()``` function:
+
+```javascript
+import _ from 'lodash'
+
+const sayHello = (name = 'Mark') => `Hello ${ _.trim(name) }`
+
+export default sayHello
+```
+
+And finally re-build your bundle:
+
+```bash
+$ npm run build
+```
+
+If you look at ```dist/app.js``` now, you will see that it now contains the lodash JavaScript bundled with your own JavaScript.  You will also notice that this significantly increased the size of your bundled JS from less than 8K to more than 1.4M!  And now, every time you make a change to your application logic, which makes up less than 0.5% of all the code, all your users will have to download the whole 1.4M file again.
+
+So how do we split these files so the users only have to download what actually changed?  First we need to tell Webpack that we have multiple entry points.  So open up ```webpack.config.js``` and modify it like this:
+
+```javascript
+var path = require('path')
+
+module.exports = {
+  entry: {
+    app: './src/app.js',
+    vendor: 'lodash'
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js'
+  },
+  devtool: 'inline-source-map',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader'
+          }, {
+            loader: 'eslint-loader',
+            options: { fix: true }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Note that we added 2 entry points called ```app``` and ```vendor``` and that we tell it to produce output as ```[name].js``` instead of the old ```app.js```.  This is because we now need to produce 2 output files and so we cannot name it ```app.js``` anymore.  Instead we use a placeholder, ```[name]```, which will get replaced by the entry names (app and vendor).
+
+Now when you run ```npm run build```, you'll see that two bundles will get created: ```app.js``` and ```vendor.js```.  But, if you inspect these, you will find that the code for ```lodash``` is present in both these files!  
+
+To solve that, we will need to use the ```CommonsChunkPlugin```.  It allows us to extract all the common modules from different bundles and add them to the common bundle. If a common bundle does not exist, then it creates a new one.
+
+We can modify our webpack config file to use the CommonsChunkPlugin as follows:
+
+```javascript
+var webpack = require('webpack')
+var path = require('path')
+
+module.exports = {
+  entry: {
+    app: './src/app.js',
+    vendor: 'lodash'
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js'
+  },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['vendor', 'manifest'],
+      minChunks: function (module) {
+        // this assumes your vendor imports exist in the node_modules directory
+        return module.context && module.context.indexOf('node_modules') !== -1;
+      }
+    })
+  ],
+  devtool: 'inline-source-map',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader'
+          }, {
+            loader: 'eslint-loader',
+            options: { fix: true }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+When you run ```npm run build``` , you'll now see 3 bundles will get created: ```app.js```, ```manifest.js``` and ```vendor.js```.  ```app.js``` will only contain your application logic, ```manifest.js``` will contain all the  webpack runtime code which helps webpack do its job and ```vendor.js``` will contain the vendor's JavaScript.  Although now we have 3 "bundles" instead of the 1 we started with, the overhead is offset by the long term caching benefits that we obtain.
+
+We now have to reference these 3 scripts in our HTML so please change index.html:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript FTW</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="/dist/manifest.js"></script>
+    <script src="/dist/vendor.js"></script>
+    <script src="/dist/app.js"></script>
+  </body>
+</html>
+```
+
+
+### Additional Features
+Webpack comes with a feature called the Webpack Development Server which offers somewhat similar functionality to browser-sync.  Since we are already using browser-sync, we are going to stick to that, but if you are going to do ```React.js``` development you should really look into this tool (with [Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/)).  You can install it with:
 
 ```bash
 $ npm install webpack-dev-server --save-dev
