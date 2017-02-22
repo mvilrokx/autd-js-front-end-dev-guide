@@ -24,3 +24,11 @@ test('sayHello capitalizes the name', (t) => {
   t.equal(actual, expected, 'When passing "jake" to sayHello(), the resulting string equals "Hello Jake"')
   t.end()
 })
+
+test('sayHello trims the name', (t) => {
+  const actual = sayHello('  Thao  ')
+  const expected = 'Hello Thao'
+
+  t.equal(actual, expected, 'When passing "   Thao   " to sayHello(), the resulting string equals "Hello Thao"')
+  t.end()
+})

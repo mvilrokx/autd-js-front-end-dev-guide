@@ -1,5 +1,6 @@
 var webpack = require('webpack')
 var path = require('path')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -11,6 +12,9 @@ module.exports = {
     filename: '[name].js'
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html'
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor', 'manifest'],
       minChunks: function (module) {
