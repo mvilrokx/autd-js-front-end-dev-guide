@@ -23,7 +23,7 @@ $ npm init --yes
 ```bash
 $ npm install browser-sync babel-cli babel-preset-es2015 \
   webpack babel-loader eslint eslint-loader lodash tape \
-  faucet babel-register --save-dev
+  html-webpack-plugin faucet babel-register --save-dev
 ```
 
 ## Configure
